@@ -19,9 +19,11 @@
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="Main">
                     <Fluent:Button Header="Home"
-                                   Command="{Binding ShowHomeViewCommand}"/>
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="../Images/iconfinder_Home_131778.png"/>
                     <Fluent:Button Header="List"
-                                   Command="{Binding ShowMainListCommand}"/>
+                                   Command="{Binding ShowMainListCommand}"
+                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
