@@ -4,7 +4,7 @@
                      xmlns:local="clr-namespace:FruitMarket"
                      xmlns:view="clr-namespace:FruitMarket.View"
                      xmlns:Fluent="urn:fluent-ribbon"
-                     Title="My first RibbonWindow" 
+                     Title="Fruit Market" 
                      Width="800" 
                      Height="600">
     <Grid>
@@ -30,12 +30,6 @@
 
         <ContentControl Grid.Row="1" 
                         Content="{Binding ActiveView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <!--<TabControl Grid.Row="1">
-            <TabItem Header="{Binding ActiveView.Title}">
-                <ContentControl Content="{Binding ActiveView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </TabItem>
-        </TabControl>-->
 
         <view:LogView Grid.Row="2"/>
 

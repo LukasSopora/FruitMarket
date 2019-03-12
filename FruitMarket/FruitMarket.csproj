@@ -157,10 +157,14 @@
     <Resource Include="Images\iconfinder_Preview_131689.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\iconfinder_List_131880.png" />
+    <Resource Include="Images\iconfinder_List_131880.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\iconfinder_Home_131778.png" />
+    <Resource Include="Images\iconfinder_Home_131778.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\iconfinder_Cancel_131742.png" />
