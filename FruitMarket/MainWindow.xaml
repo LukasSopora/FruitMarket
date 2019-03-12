@@ -24,6 +24,9 @@
                     <Fluent:Button Header="List"
                                    Command="{Binding ShowMainListCommand}"
                                    LargeIcon="../Images/iconfinder_List_131880.png"/>
+                    <Fluent:Button Header="List"
+                                   Command="{Binding ShowProductListCommand}"
+                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
