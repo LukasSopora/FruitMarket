@@ -3,19 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:view="clr-namespace:FruitMarket.View"
              xmlns:local="clr-namespace:FruitMarket.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="AUto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Incoming Products:" Grid.Row="0"
+        <TextBlock Text="Incoming Products:" 
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                    FontWeight="Bold" FontSize="20"/>
 
-        <DataGrid Grid.Row="1"
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Margin="10,10,10,10" Text="Lieferant:"
+                       FontWeight="Bold"/>
+            <ComboBox Grid.Row="1" Grid.Column="0"
+                      Margin="10,10,10,10"
+                      ItemsSource="{Binding Suppliers}"
+                      SelectedItem="{Binding CurrentSupplier}"/>
+            <Button Margin="10,10,10,10"
+                    Content="Add Supplier"
+                    Command="{Binding AddSupplierCommand}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <view:SupplierView Grid.Row="1" Grid.Column="1" 
+                           DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DockPanel HorizontalAlignment="Right">
+                <Button Command="{Binding SaveSupplierCommand}" Width="20" Height="20" Background="Transparent">
+                    <Image Source="../Images/iconfinder_flat-style-circle-add_1312548.png"/>
+                </Button>
+                <Button Command="{Binding CancelCommand}" Width="20" Height="20" Background="Transparent">
+                    <Image Source="../Images/iconfinder_Cancel_131742.png"/>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+
+
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="3"
                   CanUserAddRows="True" CanUserDeleteRows="True"
                   AutoGenerateColumns="False" ItemsSource="{Binding Incoming}">
             <DataGrid.Columns>

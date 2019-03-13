@@ -5,8 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FruitMarket.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="400">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <Image Source="../Images/iconfinder_user_male2_172626.png"
+               Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+               Margin="10,10,10,10"
+               Width="60" Height="60"/>
+
+        <DockPanel Grid.Row="0" Grid.Column="1" Margin="10,5,0,0">
+            <TextBlock Text="Name: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding LastName}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="1" Margin="10,5,0,0">
+            <TextBlock Text="Vorname: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding FirstName}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Grid.Column="0" Margin="10,5,0,0">
+            <TextBlock Text="Geb. Datum: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Birthday}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Grid.Column="1" Margin="10,5,0,0">
+            <TextBlock Text="Adresse: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Adress}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="3" Grid.Column="0" Margin="10,5,0,0">
+            <TextBlock Text="Telefon: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Phone}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="3" Grid.Column="1" Margin="10,5,0,0">
+            <TextBlock Text="Firma: " Height="15" Width="70" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Company}" Height="20" VerticalAlignment="Top"/>
+        </DockPanel>
     </Grid>
 </UserControl>

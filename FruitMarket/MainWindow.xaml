@@ -27,6 +27,9 @@
                     <Fluent:Button Header="List"
                                    Command="{Binding ShowProductListCommand}"
                                    LargeIcon="../Images/iconfinder_List_131880.png"/>
+                    <Fluent:Button Header="Product Admission"
+                                   Command="{Binding ProductAdmissionCommand}"
+                                   LargeIcon="../Images/iconfinder_document_text_add_103511.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
