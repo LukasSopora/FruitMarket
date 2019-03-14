@@ -11,10 +11,17 @@ namespace FruitMarket.Model
     {
         private string m_FirstName = null;
         private string m_LastName = null;
-        private string m_Adress = null;
+        private Adress m_Adress = null;
         private DateTime m_Birthday;
         private string m_Phone = null;
         private string m_Company = null;
+        private string m_Email;
+
+        public string Email
+        {
+            get { return m_Email; }
+            set { m_Email = value; }
+        }
 
         public string Company
         {
@@ -34,7 +41,7 @@ namespace FruitMarket.Model
             set { m_Birthday = value; }
         }
 
-        public string Adress
+        public Adress Adress
         {
             get { return m_Adress; }
             set { m_Adress = value; }
@@ -46,8 +53,6 @@ namespace FruitMarket.Model
             get { return m_LastName; }
             set { m_LastName = value; }
         }
-
-
 
         public string FirstName
         {
@@ -64,7 +69,7 @@ namespace FruitMarket.Model
             m_Company = p_Company;
         }
 
-        public Supplier(string p_LastName, string p_FirstName, string p_Adress, DateTime p_Birthday, string p_Phone, string p_Company)
+        public Supplier(string p_LastName, string p_FirstName, Adress p_Adress, DateTime p_Birthday, string p_Phone, string p_Company, string p_Email)
         {
             m_LastName = p_LastName;
             m_FirstName = p_FirstName;
@@ -72,6 +77,7 @@ namespace FruitMarket.Model
             m_Birthday = p_Birthday;
             m_Phone = p_Phone;
             m_Company = p_Company;
+            m_Email = p_Email;
         }
 
         public override string ToString()

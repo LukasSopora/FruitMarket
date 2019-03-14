@@ -14,25 +14,25 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Fluent:Ribbon Grid.Row="0">
+        <Fluent:Ribbon Grid.Row="0" IsQuickAccessToolBarVisible="False">
 
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="Main">
                     <Fluent:Button Header="Home"
                                    Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="../Images/iconfinder_Home_131778.png"/>
+                                   LargeIcon="../Images/home-icon-silhouette.png"/>
                     <Fluent:Button Header="List"
                                    Command="{Binding ShowMainListCommand}"
-                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
+                                   LargeIcon="../Images/list.png"/>
                     <Fluent:Button Header="List"
                                    Command="{Binding ShowProductListCommand}"
-                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
+                                   LargeIcon="../Images/list.png"/>
                     <Fluent:Button Header="Product Admission"
                                    Command="{Binding ProductAdmissionCommand}"
-                                   LargeIcon="../Images/iconfinder_document_text_add_103511.png"/>
+                                   LargeIcon="../Images/shipped.png"/>
                     <Fluent:Button Header="Filter List"
                                    Command="{Binding FilterCommand}"
-                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
+                                   LargeIcon="../Images/filter-filled-tool-symbol.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>

@@ -196,9 +196,9 @@ namespace FruitMarket.ViewModel
         public AdmissionViewModel()
         {
             InitializeCommands();
-            m_Suppliers.Add(new Supplier("Lustig", "Peter", "Musterstrasse 12, 11111 Musterhausen", DateTime.Parse("1985-03-03"), "+49 666 666", "9Live"));
-            m_Suppliers.Add(new Supplier("Wurst", "Hans", "Zur Fielbecke 5, 57413 Finnentrop", DateTime.Parse("1975-02-08"), "+49 234 234", "Metten"));
-            m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", "Auf der Kö 69, 40210 Düsseldorf", DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple"));
+            m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
+            m_Suppliers.Add(new Supplier("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413",  "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
+            m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
 
             if (m_Suppliers.Count == 0)
             {
