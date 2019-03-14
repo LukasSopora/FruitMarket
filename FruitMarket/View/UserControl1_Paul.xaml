@@ -12,24 +12,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Paul View:" Grid.Row="0" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="Produkte" Grid.Row="0" FontWeight="Bold" FontSize="20"/>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Fruits}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
                   AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
-                <DataGridTextColumn Header="Bestand" Binding="{Binding Amount}"/>
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Sorte/Bezeichnung" Binding="{Binding Sort}"/>
+                <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}"/>
                 <DataGridTextColumn Header="Kategorie / Klasse" Binding="{Binding Category}"/>
-                <DataGridTextColumn Header="Lieferant / Produzent" Binding="{Binding Supplier.Name}"/>
-                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate}"/>
-                <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
-                <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
+                <DataGridTextColumn Header="Lieferant / Produzent" Binding="{Binding Supplier.LastName}"/>
+                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="ausstehende Reifungsdauer" Binding="{Binding Mature, StringFormat=dd}"/>
                 <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
                 <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
                 <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
-
+        <Button Width="100">PDF Export</Button>
     </Grid>
 </UserControl>
