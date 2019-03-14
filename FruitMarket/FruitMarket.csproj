@@ -86,10 +86,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\NullToVisibilityConverter.cs" />
+    <Compile Include="Database\Connection.cs" />
+    <Compile Include="Helper\ToolConstants.cs" />
     <Compile Include="Helper\LogEntry.cs" />
     <Compile Include="Helper\LogType.cs" />
     <Compile Include="Model\Adress.cs" />
-    <Compile Include="Model\Fruit.cs" />
+    <Compile Include="Model\Costumer.cs" />
+    <Compile Include="Model\Delivery.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Producer.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />

@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Fruit : BindableBase
+    public class Product : BindableBase
     {
-        private int m_Id;
-        private string m_Sort;
-        private int m_Amount;
-        private string m_Category;
-        private Supplier m_Supplier;
-        private DateTime m_PurchaseDate;
-        private DateTime m_Expiration;
-        private TimeSpan m_Mature;
-        private string m_Origin;
-        private double m_PurchasePrice;
-        private double m_SalesPrice;
+        private int m_Id = 0;
+        private string m_Sort = null;
+        private int m_Amount = 0;
+        private string m_Category = null;
+        private Supplier m_Supplier = null;
+        private DateTime m_PurchaseDate = DateTime.MinValue;
+        private DateTime m_Expiration = DateTime.MinValue;
+        private TimeSpan m_Mature = TimeSpan.MinValue;
+        private string m_Origin = null;
+        private double m_PurchasePrice = 0;
+        private double m_SalesPrice = 0;
 
 
         public double SalesPrice
@@ -88,7 +88,7 @@ namespace FruitMarket.Model
             set { m_Id = value; }
         }
 
-        public Fruit(string p_Sort, int p_Amount, string p_Category, Supplier p_Supplier,
+        public Product(string p_Sort, int p_Amount, string p_Category, Supplier p_Supplier,
                      DateTime p_Expiration, TimeSpan p_Mature, string p_Origin,
                      double p_PurchasePrice, double p_SalesPrice)
         {

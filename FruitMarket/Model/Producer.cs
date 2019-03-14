@@ -1,5 +1,4 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Supplier
+    public class Producer
     {
         private string m_FirstName = null;
         private string m_LastName = null;
         private Adress m_Adress = null;
-        private DateTime m_Birthday;
+        private DateTime m_Birthday = DateTime.MinValue;
         private string m_Phone = null;
         private string m_Company = null;
         private string m_Email = null;
@@ -60,16 +59,16 @@ namespace FruitMarket.Model
             set { m_FirstName = value; }
         }
 
-        public Supplier()
+        public Producer()
         {
         }
 
-        public Supplier(string p_Company)
+        public Producer(string p_Company)
         {
             m_Company = p_Company;
         }
 
-        public Supplier(string p_LastName, string p_FirstName, Adress p_Adress, DateTime p_Birthday, string p_Phone, string p_Company, string p_Email)
+        public Producer(string p_LastName, string p_FirstName, Adress p_Adress, DateTime p_Birthday, string p_Phone, string p_Company, string p_Email)
         {
             m_LastName = p_LastName;
             m_FirstName = p_FirstName;

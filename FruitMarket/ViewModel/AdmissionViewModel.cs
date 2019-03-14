@@ -14,14 +14,14 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
-        private ObservableCollection<Fruit> m_Fruits =
-            new ObservableCollection<Fruit>();
+        private ObservableCollection<Product> m_Fruits =
+            new ObservableCollection<Product>();
 
 
         private Supplier m_CurrentSupplier = null;
         private bool m_IsEditing = false;
 
-        public ObservableCollection<Fruit> Fruits
+        public ObservableCollection<Product> Fruits
         {
             get { return m_Fruits; }
             set { m_Fruits = value; }
@@ -147,7 +147,7 @@ namespace FruitMarket.ViewModel
                 return false;
             }
             
-            foreach(Fruit f in m_Fruits)
+            foreach(Product f in m_Fruits)
             {
                 if (f.Sort == null || f.Sort == "")
                 {
