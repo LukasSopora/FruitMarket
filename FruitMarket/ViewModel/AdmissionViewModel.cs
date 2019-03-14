@@ -14,7 +14,23 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
+        private ObservableCollection<Fruit> m_Fruits =
+            new ObservableCollection<Fruit>();
+
+
         private Supplier m_CurrentSupplier = null;
+        private bool m_IsEditing = false;
+
+        public ObservableCollection<Fruit> Fruits
+        {
+            get { return m_Fruits; }
+            set { m_Fruits = value; }
+        }
+        public bool IsEditing
+        {
+            get { return m_IsEditing; }
+            set { m_IsEditing = value; }
+        }
 
         public Supplier CurrentSupplier
         {
@@ -30,7 +46,8 @@ namespace FruitMarket.ViewModel
 
         public DelegateCommand NewSupplierCommand { get; private set; }
         public DelegateCommand SaveSupplierCommand { get; private set; }
-        public DelegateCommand CancelCommand { get; private set; }
+        public DelegateCommand DeleteSupplierCommand { get; private set; }
+        public DelegateCommand AddFruitsCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -38,14 +55,36 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(NewSupplierCommand));
             SaveSupplierCommand = new DelegateCommand(OnSaveSupplier);
             RaisePropertyChanged(nameof(SaveSupplierCommand));
-            CancelCommand = new DelegateCommand(OnCancel);
-            RaisePropertyChanged(nameof(CancelCommand));
+            DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
+            RaisePropertyChanged(nameof(DeleteSupplierCommand));
+            AddFruitsCommand = new DelegateCommand(OnAddFruits);
+            RaisePropertyChanged(nameof(AddFruitsCommand));
         }
 
-        private void OnCancel()
+        private void OnAddFruits()
         {
+            if(CheckSupplier() && CheckFruits())
+            {
+                //Hier gehts weiter
+            }
+        }
+
+        private void OnDeleteSupplier()
+        {
+            if(m_Suppliers.Contains(m_CurrentSupplier))
+            {
+                if(System.Windows.MessageBox.Show(
+                    string.Format("Doy you want to Delete Supplier \"{0}\"?", m_CurrentSupplier), "Delete Supplier?",System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                {
+                    m_Suppliers.Remove(m_CurrentSupplier);
+                    RaisePropertyChanged(nameof(Suppliers));
+                }
+            }
             m_CurrentSupplier = null;
-            RaisePropertyChanged(nameof(m_CurrentSupplier));
+            RaisePropertyChanged(nameof(CurrentSupplier));
+
+            m_IsEditing = false;
+            RaisePropertyChanged(nameof(IsEditing));
         }
 
         private void OnSaveSupplier()
@@ -53,7 +92,10 @@ namespace FruitMarket.ViewModel
             if(CheckSupplier())
             {
                 m_Suppliers.Add(m_CurrentSupplier);
-                RaisePropertyChanged(nameof(Suppliers));
+                RaisePropertyChanged(nameof(CurrentSupplier));
+
+                m_IsEditing = false;
+                RaisePropertyChanged(nameof(IsEditing));
             }
         }
 
@@ -61,6 +103,9 @@ namespace FruitMarket.ViewModel
         {
             m_CurrentSupplier = new Supplier();
             RaisePropertyChanged(nameof(CurrentSupplier));
+
+            m_IsEditing = true;
+            RaisePropertyChanged(nameof(IsEditing));
         }
 
         private bool CheckSupplier()
@@ -94,6 +139,59 @@ namespace FruitMarket.ViewModel
             return true;
         }
 
+        private bool CheckFruits()
+        {
+            if(m_Fruits.Count == 0)
+            {
+                return false;
+            }
+            
+            foreach(Fruit f in m_Fruits)
+            {
+                if (f.Sort == null || f.Sort == "")
+                {
+                    System.Windows.MessageBox.Show("Sort cannot be empty.");
+                    return false;
+                }
+                if(f.Amount <= 0)
+                {
+                    System.Windows.MessageBox.Show("Invalid amount.");
+                    return false;
+                }
+                if (f.Category == null || f.Category == "")
+                {
+                    System.Windows.MessageBox.Show("Amount cannot be empty.");
+                    return false;
+                }
+                if (f.PurchaseDate == null || f.PurchaseDate == DateTime.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Purchase Date cannot be empty.");
+                    return false;
+                }
+                if (f.Expiration == null || f.Expiration == DateTime.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
+                    return false;
+                }
+                if (f.Mature == null || f.Mature == TimeSpan.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Mature cannot be empty.");
+                    return false;
+                }
+                if(f.Origin == null || f.Origin == "")
+                {
+                    System.Windows.MessageBox.Show("Origin cannot be empty.");
+                    return false;
+                }
+                if (f.PurchasePrice <= 0)
+                {
+                    System.Windows.MessageBox.Show("Invalid price.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public AdmissionViewModel()
         {
             InitializeCommands();
@@ -101,6 +199,12 @@ namespace FruitMarket.ViewModel
             m_Suppliers.Add(new Supplier("Hans"));
             m_Suppliers.Add(new Supplier("Dieter"));
             m_Suppliers.Add(new Supplier("Paul"));
+
+            if (m_Suppliers.Count == 0)
+            {
+                OnNewSupplier();
+            }
+            RaisePropertyChanged(nameof(Fruits));
         }
     }
 }
