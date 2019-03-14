@@ -154,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Styles\MainWindowDesign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Styles\ProductAdmissionDesign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

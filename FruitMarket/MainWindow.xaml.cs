@@ -29,5 +29,11 @@ namespace FruitMarket
             DataContext = new MainViewModel();
             this.InitializeComponent();
         }
+        
+        private void RibbonTabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MainViewModel mvm = DataContext as MainViewModel;
+            mvm.ChangeView();
+        }
     }
 }

@@ -12,11 +12,11 @@ namespace FruitMarket.ViewModel
 {
     public class MainViewModel : BindableBase
     {
-        UserControl m_ActiveView = null;
-        MainListView m_MainListView = null;
-        UserControl1_Paul m_ProductListView = null;
-        ProductAdmissionView m_ProductAdmissionView = null;
-        FilterView m_FilterView = null;
+        private UserControl m_ActiveView = null;
+        private MainListView m_MainListView = null;
+        private UserControl1_Paul m_ProductListView = null;
+        private ProductAdmissionView m_ProductAdmissionView = null;
+        private FilterView m_FilterView = null;
 
         public UserControl ActiveView
         {
@@ -28,6 +28,13 @@ namespace FruitMarket.ViewModel
         public DelegateCommand ShowMainListCommand { get; private set; }
         public DelegateCommand ShowHomeViewCommand { get; private set; }
         public DelegateCommand ShowProductListCommand { get; private set; }
+
+        internal void ChangeView()
+        {
+            m_ActiveView = m_ProductAdmissionView;
+            RaisePropertyChanged(nameof(ActiveView));
+        }
+
         public DelegateCommand ProductAdmissionCommand { get; private set; }
         public DelegateCommand FilterCommand { get; private set; }
 

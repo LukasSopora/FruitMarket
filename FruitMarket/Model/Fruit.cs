@@ -21,6 +21,7 @@ namespace FruitMarket.Model
         private double m_PurchasePrice;
         private double m_SalesPrice;
 
+
         public double SalesPrice
         {
             get { return m_SalesPrice; }

@@ -6,7 +6,14 @@
                      xmlns:Fluent="urn:fluent-ribbon"
                      Title="Fruit Market" 
                      Width="800" MinWidth="500" 
-                     Height="600" MinHeight="600"> 
+                     Height="600" MinHeight="600">
+    <Fluent:RibbonWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="View/Styles/MainWindowDesign.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Fluent:RibbonWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,23 +23,82 @@
 
         <Fluent:Ribbon Grid.Row="0" IsQuickAccessToolBarVisible="False">
 
-            <Fluent:RibbonTabItem Header="Home">
+            <Fluent:RibbonTabItem Header="Hauptmenü">
                 <Fluent:RibbonGroupBox Header="Main">
                     <Fluent:Button Header="Home"
                                    Command="{Binding ShowHomeViewCommand}"
                                    LargeIcon="../Images/home-icon-silhouette.png"/>
-                    <Fluent:Button Header="List"
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Lager">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Fluent:Button Header="Auf Lager"
                                    Command="{Binding ShowMainListCommand}"
                                    LargeIcon="../Images/list.png"/>
-                    <Fluent:Button Header="List"
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Produkte">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Fluent:Button Header="Alle Produkte"
                                    Command="{Binding ShowProductListCommand}"
                                    LargeIcon="../Images/list.png"/>
-                    <Fluent:Button Header="Product Admission"
-                                   Command="{Binding ProductAdmissionCommand}"
-                                   LargeIcon="../Images/shipped.png"/>
-                    <Fluent:Button Header="Filter List"
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Filter">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Fluent:Button Header="Filter"
                                    Command="{Binding FilterCommand}"
                                    LargeIcon="../Images/filter-filled-tool-symbol.png"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Fluent:Button Header="Einlagerung"
+                                   Command="{Binding ProductAdmissionCommand}"
+                                   LargeIcon="../Images/shipped.png"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox HorizontalAlignment="Stretch">
+                    <Grid MinWidth="400" Margin="100,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Suppliers: " FontWeight="DemiBold" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Grid.Row="1" Grid.Column="0"/>
+                        <DockPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                            <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}">
+                                <Image Source="Images/plus.png"/>
+                            </Button>
+                            <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}">
+                                <Image Source="Images/error.png"/>
+                            </Button>
+                        </DockPanel>
+                        <TextBlock Text="Producers: " FontWeight="DemiBold" Grid.Row="0" Grid.Column="1"/>
+                        <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Grid.Row="1" Grid.Column="1"/>
+                        <DockPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
+                            <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}">
+                                <Image Source="Images/plus.png"/>
+                            </Button>
+                            <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}">
+                                <Image Source="Images/error.png"/>
+                            </Button>
+                        </DockPanel>
+                    </Grid>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Verkauf">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
