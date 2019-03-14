@@ -4,18 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:FruitMarket.View"
+             xmlns:converter="clr-namespace:FruitMarket.Converter"
              xmlns:local="clr-namespace:FruitMarket.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -32,21 +37,39 @@
                       SelectedItem="{Binding CurrentSupplier}"/>
             <Button Margin="10,10,10,10"
                     Content="Add Supplier"
-                    Command="{Binding AddSupplierCommand}"/>
+                    Command="{Binding NewSupplierCommand}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <view:SupplierView Grid.Row="1" Grid.Column="1" 
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Add new Supplier:"
+                       FontWeight="Bold" Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <view:SupplierView Grid.Row="1" Margin="0,0,0,10"
                            DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <DockPanel HorizontalAlignment="Right">
-                <Button Command="{Binding SaveSupplierCommand}" Width="20" Height="20" Background="Transparent">
+
+            <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+                <Button Command="{Binding SaveSupplierCommand}" 
+                        Width="30" Height="30" Background="Transparent"
+                        BorderThickness="0"
+                        ToolTip="Save Supplier"
+                        Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Source="../Images/iconfinder_flat-style-circle-add_1312548.png"/>
                 </Button>
-                <Button Command="{Binding CancelCommand}" Width="20" Height="20" Background="Transparent">
+                <Button Command="{Binding DeleteSupplierCommand}" 
+                        Width="30" Height="30" Background="Transparent"
+                        BorderThickness="0"
+                        ToolTip="Delete Supplier"
+                        Visibility="{Binding CurrentSupplier, Converter={StaticResource NullToVisibilityConverter}}">
                     <Image Source="../Images/iconfinder_Cancel_131742.png"/>
                 </Button>
             </DockPanel>
-        </StackPanel>
+        </Grid>
 
 
         <DataGrid Grid.Row="2" Grid.ColumnSpan="3"

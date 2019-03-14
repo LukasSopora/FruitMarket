@@ -66,7 +66,7 @@ namespace FruitMarket.Model
 
         public override string ToString()
         {
-            return m_LastName
+            return m_LastName;
         }
     }
 }

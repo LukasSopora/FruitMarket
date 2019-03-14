@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\NullToVisibilityConverter.cs" />
     <Compile Include="Helper\LogEntry.cs" />
     <Compile Include="Helper\LogType.cs" />
     <Compile Include="Model\Fruit.cs" />
