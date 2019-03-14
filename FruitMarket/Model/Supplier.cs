@@ -59,9 +59,19 @@ namespace FruitMarket.Model
         {
         }
 
-        public Supplier(string p_LastName)
+        public Supplier(string p_Company)
+        {
+            m_Company = p_Company;
+        }
+
+        public Supplier(string p_LastName, string p_FirstName, string p_Adress, DateTime p_Birthday, string p_Phone, string p_Company)
         {
             m_LastName = p_LastName;
+            m_FirstName = p_FirstName;
+            m_Adress = p_Adress;
+            m_Birthday = p_Birthday;
+            m_Phone = p_Phone;
+            m_Company = p_Company;
         }
 
         public override string ToString()

@@ -104,6 +104,7 @@ namespace FruitMarket.ViewModel
             m_CurrentSupplier = new Supplier();
             RaisePropertyChanged(nameof(CurrentSupplier));
 
+
             m_IsEditing = true;
             RaisePropertyChanged(nameof(IsEditing));
         }
@@ -195,16 +196,16 @@ namespace FruitMarket.ViewModel
         public AdmissionViewModel()
         {
             InitializeCommands();
-            m_Suppliers.Add(new Supplier("Peter"));
-            m_Suppliers.Add(new Supplier("Hans"));
-            m_Suppliers.Add(new Supplier("Dieter"));
-            m_Suppliers.Add(new Supplier("Paul"));
+            m_Suppliers.Add(new Supplier("Lustig", "Peter", "Musterstrasse 12, 11111 Musterhausen", DateTime.Parse("1985-03-03"), "+49 666 666", "9Live"));
+            m_Suppliers.Add(new Supplier("Wurst", "Hans", "Zur Fielbecke 5, 57413 Finnentrop", DateTime.Parse("1975-02-08"), "+49 234 234", "Metten"));
+            m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", "Auf der Kö 69, 40210 Düsseldorf", DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple"));
 
             if (m_Suppliers.Count == 0)
             {
                 OnNewSupplier();
             }
             RaisePropertyChanged(nameof(Fruits));
+            RaisePropertyChanged(nameof(IsEditing));
         }
     }
 }
