@@ -14,9 +14,18 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
+        private ObservableCollection<Fruit> m_Fruits =
+            new ObservableCollection<Fruit>();
+
+
         private Supplier m_CurrentSupplier = null;
         private bool m_IsEditing = false;
 
+        public ObservableCollection<Fruit> Fruits
+        {
+            get { return m_Fruits; }
+            set { m_Fruits = value; }
+        }
         public bool IsEditing
         {
             get { return m_IsEditing; }
@@ -38,6 +47,7 @@ namespace FruitMarket.ViewModel
         public DelegateCommand NewSupplierCommand { get; private set; }
         public DelegateCommand SaveSupplierCommand { get; private set; }
         public DelegateCommand DeleteSupplierCommand { get; private set; }
+        public DelegateCommand AddFruitsCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -47,6 +57,16 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(SaveSupplierCommand));
             DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
             RaisePropertyChanged(nameof(DeleteSupplierCommand));
+            AddFruitsCommand = new DelegateCommand(OnAddFruits);
+            RaisePropertyChanged(nameof(AddFruitsCommand));
+        }
+
+        private void OnAddFruits()
+        {
+            if(CheckSupplier() && CheckFruits())
+            {
+                //Hier gehts weiter
+            }
         }
 
         private void OnDeleteSupplier()
@@ -119,6 +139,59 @@ namespace FruitMarket.ViewModel
             return true;
         }
 
+        private bool CheckFruits()
+        {
+            if(m_Fruits.Count == 0)
+            {
+                return false;
+            }
+            
+            foreach(Fruit f in m_Fruits)
+            {
+                if (f.Sort == null || f.Sort == "")
+                {
+                    System.Windows.MessageBox.Show("Sort cannot be empty.");
+                    return false;
+                }
+                if(f.Amount <= 0)
+                {
+                    System.Windows.MessageBox.Show("Invalid amount.");
+                    return false;
+                }
+                if (f.Category == null || f.Category == "")
+                {
+                    System.Windows.MessageBox.Show("Amount cannot be empty.");
+                    return false;
+                }
+                if (f.PurchaseDate == null || f.PurchaseDate == DateTime.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Purchase Date cannot be empty.");
+                    return false;
+                }
+                if (f.Expiration == null || f.Expiration == DateTime.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
+                    return false;
+                }
+                if (f.Mature == null || f.Mature == TimeSpan.MinValue)
+                {
+                    System.Windows.MessageBox.Show("Mature cannot be empty.");
+                    return false;
+                }
+                if(f.Origin == null || f.Origin == "")
+                {
+                    System.Windows.MessageBox.Show("Origin cannot be empty.");
+                    return false;
+                }
+                if (f.PurchasePrice <= 0)
+                {
+                    System.Windows.MessageBox.Show("Invalid price.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public AdmissionViewModel()
         {
             InitializeCommands();
@@ -131,6 +204,7 @@ namespace FruitMarket.ViewModel
             {
                 OnNewSupplier();
             }
+            RaisePropertyChanged(nameof(Fruits));
         }
     }
 }

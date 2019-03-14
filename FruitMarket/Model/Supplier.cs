@@ -9,12 +9,12 @@ namespace FruitMarket.Model
 {
     public class Supplier
     {
-        private string m_FirstName;
-        private string m_LastName;
-        private string m_Adress;
+        private string m_FirstName = null;
+        private string m_LastName = null;
+        private string m_Adress = null;
         private DateTime m_Birthday;
-        private string m_Phone;
-        private string m_Company;
+        private string m_Phone = null;
+        private string m_Company = null;
 
         public string Company
         {

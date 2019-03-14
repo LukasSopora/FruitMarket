@@ -72,22 +72,29 @@
         </Grid>
 
 
-        <DataGrid Grid.Row="2" Grid.ColumnSpan="3"
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
+            <DataGrid Grid.Row="2" Grid.ColumnSpan="3"
                   CanUserAddRows="True" CanUserDeleteRows="True"
-                  AutoGenerateColumns="False" ItemsSource="{Binding Incoming}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Sorte"/>
-                <DataGridTextColumn Header="Bestand"/>
-                <DataGridTextColumn Header="Kategorie / Klasse"/>
-                <DataGridComboBoxColumn Header="Lieferant / Produzent"
-                                        ItemsSource="{Binding Supplier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Header="Einkaufsdatum"/>
-                <DataGridTextColumn Header="Mindesthaltbarkeitsdatum"/>
-                <DataGridTextColumn Header="Reifungsdauer"/>
-                <DataGridTextColumn Header="Herkunft"/>
-                <DataGridTextColumn Header="Einkaufspreis"/>
-                <DataGridTextColumn Header="Verkaufspreis"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                  AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
+                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
+                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate}"/>
+                    <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
+                    <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
+                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
+                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Command="{Binding AddFruitsCommand}" 
+                    Width="32" Height="32" Background="Transparent"
+                    BorderThickness="0" HorizontalAlignment="Right"
+                    Margin="10,10,10,10"
+                    ToolTip="Save Incoming Fruits"
+                    Visibility="{Binding CurrentSupplier, Converter={StaticResource NullToVisibilityConverter}}">
+                <Image Source="../Images/iconfinder_Save_131694.png"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>
