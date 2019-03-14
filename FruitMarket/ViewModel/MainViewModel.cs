@@ -16,6 +16,7 @@ namespace FruitMarket.ViewModel
         MainListView m_MainListView = null;
         UserControl1_Paul m_ProductListView = null;
         ProductAdmissionView m_ProductAdmissionView = null;
+        FilterView m_FilterView = null;
 
         public UserControl ActiveView
         {
@@ -28,6 +29,7 @@ namespace FruitMarket.ViewModel
         public DelegateCommand ShowHomeViewCommand { get; private set; }
         public DelegateCommand ShowProductListCommand { get; private set; }
         public DelegateCommand ProductAdmissionCommand { get; private set; }
+        public DelegateCommand FilterCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -39,6 +41,14 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(ShowProductListCommand));
             ProductAdmissionCommand = new DelegateCommand(OnProductAdmission);
             RaisePropertyChanged(nameof(ProductAdmissionCommand));
+            FilterCommand = new DelegateCommand(OnFilter);
+            RaisePropertyChanged(nameof(FilterCommand));
+        }
+
+        private void OnFilter()
+        {
+            m_ActiveView = m_FilterView;
+            RaisePropertyChanged(nameof(ActiveView));
         }
 
         private void OnProductAdmission()
@@ -71,6 +81,7 @@ namespace FruitMarket.ViewModel
             m_MainListView = new MainListView();
             m_ProductListView = new UserControl1_Paul();
             m_ProductAdmissionView = new ProductAdmissionView();
+            m_FilterView = new FilterView();
         }
 
         public MainViewModel()

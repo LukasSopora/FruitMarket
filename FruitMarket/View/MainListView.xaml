@@ -23,7 +23,7 @@
                 <DataGridTextColumn Header="Sorte/Bezeichnung" Binding="{Binding Sort}"/>
                 <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}"/>
                 <DataGridTextColumn Header="Kategorie / Klasse" Binding="{Binding Category}"/>
-                <DataGridTextColumn Header="Lieferant / Produzent" Binding="{Binding Supplier.LastName}"/>
+                <DataGridTextColumn Header="Lieferant / Produzent" Binding="{Binding Supplier.Company}"/>
                 <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="ausstehende Reifungsdauer" Binding="{Binding Mature, StringFormat=dd}"/>

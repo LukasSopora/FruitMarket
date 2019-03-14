@@ -30,6 +30,9 @@
                     <Fluent:Button Header="Product Admission"
                                    Command="{Binding ProductAdmissionCommand}"
                                    LargeIcon="../Images/iconfinder_document_text_add_103511.png"/>
+                    <Fluent:Button Header="Filter List"
+                                   Command="{Binding FilterCommand}"
+                                   LargeIcon="../Images/iconfinder_List_131880.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
