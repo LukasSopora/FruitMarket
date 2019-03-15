@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Product : BindableBase
+    public class Product : ISerializable
     {
         private int m_Id = 0;
         private string m_Sort = null;
@@ -101,6 +102,32 @@ namespace FruitMarket.Model
             m_Origin = p_Origin;
             m_PurchasePrice = p_PurchasePrice;
             m_SalesPrice = p_SalesPrice;
+        }
+
+        public Product(SerializationInfo info, StreamingContext context)
+        {
+            m_Amount = (int)info.GetValue(nameof(Amount), typeof(int));
+            m_Category = (string)info.GetValue(nameof(Category), typeof(string));
+            m_Supplier = (Supplier)info.GetValue(nameof(Supplier), typeof(Supplier));
+            m_Expiration = (DateTime)info.GetValue(nameof(Expiration), typeof(DateTime));
+            m_PurchaseDate = (DateTime)info.GetValue(nameof(PurchaseDate), typeof(DateTime));
+            m_Mature = (TimeSpan)info.GetValue(nameof(Mature), typeof(TimeSpan));
+            m_Origin = (string)info.GetValue(nameof(Origin), typeof(string));
+            m_PurchasePrice = (double)info.GetValue(nameof(PurchasePrice), typeof(double));
+            m_SalesPrice = (double)info.GetValue(nameof(SalesPrice), typeof(double));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Amount), m_Amount);
+            info.AddValue(nameof(Category), m_Category);
+            info.AddValue(nameof(Supplier), m_Supplier);
+            info.AddValue(nameof(Expiration), m_Expiration);
+            info.AddValue(nameof(PurchaseDate), m_PurchaseDate);
+            info.AddValue(nameof(Mature), m_Mature);
+            info.AddValue(nameof(Origin), m_Origin);
+            info.AddValue(nameof(PurchasePrice), m_PurchasePrice);
+            info.AddValue(nameof(SalesPrice), m_SalesPrice);
         }
     }
 }

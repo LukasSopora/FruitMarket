@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Supplier
+    public class Supplier : ISerializable
     {
+        private int m_Id;
         private string m_FirstName = null;
         private string m_LastName = null;
         private Adress m_Adress = null;
@@ -17,6 +19,11 @@ namespace FruitMarket.Model
         private string m_Company = null;
         private string m_Email = null;
 
+        public int Id
+        {
+            get { return m_Id; }
+            set { m_Id = value; }
+        }
         public string Email
         {
             get { return m_Email; }
@@ -83,6 +90,22 @@ namespace FruitMarket.Model
         public override string ToString()
         {
             return m_LastName;
+        }
+
+        public Supplier(SerializationInfo info, StreamingContext context)
+        {
+            m_Email = (string)info.GetValue(nameof(Email), typeof(string));
+            m_Phone = (string)info.GetValue(nameof(Phone), typeof(string));
+            m_Birthday = (DateTime)info.GetValue(nameof(Birthday), typeof(DateTime));
+            m_Adress = (Adress)info.GetValue(nameof(Adress), typeof(Adress));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Email), m_Email);
+            info.AddValue(nameof(Phone), m_Phone);
+            info.AddValue(nameof(Birthday), m_Birthday);
+            info.AddValue(nameof(Adress), m_Adress);
         }
     }
 }

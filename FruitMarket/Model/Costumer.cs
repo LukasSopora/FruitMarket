@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Costumer
+    public class Costumer : ISerializable
     {
         private int m_Id = 0;
         private string m_LastName = null;
@@ -76,6 +77,20 @@ namespace FruitMarket.Model
 
         public Costumer()
         { 
+        }
+
+        public Costumer(SerializationInfo info, StreamingContext context)
+        {
+            m_Birthday = (DateTime)info.GetValue(nameof(Birthday), typeof(DateTime));
+            m_Adress = (Adress)info.GetValue(nameof(Adress), typeof(Adress));
+            m_Phone = (string)info.GetValue(nameof(Phone), typeof(string));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Birthday), m_Birthday);
+            info.AddValue(nameof(Adress), m_Adress);
+            info.AddValue(nameof(Phone), m_Phone);
         }
     }
 }
