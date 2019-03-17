@@ -6,7 +6,59 @@
              xmlns:local="clr-namespace:FruitMarket.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+
     <Grid>
-            
+        <TextBlock Text="Filterkriterium" HorizontalAlignment = "Left" Margin = "89,10,0,410" Height = "30"/>
+        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,30,0,400" SelectionChanged="ComboBox_SelectionChanged" >
+            <ComboBoxItem Content = "Sorte/Bezeichnung"/>
+            <ComboBoxItem Content = "Kategorie / Klasse"/>
+            <ComboBoxItem Content = "Mindesthaltbarkeitsdatum"/>
+            <ComboBoxItem Content = "ausstehende Reifungsdauer"/>
+            <ComboBoxItem Content = "ausstehende Reifungsdauer"/>
+            <ComboBoxItem Content = "Herkunft"/>
+            <ComboBoxItem Content = "Einkaufspreis"/>
+            <ComboBoxItem Content = "Verkaufspreis"/>
+            <ComboBoxItem Content = "Anzahl von Bestand"/>
+            <ComboBoxItem Content = "Lieferant"/>
+            <ComboBoxItem Content = "Produzent"/>
+            <ComboBoxItem Content = "Kunde"/>
+            <ComboBoxItem Content = "Lieferschein"/>
+           </ComboBox>
+
+
+        <TextBlock Text="Verknüpfung" HorizontalAlignment = "Left" Margin = "487,10,0,410" Height = "30"/>
+        <ComboBox Height = "20" Width = "60" HorizontalAlignment = "Left" Margin = "487,62,0,368" SelectionChanged="ComboBox_SelectionChanged"  >
+            <ComboBoxItem Content = "Oder"/>
+            <ComboBoxItem Content = "Und"/>
+
+        </ComboBox>
+
+        <TextBlock Text="Filtertext" HorizontalAlignment = "Left" Margin = "288,10,0,410" Height = "30"/>
+
+        <TextBox Height = "20" Width = "170" HorizontalAlignment = "Left" Margin = "288,62,0,368"/>
+
+
+        <Button Height = "20" Width="100" Margin="553,30,147,400">Weiteres Kriterium</Button>
+        <Button Height = "20" Width="100" Margin="669,30,31,400">Suchen</Button>
+        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,62,0,368" SelectionChanged="ComboBox_SelectionChanged" >
+            <ComboBoxItem Content = "Sorte/Bezeichnung"/>
+            <ComboBoxItem Content = "Kategorie / Klasse"/>
+            <ComboBoxItem Content = "Mindesthaltbarkeitsdatum"/>
+            <ComboBoxItem Content = "ausstehende Reifungsdauer"/>
+            <ComboBoxItem Content = "ausstehende Reifungsdauer"/>
+            <ComboBoxItem Content = "Herkunft"/>
+            <ComboBoxItem Content = "Einkaufspreis"/>
+            <ComboBoxItem Content = "Verkaufspreis"/>
+            <ComboBoxItem Content = "Anzahl von Bestand"/>
+            <ComboBoxItem Content = "Lieferant"/>
+            <ComboBoxItem Content = "Produzent"/>
+            <ComboBoxItem Content = "Kunde"/>
+            <ComboBoxItem Content = "Lieferschein"/>
+        </ComboBox>
+        <TextBox Height = "20" Width = "170" HorizontalAlignment = "Left" Margin = "288,30,0,400"/>
     </Grid>
+
+
+
 </UserControl>
