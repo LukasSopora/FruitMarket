@@ -1,4 +1,5 @@
-﻿using FruitMarket.Model;
+﻿using FruitMarket.Helper;
+using FruitMarket.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -14,22 +15,31 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
+        private ObservableCollection<Producer> m_Producers =
+            new ObservableCollection<Producer>();
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
 
 
+        private Producer m_CurrentProducer = null;
         private Supplier m_CurrentSupplier = null;
-        private bool m_IsEditing = false;
+
+        public Producer CurrentProducer
+        {
+            get { return m_CurrentProducer; }
+            set { SetProperty(ref m_CurrentProducer, value); }
+        }
+
+        public ObservableCollection<Producer> Producers
+        {
+            get { return m_Producers; }
+            set { SetProperty(ref m_Producers, value); }
+        }
 
         public ObservableCollection<Product> Fruits
         {
             get { return m_Fruits; }
-            set { m_Fruits = value; }
-        }
-        public bool IsEditing
-        {
-            get { return m_IsEditing; }
-            set { m_IsEditing = value; }
+            set { SetProperty(ref m_Fruits, value); }
         }
 
         public Supplier CurrentSupplier
@@ -82,9 +92,6 @@ namespace FruitMarket.ViewModel
             }
             m_CurrentSupplier = null;
             RaisePropertyChanged(nameof(CurrentSupplier));
-
-            m_IsEditing = false;
-            RaisePropertyChanged(nameof(IsEditing));
         }
 
         private void OnSaveSupplier()
@@ -92,48 +99,56 @@ namespace FruitMarket.ViewModel
             if(CheckSupplier())
             {
                 m_Suppliers.Add(m_CurrentSupplier);
+                m_CurrentSupplier = null;
                 RaisePropertyChanged(nameof(CurrentSupplier));
-
-                m_IsEditing = false;
-                RaisePropertyChanged(nameof(IsEditing));
             }
         }
 
         private void OnNewSupplier()
         {
             m_CurrentSupplier = new Supplier();
+            m_CurrentSupplier.Editing = true;
             RaisePropertyChanged(nameof(CurrentSupplier));
-
-
-            m_IsEditing = true;
-            RaisePropertyChanged(nameof(IsEditing));
         }
 
         private bool CheckSupplier()
         {
             if(m_CurrentSupplier.FirstName == null || m_CurrentSupplier.FirstName == "")
             {
-                System.Windows.MessageBox.Show("First Name cannot be empty.");
+                System.Windows.MessageBox.Show("Ungültiger Vorname.");
                 return false;
             }
-            if(m_CurrentSupplier.LastName == null || m_CurrentSupplier.FirstName == "")
+            if(m_CurrentSupplier.LastName == null || m_CurrentSupplier.LastName == "")
             {
-                System.Windows.MessageBox.Show("Las tName cannot be empty.");
+                System.Windows.MessageBox.Show("Ungültiger Nachname.");
                 return false;
             }
-            if (m_CurrentSupplier.Adress == null || m_CurrentSupplier.FirstName == "")
+            if (m_CurrentSupplier.Adress == null ||
+                m_CurrentSupplier.Adress.Street == null || m_CurrentSupplier.Adress.Street == "" ||
+                m_CurrentSupplier.Adress.PostCode == null || m_CurrentSupplier.Adress.PostCode == "" ||
+                m_CurrentSupplier.Adress.Place == null || m_CurrentSupplier.Adress.Place == "")
             {
-                System.Windows.MessageBox.Show("Adress cannot be empty.");
+                System.Windows.MessageBox.Show("Ungültige Adresse.");
                 return false;
             }
-            if (m_CurrentSupplier.Phone == null || m_CurrentSupplier.FirstName == "")
+            if (m_CurrentSupplier.Phone == null || m_CurrentSupplier.Phone == "")
             {
-                System.Windows.MessageBox.Show("Phone cannot be empty.");
+                System.Windows.MessageBox.Show("Ungültige Telefonnummer.");
                 return false;
             }
-            if (m_CurrentSupplier.Company == null || m_CurrentSupplier.FirstName == "")
+            if (m_CurrentSupplier.Company == null || m_CurrentSupplier.Company == "")
             {
-                System.Windows.MessageBox.Show("Company cannot be empty.");
+                System.Windows.MessageBox.Show("Ungültige Firma.");
+                return false;
+            }
+            if (m_CurrentSupplier.Email == null || m_CurrentSupplier.Email == "")
+            {
+                System.Windows.MessageBox.Show("Ungültige Email.");
+                return false;
+            }
+            if (m_CurrentSupplier.Birthday == null || m_CurrentSupplier.Birthday == DateTime.MinValue)
+            {
+                System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
                 return false;
             }
 
@@ -196,16 +211,26 @@ namespace FruitMarket.ViewModel
         public AdmissionViewModel()
         {
             InitializeCommands();
-            m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
-            m_Suppliers.Add(new Supplier("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413",  "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
-            m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
+            //m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
+            //m_Suppliers.Add(new Supplier("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413",  "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
+            //m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
+
+            //m_Producers.Add(new Producer("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
+            //m_Producers.Add(new Producer("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413", "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
+            //m_Producers.Add(new Producer("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
+
+            m_Suppliers = TestDataReader.GetDefaultSuppliers();
+            m_Producers = TestDataReader.GetDefaultProducers();
 
             if (m_Suppliers.Count == 0)
             {
                 OnNewSupplier();
             }
+            if(m_Producers.Count == 0)
+            {
+                //OnNewProducer();
+            }
             RaisePropertyChanged(nameof(Fruits));
-            RaisePropertyChanged(nameof(IsEditing));
         }
     }
 }

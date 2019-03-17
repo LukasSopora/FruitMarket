@@ -34,7 +34,7 @@
                Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <TextBlock Text="Id" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1"/>
+            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
 
             <TextBlock Text="Firma" Grid.Row="1" Grid.Column="0"/>
             <TextBox Text="{Binding Company}" Grid.Row="1" Grid.Column="1"/>

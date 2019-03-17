@@ -19,6 +19,14 @@ namespace FruitMarket.Model
         private string m_Company = null;
         private string m_Email = null;
 
+        private bool m_Editing = false;
+
+        public bool Editing
+        {
+            get { return m_Editing; }
+            set { m_Editing = value; }
+        }
+
         public int Id
         {
             get { return m_Id; }
@@ -89,7 +97,7 @@ namespace FruitMarket.Model
 
         public override string ToString()
         {
-            return m_LastName;
+            return m_Company;
         }
 
         public Supplier(SerializationInfo info, StreamingContext context)

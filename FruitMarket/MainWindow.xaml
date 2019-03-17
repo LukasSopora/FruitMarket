@@ -27,73 +27,65 @@
                 <Fluent:RibbonGroupBox Header="Main">
                     <Fluent:Button Header="Home"
                                    Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="../Images/home-icon-silhouette.png"/>
+                                   LargeIcon="Images/home-icon-silhouette.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Lager">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Fluent:Button Header="Auf Lager"
                                    Command="{Binding ShowMainListCommand}"
-                                   LargeIcon="../Images/list.png"/>
+                                   LargeIcon="Images/list.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Produkte">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Fluent:Button Header="Alle Produkte"
                                    Command="{Binding ShowProductListCommand}"
-                                   LargeIcon="../Images/list.png"/>
+                                   LargeIcon="Images/list.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Filter">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Fluent:Button Header="Filter"
                                    Command="{Binding FilterCommand}"
-                                   LargeIcon="../Images/filter-filled-tool-symbol.png"/>
+                                   LargeIcon="Images/filter-filled-tool-symbol.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Fluent:Button Header="Einlagerung"
                                    Command="{Binding ProductAdmissionCommand}"
-                                   LargeIcon="../Images/shipped.png"/>
+                                   LargeIcon="Images/shipped.png"/>
                 </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox HorizontalAlignment="Stretch">
-                    <Grid MinWidth="400" Margin="100,0,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Suppliers: " FontWeight="DemiBold" Grid.Row="0" Grid.Column="0"/>
-                        <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Grid.Row="1" Grid.Column="0"/>
-                        <DockPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                            <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}">
-                                <Image Source="Images/plus.png"/>
-                            </Button>
-                            <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}">
-                                <Image Source="Images/error.png"/>
-                            </Button>
-                        </DockPanel>
-                        <TextBlock Text="Producers: " FontWeight="DemiBold" Grid.Row="0" Grid.Column="1"/>
-                        <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Grid.Row="1" Grid.Column="1"/>
-                        <DockPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
-                            <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}">
-                                <Image Source="Images/plus.png"/>
-                            </Button>
-                            <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}">
-                                <Image Source="Images/error.png"/>
-                            </Button>
-                        </DockPanel>
-                    </Grid>
+                <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
+                    <DockPanel>
+                        <StackPanel x:Uid="RibbonStack">
+                            <TextBlock Text="Lieferanten:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <DockPanel HorizontalAlignment="Right">
+                                <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}" x:Uid="RoundButton">
+                                    <Image Source="Images/plus.png" x:Uid="RoundButtonImage"/>
+                                </Button>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}" x:Uid="RoundButton">
+                                    <Image Source="Images/error.png" x:Uid="RoundButtonImage"/>
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel x:Uid="RibbonStack">
+                            <TextBlock Text="Produzenten:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" x:Uid="RoundButton">
+                                    <Image Source="Images/plus.png" x:Uid="RoundButtonImage"/>
+                                </Button>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" x:Uid="RoundButton">
+                                    <Image Source="Images/error.png" x:Uid="RoundButtonImage"/>
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                    </DockPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Verkauf">
