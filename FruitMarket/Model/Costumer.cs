@@ -16,6 +16,22 @@ namespace FruitMarket.Model
         private string m_Company = null;
         private Adress m_Adress = null;
         private string m_Phone = null;
+        private string m_Email = null;
+
+
+        private bool m_Editing = false;
+
+        public bool Editing
+        {
+            get { return m_Editing; }
+            set { m_Editing = value; }
+        }
+
+        public string Email
+        {
+            get { return m_Email; }
+            set { m_Email = value; }
+        }
 
         public string Phone
         {
@@ -59,7 +75,7 @@ namespace FruitMarket.Model
             set { m_Id = value; }
         }
 
-        public Costumer(int p_Id, string p_LastName, string p_FirstName, DateTime p_Birthday, string p_Company, Adress p_Adress, string p_Phone)
+        public Costumer(int p_Id, string p_LastName, string p_FirstName, DateTime p_Birthday, string p_Company, Adress p_Adress, string p_Phone, string p_Email)
         {
             m_Id = p_Id;
             m_LastName = p_LastName;
@@ -68,6 +84,7 @@ namespace FruitMarket.Model
             m_Company = p_Company;
             m_Adress = p_Adress;
             m_Phone = p_Phone;
+            m_Email = p_Email;
         }
 
         public Costumer(string p_Company)
@@ -84,6 +101,7 @@ namespace FruitMarket.Model
             m_Birthday = (DateTime)info.GetValue(nameof(Birthday), typeof(DateTime));
             m_Adress = (Adress)info.GetValue(nameof(Adress), typeof(Adress));
             m_Phone = (string)info.GetValue(nameof(Phone), typeof(string));
+            m_Email = (string)info.GetValue(nameof(Email), typeof(string));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -91,6 +109,12 @@ namespace FruitMarket.Model
             info.AddValue(nameof(Birthday), m_Birthday);
             info.AddValue(nameof(Adress), m_Adress);
             info.AddValue(nameof(Phone), m_Phone);
+            info.AddValue(nameof(Email), m_Email);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", m_LastName, m_FirstName);
         }
     }
 }

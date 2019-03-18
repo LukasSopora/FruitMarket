@@ -19,16 +19,16 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Producer>();
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
-        private DateTime m_AdmissionDate;
+        private DateTime m_ImportDate = DateTime.Now;
 
 
         private Producer m_CurrentProducer = null;
         private Supplier m_CurrentSupplier = null;
 
-        public DateTime AdmissionDate
+        public DateTime ImportDate
         {
-            get { return m_AdmissionDate; }
-            set { SetProperty(ref m_AdmissionDate, value); }
+            get { return m_ImportDate; }
+            set { SetProperty(ref m_ImportDate, value); }
         }
 
         public Producer CurrentProducer

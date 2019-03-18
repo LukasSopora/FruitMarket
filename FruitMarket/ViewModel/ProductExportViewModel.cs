@@ -15,32 +15,32 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
-        private ObservableCollection<Producer> m_Producers =
-            new ObservableCollection<Producer>();
+        private ObservableCollection<Costumer> m_Costumers =
+            new ObservableCollection<Costumer>();
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
-        private DateTime m_AdmissionDate;
+        private DateTime m_ExportDate = DateTime.Now;
 
 
-        private Producer m_CurrentProducer = null;
+        private Costumer m_CurrentCostumer = null;
         private Supplier m_CurrentSupplier = null;
 
-        public DateTime AdmissionDate
+        public DateTime ExportDate
         {
-            get { return m_AdmissionDate; }
-            set { SetProperty(ref m_AdmissionDate, value); }
+            get { return m_ExportDate; }
+            set { SetProperty(ref m_ExportDate, value); }
         }
 
-        public Producer CurrentProducer
+        public Costumer CurrentCostumer
         {
-            get { return m_CurrentProducer; }
-            set { SetProperty(ref m_CurrentProducer, value); }
+            get { return m_CurrentCostumer; }
+            set { SetProperty(ref m_CurrentCostumer, value); }
         }
 
-        public ObservableCollection<Producer> Producers
+        public ObservableCollection<Costumer> Costumers
         {
-            get { return m_Producers; }
-            set { SetProperty(ref m_Producers, value); }
+            get { return m_Costumers; }
+            set { SetProperty(ref m_Costumers, value); }
         }
 
         public ObservableCollection<Product> Fruits
@@ -77,46 +77,46 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(SaveSupplierCommand));
             DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
             RaisePropertyChanged(nameof(DeleteSupplierCommand));
-            NewProducerCommand = new DelegateCommand(OnNewProducer);
+            NewProducerCommand = new DelegateCommand(OnNewCostumer);
             RaisePropertyChanged(nameof(NewProducerCommand));
-            SaveProducerCommand = new DelegateCommand(OnSaveProducer);
+            SaveProducerCommand = new DelegateCommand(OnSaveCostumer);
             RaisePropertyChanged(nameof(SaveProducerCommand));
-            DeleteProducerCommand = new DelegateCommand(OnDeleteProducer);
+            DeleteProducerCommand = new DelegateCommand(OnDeleteCostumer);
             RaisePropertyChanged(nameof(DeleteProducerCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
         }
 
-        private void OnDeleteProducer()
+        private void OnDeleteCostumer()
         {
-            if (m_Producers.Contains(m_CurrentProducer))
+            if (m_Costumers.Contains(m_CurrentCostumer))
             {
                 if (System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentProducer), "Delete Producer?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                    string.Format("Möchten Sie den Kunden \"{0}\" löschen?", m_CurrentCostumer), "Kunden löschen?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
                 {
-                    m_Producers.Remove(m_CurrentProducer);
-                    RaisePropertyChanged(nameof(Producers));
+                    m_Costumers.Remove(m_CurrentCostumer);
+                    RaisePropertyChanged(nameof(Costumers));
                 }
             }
-            m_CurrentProducer = null;
-            RaisePropertyChanged(nameof(CurrentProducer));
+            m_CurrentCostumer = null;
+            RaisePropertyChanged(nameof(CurrentCostumer));
         }
 
-        private void OnSaveProducer()
+        private void OnSaveCostumer()
         {
-            if (CheckProducer())
+            if (CheckCostumer())
             {
-                m_Producers.Add(m_CurrentProducer);
-                m_CurrentProducer = null;
-                RaisePropertyChanged(nameof(CurrentProducer));
+                m_Costumers.Add(m_CurrentCostumer);
+                m_CurrentCostumer = null;
+                RaisePropertyChanged(nameof(CurrentCostumer));
             }
         }
 
-        private void OnNewProducer()
+        private void OnNewCostumer()
         {
-            m_CurrentProducer = new Producer();
-            m_CurrentProducer.Editing = true;
-            RaisePropertyChanged(nameof(CurrentProducer));
+            m_CurrentCostumer = new Costumer();
+            m_CurrentCostumer.Editing = true;
+            RaisePropertyChanged(nameof(CurrentCostumer));
         }
 
         private void OnAddFruits()
@@ -207,47 +207,42 @@ namespace FruitMarket.ViewModel
             return true;
         }
 
-        private bool CheckProducer()
+        private bool CheckCostumer()
         {
-            if (m_CurrentProducer == null)
+            if (m_CurrentCostumer == null)
             {
                 System.Windows.MessageBox.Show("Kein Produzent.");
                 return false;
             }
-            if (m_CurrentProducer.FirstName == null || m_CurrentProducer.FirstName == "")
+            if (m_CurrentCostumer.FirstName == null || m_CurrentCostumer.FirstName == "")
             {
                 System.Windows.MessageBox.Show("Ungültiger Vorname.");
                 return false;
             }
-            if (m_CurrentProducer.LastName == null || m_CurrentProducer.LastName == "")
+            if (m_CurrentCostumer.LastName == null || m_CurrentCostumer.LastName == "")
             {
                 System.Windows.MessageBox.Show("Ungültiger Nachname.");
                 return false;
             }
-            if (m_CurrentProducer.Adress == null ||
-                m_CurrentProducer.Adress.Street == null || m_CurrentProducer.Adress.Street == "" ||
-                m_CurrentProducer.Adress.PostCode == null || m_CurrentProducer.Adress.PostCode == "" ||
-                m_CurrentProducer.Adress.Place == null || m_CurrentProducer.Adress.Place == "")
+            if (m_CurrentCostumer.Adress == null ||
+                m_CurrentCostumer.Adress.Street == null || m_CurrentCostumer.Adress.Street == "" ||
+                m_CurrentCostumer.Adress.PostCode == null || m_CurrentCostumer.Adress.PostCode == "" ||
+                m_CurrentCostumer.Adress.Place == null || m_CurrentCostumer.Adress.Place == "")
             {
                 System.Windows.MessageBox.Show("Ungültige Adresse.");
                 return false;
             }
-            if (m_CurrentProducer.Phone == null || m_CurrentProducer.Phone == "")
+            if (m_CurrentCostumer.Phone == null || m_CurrentCostumer.Phone == "")
             {
                 System.Windows.MessageBox.Show("Ungültige Telefonnummer.");
                 return false;
             }
-            if (m_CurrentProducer.Company == null || m_CurrentProducer.Company == "")
-            {
-                System.Windows.MessageBox.Show("Ungültige Firma.");
-                return false;
-            }
-            if (m_CurrentProducer.Email == null || m_CurrentProducer.Email == "")
+            if (m_CurrentCostumer.Email == null || m_CurrentCostumer.Email == "")
             {
                 System.Windows.MessageBox.Show("Ungültige Email.");
                 return false;
             }
-            if (m_CurrentProducer.Birthday == null || m_CurrentProducer.Birthday == DateTime.MinValue)
+            if (m_CurrentCostumer.Birthday == null || m_CurrentCostumer.Birthday == DateTime.MinValue)
             {
                 System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
                 return false;
@@ -320,10 +315,10 @@ namespace FruitMarket.ViewModel
             //m_Producers.Add(new Producer("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
 
             m_Suppliers = TestDataReader.GetDefaultSuppliers();
-            m_Producers = TestDataReader.GetDefaultProducers();
+            m_Costumers = TestDataReader.GetDefaultCostumers();
 
             m_CurrentSupplier = new Supplier();
-            m_CurrentProducer = new Producer();
+            m_CurrentCostumer = new Costumer();
 
             m_Fruits.Add(new Product());
 
@@ -331,7 +326,7 @@ namespace FruitMarket.ViewModel
             {
                 OnNewSupplier();
             }
-            if (m_Producers.Count == 0)
+            if (m_Costumers.Count == 0)
             {
                 //OnNewProducer();
             }

@@ -11,19 +11,17 @@ namespace FruitMarket.Helper
 {
     public class TestDataReader
     {
-        private static int m_MAX_NUMBER = 20;  //Number of Suppliers and Producers [0:50]
+        private static int m_MAX_NUMBER = 20;  //Number of Suppliers and Producers [0:33]
+        private static string m_PATH = "Helper/TestData.csv";
 
         public static ObservableCollection<Supplier> GetDefaultSuppliers()
         {
             ObservableCollection<Supplier> result = new ObservableCollection<Supplier>();
 
-            StreamReader reader = new StreamReader("Helper/TestData.csv");
-            reader.ReadLine(); //First Line not important
-            int count = 0;
-            while (count < m_MAX_NUMBER)
+            for (int count = 0; count < m_MAX_NUMBER; count++)
             {
                 Supplier supplier = new Supplier();
-                string line = reader.ReadLine();
+                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
                 supplier.Id = count + 1;
@@ -37,7 +35,6 @@ namespace FruitMarket.Helper
                 supplier.Email = values[8];
 
                 result.Add(supplier);
-                count++;
             }
 
             return result;
@@ -48,12 +45,11 @@ namespace FruitMarket.Helper
             ObservableCollection<Producer> result = new ObservableCollection<Producer>();
 
             StreamReader reader = new StreamReader("Helper/TestData.csv");
-            reader.ReadLine(); //First Line not important
-            int count = m_MAX_NUMBER;
-            while (count < m_MAX_NUMBER * 2)
+
+            for (int count = m_MAX_NUMBER; count < m_MAX_NUMBER * 2; count++)
             {
-                Producer producer= new Producer();
-                string line = reader.ReadLine();
+                Producer producer = new Producer();
+                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
                 producer.Id = count - m_MAX_NUMBER + 1;
@@ -67,7 +63,34 @@ namespace FruitMarket.Helper
                 producer.Email = values[8];
 
                 result.Add(producer);
-                count++;
+            }
+
+            return result;
+        }
+
+        internal static ObservableCollection<Costumer> GetDefaultCostumers()
+        {
+            ObservableCollection<Costumer> result = new ObservableCollection<Costumer>();
+
+            StreamReader reader = new StreamReader("Helper/TestData.csv");
+
+            for (int count = m_MAX_NUMBER * 2; count < m_MAX_NUMBER * 3; count++)
+            {
+                Costumer costumer = new Costumer();
+                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
+                string[] values = line.Split('|');
+
+                costumer.Id = count - m_MAX_NUMBER + 1;
+                costumer.Company = values[0];
+                costumer.FirstName = values[1];
+                costumer.LastName = values[2];
+                string[] birthday = values[3].Split('-');
+                costumer.Birthday = DateTime.Parse(string.Format("{1}-{0}-{2}", birthday[0], birthday[1], birthday[2]));
+                costumer.Phone = values[4];
+                costumer.Adress = new Adress(values[5], values[6], values[7]);
+                costumer.Email = values[8];
+
+                result.Add(costumer);
             }
 
             return result;

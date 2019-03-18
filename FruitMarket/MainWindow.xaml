@@ -155,7 +155,7 @@
                 <Fluent:RibbonGroupBox Header="Lieferdatum">
                     <StackPanel Style="{StaticResource RibbonStack}">
                         <TextBlock Text="Lieferdatum auswählen" HorizontalAlignment="Left"/>
-                        <DatePicker SelectedDate="{Binding ActiveView.DataContext.AdmissionDate}"/>
+                        <DatePicker SelectedDate="{Binding ActiveView.DataContext.ImportDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
@@ -194,19 +194,25 @@
                             </DockPanel>
                         </StackPanel>
                         <StackPanel Style="{StaticResource RibbonStack}">
-                            <TextBlock Text="Produzenten:" HorizontalAlignment="Left"/>
-                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Kunden:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Costumers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <DockPanel HorizontalAlignment="Right">
-                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
+                                <Button Command="{Binding ActiveView.DataContext.NewCostumerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
                                     <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
-                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" Style="{StaticResource RoundButton}">
+                                <Button Command="{Binding ActiveView.DataContext.DeleteCostumerCommand}" Style="{StaticResource RoundButton}">
                                     <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
                             </DockPanel>
                         </StackPanel>
                     </DockPanel>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Versanddatum">
+                    <StackPanel Style="{StaticResource RibbonStack}">
+                        <TextBlock Text="Lieferdatum auswählen" HorizontalAlignment="Left"/>
+                        <DatePicker SelectedDate="{Binding ActiveView.DataContext.ExportDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
