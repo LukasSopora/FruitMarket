@@ -37,4 +37,7 @@
         <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
         <Setter Property="Margin" Value="20,5,0,0"/>
     </Style>
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="DarkCyan"/>
+    </Style>
 </ResourceDictionary>

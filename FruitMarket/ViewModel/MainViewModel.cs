@@ -32,6 +32,8 @@ namespace FruitMarket.ViewModel
         internal void ChangeView()
         {
             m_ActiveView = m_ProductAdmissionView;
+            AdmissionViewModel avm = m_ProductAdmissionView.DataContext as AdmissionViewModel;
+            avm.AdmissionDate = DateTime.Now;
             RaisePropertyChanged(nameof(ActiveView));
         }
 

@@ -34,7 +34,7 @@
         <TextBlock Text="Lieferant"
                    Grid.Row="1" Grid.Column="0"
                    FontWeight="Bold" FontSize="15"/>
-        <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="20,10,10,0"
+        <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="10,10,20,0"
                            DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
@@ -60,14 +60,15 @@
             </DockPanel>
         </Button>
 
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"
+                    Margin="20,10,20,10">
             <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
                       AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
                     <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
-                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate}"/>
+                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding Path=AdmissionDate, StringFormat=dd. MMM. yyyy}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
                     <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
                     <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>

@@ -139,5 +139,9 @@ namespace FruitMarket.Model
             info.AddValue(nameof(PurchasePrice), m_PurchasePrice);
             info.AddValue(nameof(SalesPrice), m_SalesPrice);
         }
+
+        public Product()
+        {
+        }
     }
 }

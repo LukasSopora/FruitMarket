@@ -87,6 +87,12 @@
                         </StackPanel>
                     </DockPanel>
                 </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Lieferdatum">
+                    <StackPanel Style="{StaticResource RibbonStack}">
+                        <TextBlock Text="Lieferdatum auswählen" HorizontalAlignment="Left"/>
+                        <DatePicker SelectedDate="{Binding ActiveView.DataContext.AdmissionDate}"/>
+                    </StackPanel>
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Verkauf">
                 <Fluent:RibbonGroupBox Header="Navigation">
