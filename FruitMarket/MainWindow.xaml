@@ -59,29 +59,29 @@
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
                     <DockPanel>
-                        <StackPanel x:Uid="RibbonStack">
+                        <StackPanel Style="{StaticResource RibbonStack}">
                             <TextBlock Text="Lieferanten:" HorizontalAlignment="Left"/>
                             <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <DockPanel HorizontalAlignment="Right">
-                                <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}" x:Uid="RoundButton">
-                                    <Image Source="Images/plus.png" x:Uid="RoundButtonImage"/>
+                                <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
-                                <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}" x:Uid="RoundButton">
-                                    <Image Source="Images/error.png" x:Uid="RoundButtonImage"/>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
                             </DockPanel>
                         </StackPanel>
-                        <StackPanel x:Uid="RibbonStack">
+                        <StackPanel Style="{StaticResource RibbonStack}">
                             <TextBlock Text="Produzenten:" HorizontalAlignment="Left"/>
                             <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <DockPanel HorizontalAlignment="Right">
-                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" x:Uid="RoundButton">
-                                    <Image Source="Images/plus.png" x:Uid="RoundButtonImage"/>
+                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
+                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
-                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" x:Uid="RoundButton">
-                                    <Image Source="Images/error.png" x:Uid="RoundButtonImage"/>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
                                 </Button>
                             </DockPanel>
                         </StackPanel>

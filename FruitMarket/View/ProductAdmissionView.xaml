@@ -9,27 +9,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
-        </ResourceDictionary>
+        <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Incoming Products" 
+        <TextBlock Text="Eingehende Produkte" 
                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"
                    FontWeight="Bold" FontSize="24"
@@ -40,20 +35,34 @@
                    Grid.Row="1" Grid.Column="0"
                    FontWeight="Bold" FontSize="15"/>
         <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="20,10,10,0"
-                           IsEnabled="{Binding IsEditing}"
                            DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
+                Command="{Binding SaveSupplierCommand}"
+                Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
+                <Image Source="../Images/save-file-option.png"/>
+                <TextBlock Text="Lieferanten speichern"/>
+            </DockPanel>
+        </Button>
 
         <TextBlock Text="Produzent"
                    Grid.Row="1" Grid.Column="1"
                    FontWeight="Bold" FontSize="15"/>
         <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,10,0"
-                           IsEnabled="{Binding IsEditing}"
                            DataContext="{Binding CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource TextImageButton}"
+                Command="{Binding SaveProducerCommand}"
+                Visibility="{Binding CurrentProducer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
+                <Image Source="../Images/save-file-option.png"/>
+                <TextBlock Text="Produzenten speichern"/>
+            </DockPanel>
+        </Button>
 
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
-            <DataGrid Grid.Row="3" Grid.ColumnSpan="3"
-                  CanUserAddRows="True" CanUserDeleteRows="True"
-                  AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3">
+            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
+                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
                     <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
@@ -69,8 +78,7 @@
                     Width="32" Height="32" Background="Transparent"
                     BorderThickness="0" HorizontalAlignment="Right"
                     Margin="10,10,10,10"
-                    ToolTip="Save Incoming Fruits"
-                    Visibility="{Binding CurrentSupplier, Converter={StaticResource NullToVisibilityConverter}}">
+                    ToolTip="Save Incoming Fruits">
                 <Image Source="../Images/save-file-option.png"/>
             </Button>
         </StackPanel>

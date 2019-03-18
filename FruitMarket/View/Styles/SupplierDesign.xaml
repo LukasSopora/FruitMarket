@@ -13,7 +13,6 @@
         <Setter Property="Margin" Value="0,5,5,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
-        <Setter Property="IsReadOnly" Value="{Binding Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Style>
     <Style TargetType="DatePicker">
         <Setter Property="Margin" Value="0,5,5,0"/>

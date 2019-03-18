@@ -4,24 +4,36 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace FruitMarket.Converter
 {
-    public class NullToVisibilityConverter : IValueConverter
+    public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if(value == null)
             {
-                return System.Windows.Visibility.Collapsed;
+                return Visibility.Collapsed;
             }
-            return System.Windows.Visibility.Visible;
+            if(value.GetType() == typeof(bool))
+            {
+                if(((bool)value) == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            throw new NotSupportedException();
         }
     }
 }

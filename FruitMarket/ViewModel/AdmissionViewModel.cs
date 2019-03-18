@@ -57,6 +57,9 @@ namespace FruitMarket.ViewModel
         public DelegateCommand NewSupplierCommand { get; private set; }
         public DelegateCommand SaveSupplierCommand { get; private set; }
         public DelegateCommand DeleteSupplierCommand { get; private set; }
+        public DelegateCommand NewProducerCommand { get; private set; }
+        public DelegateCommand SaveProducerCommand { get; private set; }
+        public DelegateCommand DeleteProducerCommand { get; private set; }
         public DelegateCommand AddFruitsCommand { get; private set; }
 
         private void InitializeCommands()
@@ -67,8 +70,46 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(SaveSupplierCommand));
             DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
             RaisePropertyChanged(nameof(DeleteSupplierCommand));
+            NewProducerCommand = new DelegateCommand(OnNewProducer);
+            RaisePropertyChanged(nameof(NewProducerCommand));
+            SaveProducerCommand = new DelegateCommand(OnSaveProducer);
+            RaisePropertyChanged(nameof(SaveProducerCommand));
+            DeleteProducerCommand = new DelegateCommand(OnDeleteProducer);
+            RaisePropertyChanged(nameof(DeleteProducerCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
+        }
+
+        private void OnDeleteProducer()
+        {
+            if (m_Producers.Contains(m_CurrentProducer))
+            {
+                if (System.Windows.MessageBox.Show(
+                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentProducer), "Delete Producer?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                {
+                    m_Producers.Remove(m_CurrentProducer);
+                    RaisePropertyChanged(nameof(Producers));
+                }
+            }
+            m_CurrentProducer = null;
+            RaisePropertyChanged(nameof(CurrentProducer));
+        }
+
+        private void OnSaveProducer()
+        {
+            if (CheckProducer())
+            {
+                m_Producers.Add(m_CurrentProducer);
+                m_CurrentProducer = null;
+                RaisePropertyChanged(nameof(CurrentProducer));
+            }
+        }
+
+        private void OnNewProducer()
+        {
+            m_CurrentProducer = new Producer();
+            m_CurrentProducer.Editing = true;
+            RaisePropertyChanged(nameof(CurrentProducer));
         }
 
         private void OnAddFruits()
@@ -84,7 +125,7 @@ namespace FruitMarket.ViewModel
             if(m_Suppliers.Contains(m_CurrentSupplier))
             {
                 if(System.Windows.MessageBox.Show(
-                    string.Format("Doy you want to Delete Supplier \"{0}\"?", m_CurrentSupplier), "Delete Supplier?",System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                    string.Format("Möchten Sie den Lieferanten \"{0}\" löschen?", m_CurrentSupplier), "Delete Supplier?",System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
                 {
                     m_Suppliers.Remove(m_CurrentSupplier);
                     RaisePropertyChanged(nameof(Suppliers));
@@ -113,6 +154,11 @@ namespace FruitMarket.ViewModel
 
         private bool CheckSupplier()
         {
+            if(m_CurrentSupplier == null)
+            {
+                System.Windows.MessageBox.Show("Kein Lieferant.");
+                return false;
+            }
             if(m_CurrentSupplier.FirstName == null || m_CurrentSupplier.FirstName == "")
             {
                 System.Windows.MessageBox.Show("Ungültiger Vorname.");
@@ -151,7 +197,54 @@ namespace FruitMarket.ViewModel
                 System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
                 return false;
             }
+            return true;
+        }
 
+        private bool CheckProducer()
+        {
+            if (m_CurrentProducer == null)
+            {
+                System.Windows.MessageBox.Show("Kein Produzent.");
+                return false;
+            }
+            if (m_CurrentProducer.FirstName == null || m_CurrentProducer.FirstName == "")
+            {
+                System.Windows.MessageBox.Show("Ungültiger Vorname.");
+                return false;
+            }
+            if (m_CurrentProducer.LastName == null || m_CurrentProducer.LastName == "")
+            {
+                System.Windows.MessageBox.Show("Ungültiger Nachname.");
+                return false;
+            }
+            if (m_CurrentProducer.Adress == null ||
+                m_CurrentProducer.Adress.Street == null || m_CurrentProducer.Adress.Street == "" ||
+                m_CurrentProducer.Adress.PostCode == null || m_CurrentProducer.Adress.PostCode == "" ||
+                m_CurrentProducer.Adress.Place == null || m_CurrentProducer.Adress.Place == "")
+            {
+                System.Windows.MessageBox.Show("Ungültige Adresse.");
+                return false;
+            }
+            if (m_CurrentProducer.Phone == null || m_CurrentProducer.Phone == "")
+            {
+                System.Windows.MessageBox.Show("Ungültige Telefonnummer.");
+                return false;
+            }
+            if (m_CurrentProducer.Company == null || m_CurrentProducer.Company == "")
+            {
+                System.Windows.MessageBox.Show("Ungültige Firma.");
+                return false;
+            }
+            if (m_CurrentProducer.Email == null || m_CurrentProducer.Email == "")
+            {
+                System.Windows.MessageBox.Show("Ungültige Email.");
+                return false;
+            }
+            if (m_CurrentProducer.Birthday == null || m_CurrentProducer.Birthday == DateTime.MinValue)
+            {
+                System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
+                return false;
+            }
             return true;
         }
 
@@ -221,6 +314,9 @@ namespace FruitMarket.ViewModel
 
             m_Suppliers = TestDataReader.GetDefaultSuppliers();
             m_Producers = TestDataReader.GetDefaultProducers();
+
+            m_CurrentSupplier = new Supplier();
+            m_CurrentProducer = new Producer();
 
             if (m_Suppliers.Count == 0)
             {

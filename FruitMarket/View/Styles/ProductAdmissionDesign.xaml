@@ -2,11 +2,32 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:FruitMarket.View.Styles"
                     xmlns:converter="clr-namespace:FruitMarket.Converter">
-    <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
-    <Style TargetType="Button">
+    <converter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Style TargetType="Button" x:Key="RoundImageButton">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="5,5,0,0"/>
+    </Style>
+    <Style TargetType="Button" x:Key="TextImageButton">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="4" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding Content}" Margin="3"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="Image">
         <Setter Property="MaxWidth" Value="25"/>
@@ -15,8 +36,5 @@
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
         <Setter Property="Margin" Value="20,5,0,0"/>
-    </Style>
-    <Style TargetType="TextBox">
-        <Setter Property="IsReadOnly" Value="{Binding Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InverseBoolConverter}}"/>
     </Style>
 </ResourceDictionary>
