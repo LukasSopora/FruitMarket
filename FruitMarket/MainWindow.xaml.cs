@@ -1,4 +1,5 @@
-﻿using FruitMarket.Helper;
+﻿using Fluent;
+using FruitMarket.Helper;
 using FruitMarket.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace FruitMarket
         /// </summary>
         public MyFirstWindow()
         {
+            ThemeManager.ChangeAppTheme(this, "Dark.Red");
             DataContext = new MainViewModel();
             this.InitializeComponent();
         }

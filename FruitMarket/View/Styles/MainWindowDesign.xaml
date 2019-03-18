@@ -36,4 +36,46 @@
         <Setter Property="MinHeight" Value="64"/>
         <Setter Property="Margin" Value="0,5,0,0"/>
     </Style>
+    <!--<Style TargetType="Fluent:RibbonTabItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Fluent:RibbonTabItem}">
+                    <Grid>
+                        <Border 
+                                Name="Border"
+                                Margin="0,0,0,0" 
+                                Background="White"
+                                BorderBrush="Black" 
+                                BorderThickness="1,1,1,1" 
+                                CornerRadius="0,0,0,0" >
+                            <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="12,2,12,2"
+                                    RecognizesAccessKey="True"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                            <Setter TargetName="Border" Property="Background" Value="DarkCyan" />
+                            <Setter TargetName="Border" Property="BorderThickness" Value="2,2,2,0" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="White" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Fluent:RibbonGroupBox">
+        <Setter Property="Background" Value="LightGray"/>
+    </Style>
+    <Style TargetType="Fluent:RibbonGroupsContainer">
+        <Setter Property="Background" Value="LightGray"/>
+    </Style>-->
 </ResourceDictionary>
