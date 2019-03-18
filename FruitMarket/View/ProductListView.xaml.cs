@@ -17,13 +17,13 @@ using System.Windows.Shapes;
 namespace FruitMarket.View
 {
     /// <summary>
-    /// Interaction logic for ProductAdmissionView.xaml
+    /// Interaction logic for ProductListView.xaml
     /// </summary>
-    public partial class ProductAdmissionView : UserControl
+    public partial class ProductListView : UserControl
     {
-        public ProductAdmissionView()
+        public ProductListView()
         {
-            DataContext = new AdmissionViewModel();
+            DataContext = new ProductListViewModel();
             InitializeComponent();
         }
     }

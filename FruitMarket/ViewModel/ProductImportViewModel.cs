@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.ViewModel
 {
-    public class AdmissionViewModel : BindableBase
+    public class ProductImportViewModel : BindableBase
     {
         private ObservableCollection<Supplier> m_Suppliers =
             new ObservableCollection<Supplier>();
@@ -121,7 +121,7 @@ namespace FruitMarket.ViewModel
 
         private void OnAddFruits()
         {
-            if(CheckSupplier() && CheckFruits())
+            if (CheckSupplier() && CheckFruits())
             {
                 //Hier gehts weiter
             }
@@ -129,10 +129,10 @@ namespace FruitMarket.ViewModel
 
         private void OnDeleteSupplier()
         {
-            if(m_Suppliers.Contains(m_CurrentSupplier))
+            if (m_Suppliers.Contains(m_CurrentSupplier))
             {
-                if(System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Lieferanten \"{0}\" löschen?", m_CurrentSupplier), "Delete Supplier?",System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                if (System.Windows.MessageBox.Show(
+                    string.Format("Möchten Sie den Lieferanten \"{0}\" löschen?", m_CurrentSupplier), "Delete Supplier?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
                 {
                     m_Suppliers.Remove(m_CurrentSupplier);
                     RaisePropertyChanged(nameof(Suppliers));
@@ -144,7 +144,7 @@ namespace FruitMarket.ViewModel
 
         private void OnSaveSupplier()
         {
-            if(CheckSupplier())
+            if (CheckSupplier())
             {
                 m_Suppliers.Add(m_CurrentSupplier);
                 m_CurrentSupplier = null;
@@ -161,17 +161,17 @@ namespace FruitMarket.ViewModel
 
         private bool CheckSupplier()
         {
-            if(m_CurrentSupplier == null)
+            if (m_CurrentSupplier == null)
             {
                 System.Windows.MessageBox.Show("Kein Lieferant.");
                 return false;
             }
-            if(m_CurrentSupplier.FirstName == null || m_CurrentSupplier.FirstName == "")
+            if (m_CurrentSupplier.FirstName == null || m_CurrentSupplier.FirstName == "")
             {
                 System.Windows.MessageBox.Show("Ungültiger Vorname.");
                 return false;
             }
-            if(m_CurrentSupplier.LastName == null || m_CurrentSupplier.LastName == "")
+            if (m_CurrentSupplier.LastName == null || m_CurrentSupplier.LastName == "")
             {
                 System.Windows.MessageBox.Show("Ungültiger Nachname.");
                 return false;
@@ -257,19 +257,19 @@ namespace FruitMarket.ViewModel
 
         private bool CheckFruits()
         {
-            if(m_Fruits.Count == 0)
+            if (m_Fruits.Count == 0)
             {
                 return false;
             }
-            
-            foreach(Product f in m_Fruits)
+
+            foreach (Product f in m_Fruits)
             {
                 if (f.Sort == null || f.Sort == "")
                 {
                     System.Windows.MessageBox.Show("Sort cannot be empty.");
                     return false;
                 }
-                if(f.Amount <= 0)
+                if (f.Amount <= 0)
                 {
                     System.Windows.MessageBox.Show("Invalid amount.");
                     return false;
@@ -294,7 +294,7 @@ namespace FruitMarket.ViewModel
                     System.Windows.MessageBox.Show("Mature cannot be empty.");
                     return false;
                 }
-                if(f.Origin == null || f.Origin == "")
+                if (f.Origin == null || f.Origin == "")
                 {
                     System.Windows.MessageBox.Show("Origin cannot be empty.");
                     return false;
@@ -308,7 +308,7 @@ namespace FruitMarket.ViewModel
             return true;
         }
 
-        public AdmissionViewModel()
+        public ProductImportViewModel()
         {
             InitializeCommands();
             //m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
@@ -331,7 +331,7 @@ namespace FruitMarket.ViewModel
             {
                 OnNewSupplier();
             }
-            if(m_Producers.Count == 0)
+            if (m_Producers.Count == 0)
             {
                 //OnNewProducer();
             }

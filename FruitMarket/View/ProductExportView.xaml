@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="FruitMarket.View.ProductExportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:view="clr-namespace:FruitMarket.View"
+             xmlns:converter="clr-namespace:FruitMarket.Converter"
+             xmlns:local="clr-namespace:FruitMarket.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Ausgehende Produkte" 
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold" FontSize="24"
+                   Margin="0,10,0,10"/>
+
+
+        <TextBlock Text="Lieferant"
+                   Grid.Row="1" Grid.Column="0"
+                   FontWeight="Bold" FontSize="15"/>
+        <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="10,10,20,0"
+                           DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
+                Command="{Binding SaveSupplierCommand}"
+                Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
+                <Image Source="../Images/save-file-option.png"/>
+                <TextBlock Text="Lieferanten speichern"/>
+            </DockPanel>
+        </Button>
+
+        <TextBlock Text="Kunde"
+                   Grid.Row="1" Grid.Column="1"
+                   FontWeight="Bold" FontSize="15"/>
+        <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,10,0"
+                           DataContext="{Binding CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource TextImageButton}"
+                Command="{Binding SaveCostumerCommand}"
+                Visibility="{Binding CurrentCostumer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
+                <Image Source="../Images/save-file-option.png"/>
+                <TextBlock Text="Kunden speichern"/>
+            </DockPanel>
+        </Button>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"
+                    Margin="20,10,20,10">
+            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
+                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
+                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
+                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding Path=AdmissionDate, StringFormat=dd. MMM. yyyy}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
+                    <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
+                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
+                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Command="{Binding AddFruitsCommand}" 
+                    Width="32" Height="32" Background="Transparent"
+                    BorderThickness="0" HorizontalAlignment="Right"
+                    Margin="10,10,10,10"
+                    ToolTip="Save Incoming Fruits">
+                <Image Source="../Images/save-file-option.png"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

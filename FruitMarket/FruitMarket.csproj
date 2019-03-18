@@ -93,6 +93,7 @@
     <Compile Include="Helper\ToolConstants.cs" />
     <Compile Include="Helper\LogEntry.cs" />
     <Compile Include="Helper\LogType.cs" />
+    <Compile Include="Helper\ViewType.cs" />
     <Compile Include="Model\Adress.cs" />
     <Compile Include="Model\Costumer.cs" />
     <Compile Include="Model\Delivery.cs" />
@@ -100,13 +101,18 @@
     <Compile Include="Model\Producer.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
-    <Compile Include="ViewModel\AdmissionViewModel.cs" />
-    <Compile Include="ViewModel\UserControl1_PaulModel.cs" />
+    <Compile Include="ViewModel\ProductExportViewModel.cs" />
+    <Compile Include="ViewModel\ProductImportViewModel.cs" />
+    <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\MainListViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\FilterView.xaml.cs">
       <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
@@ -114,17 +120,17 @@
     <Compile Include="View\MainListView.xaml.cs">
       <DependentUpon>MainListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProductAdmissionView.xaml.cs">
-      <DependentUpon>ProductAdmissionView.xaml</DependentUpon>
+    <Compile Include="View\ProductExportView.xaml.cs">
+      <DependentUpon>ProductExportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProductDeliveryView.xaml.cs">
-      <DependentUpon>ProductDeliveryView.xaml</DependentUpon>
+    <Compile Include="View\ProductImportView.xaml.cs">
+      <DependentUpon>ProductImportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductListView.xaml.cs">
+      <DependentUpon>ProductListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SupplierView.xaml.cs">
       <DependentUpon>SupplierView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserControl1_Paul.xaml.cs">
-      <DependentUpon>UserControl1_Paul.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,15 +160,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProductAdmissionView.xaml">
+    <Page Include="View\ProductExportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProductDeliveryView.xaml">
+    <Page Include="View\ProductImportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\StyleSheet.xaml">
+    <Page Include="View\ProductListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,10 +185,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SupplierView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserControl1_Paul.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,7 +263,21 @@
   <ItemGroup>
     <Resource Include="Images\shipped.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

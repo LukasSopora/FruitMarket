@@ -17,13 +17,13 @@ using System.Windows.Shapes;
 namespace FruitMarket.View
 {
     /// <summary>
-    /// Interaction logic for UserControl1_Paul.xaml
+    /// Interaction logic for ProductImportView.xaml
     /// </summary>
-    public partial class UserControl1_Paul : UserControl
+    public partial class ProductImportView : UserControl
     {
-        public UserControl1_Paul()
+        public ProductImportView()
         {
-            DataContext = new UserControl1_PaulModel();
+            DataContext = new ProductImportViewModel();
             InitializeComponent();
         }
     }

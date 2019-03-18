@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.ViewModel
 {
-    public class UserControl1_PaulModel : BindableBase
+    public class ProductListViewModel : BindableBase
     {
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
@@ -20,7 +20,7 @@ namespace FruitMarket.ViewModel
             set { SetProperty(ref m_Fruits, value); }
         }
 
-        public UserControl1_PaulModel()
+        public ProductListViewModel()
         {
             m_Fruits.Add(new Product("Hokkaidokürbis", 1337, "Kat. 2", new Supplier("Biomüll-Wiederaufbereitung KG"), new Producer("Biomüll-Wiederaufbereitung KG"), DateTime.Now.AddDays(20), TimeSpan.FromHours(24), "Italien, -", 3.50, 5.99));
             m_Fruits.Add(new Product("Apfel", 1000, "Kat. 1", new Supplier("Grossman KG"), new Producer("Grossman KG"), DateTime.Now.AddDays(2), TimeSpan.FromHours(14), "Deutschland, -", 2.50, 3.99));

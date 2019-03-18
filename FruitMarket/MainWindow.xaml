@@ -23,39 +23,104 @@
 
         <Fluent:Ribbon Grid.Row="0" IsQuickAccessToolBarVisible="False">
 
-            <Fluent:RibbonTabItem Header="Hauptmenü">
-                <Fluent:RibbonGroupBox Header="Main">
-                    <Fluent:Button Header="Home"
+            <Fluent:RibbonTabItem Header="Hauptmenü" GotFocus="RibbonTabItem_GotFocus">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Fluent:Button Header="Hauptmenü"
                                    Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"/>
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Lager">
+            <Fluent:RibbonTabItem Header="Lager" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Auf Lager"
-                                   Command="{Binding ShowMainListCommand}"
-                                   LargeIcon="Images/list.png"/>
+                    <Fluent:Button Header="Hauptmenü"
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Produkte">
+            <Fluent:RibbonTabItem Header="Produkte" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Alle Produkte"
-                                   Command="{Binding ShowProductListCommand}"
-                                   LargeIcon="Images/list.png"/>
+                    <Fluent:Button Header="Hauptmenü"
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Filter">
+            <Fluent:RibbonTabItem Header="Suche" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Filter"
-                                   Command="{Binding FilterCommand}"
-                                   LargeIcon="Images/filter-filled-tool-symbol.png"/>
+                    <Fluent:Button Header="Hauptmenü"
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Einlagerung"
-                                   Command="{Binding ProductAdmissionCommand}"
-                                   LargeIcon="Images/shipped.png"/>
+                    <Fluent:Button Header="Hauptmenü"
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
                     <DockPanel>
@@ -94,9 +159,54 @@
                     </StackPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Verkauf">
+            <Fluent:RibbonTabItem Header="Verkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    
+                    <Fluent:Button Header="Hauptmenü"
+                                   Command="{Binding ShowHomeViewCommand}"
+                                   LargeIcon="Images/home-icon-silhouette.png"
+                                   ToolTip="Gehe zum Hauptmenü"/>
+                    <Fluent:Button Header="Drucken"
+                                   Command="{Binding PrintSiteCommand}"
+                                   LargeIcon="Images/printer.png"
+                                   ToolTip="Aktuelle Seite drucken"/>
+                    <Fluent:Button Header="Info"
+                                   Command="{Binding ShowInformationCommand}"
+                                   LargeIcon="Images/information.png"
+                                   ToolTip="Informationen über FruitMarket©"/>
+                    <Fluent:Button Header="Hilfe"
+                                   Command="{Binding ShowHelpCommand}"
+                                   LargeIcon="Images/help.png"
+                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
+                    <DockPanel>
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Lieferanten:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
+                                </Button>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Produzenten:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
+                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
+                                </Button>
+                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" Style="{StaticResource RoundButton}">
+                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                    </DockPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>

@@ -1,4 +1,5 @@
-﻿using FruitMarket.View;
+﻿using FruitMarket.Helper;
+using FruitMarket.View;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -13,9 +14,12 @@ namespace FruitMarket.ViewModel
     public class MainViewModel : BindableBase
     {
         private UserControl m_ActiveView = null;
+
+        private HomeView m_HomeView = null;
         private MainListView m_MainListView = null;
-        private UserControl1_Paul m_ProductListView = null;
-        private ProductAdmissionView m_ProductAdmissionView = null;
+        private ProductListView m_ProductListView = null;
+        private ProductImportView m_ProductImportView = null;
+        private ProductExportView m_ProductExportView = null;
         private FilterView m_FilterView = null;
 
         public UserControl ActiveView
@@ -25,72 +29,64 @@ namespace FruitMarket.ViewModel
         }
 
         #region Commands
-        public DelegateCommand ShowMainListCommand { get; private set; }
         public DelegateCommand ShowHomeViewCommand { get; private set; }
-        public DelegateCommand ShowProductListCommand { get; private set; }
+        public DelegateCommand PrintSiteCommand { get; private set; }
+        public DelegateCommand ShowInformationCommand { get; private set; }
+        public DelegateCommand ShowHelpCommand { get; private set; }
 
-        internal void ChangeView()
+        internal void ChangeView(ViewType p_Type)
         {
-            m_ActiveView = m_ProductAdmissionView;
-            AdmissionViewModel avm = m_ProductAdmissionView.DataContext as AdmissionViewModel;
-            avm.AdmissionDate = DateTime.Now;
+            switch(p_Type)
+            {
+                case ViewType.HomeView: m_ActiveView = null; break;
+                case ViewType.MainListView: m_ActiveView = m_MainListView; break;
+                case ViewType.ProductListView: m_ActiveView = m_ProductListView; break;
+                case ViewType.FilterView: m_ActiveView = m_FilterView; break;
+                case ViewType.ProductAdmissionView: m_ActiveView = m_ProductImportView; break;
+                case ViewType.ProductDeliveryView: m_ActiveView = m_ProductExportView; break;
+            }
             RaisePropertyChanged(nameof(ActiveView));
         }
-
-        public DelegateCommand ProductAdmissionCommand { get; private set; }
-        public DelegateCommand FilterCommand { get; private set; }
 
         private void InitializeCommands()
         {
-            ShowMainListCommand = new DelegateCommand(OnShowMainList);
-            RaisePropertyChanged(nameof(ShowMainListCommand));
             ShowHomeViewCommand = new DelegateCommand(OnShowHomeView);
             RaisePropertyChanged(nameof(ShowHomeViewCommand));
-            ShowProductListCommand = new DelegateCommand(OnShowProductListView);
-            RaisePropertyChanged(nameof(ShowProductListCommand));
-            ProductAdmissionCommand = new DelegateCommand(OnProductAdmission);
-            RaisePropertyChanged(nameof(ProductAdmissionCommand));
-            FilterCommand = new DelegateCommand(OnFilter);
-            RaisePropertyChanged(nameof(FilterCommand));
+            PrintSiteCommand = new DelegateCommand(OnPrintSite);
+            RaisePropertyChanged(nameof(PrintSiteCommand));
+            ShowInformationCommand = new DelegateCommand(OnShowInformation);
+            RaisePropertyChanged(nameof(ShowInformationCommand));
+            ShowHelpCommand = new DelegateCommand(OnShowHelp);
+            RaisePropertyChanged(nameof(ShowHelpCommand));
         }
 
-        private void OnFilter()
+        private void OnShowHelp()
         {
-            m_ActiveView = m_FilterView;
-            RaisePropertyChanged(nameof(ActiveView));
         }
 
-        private void OnProductAdmission()
+        private void OnShowInformation()
         {
-            m_ActiveView = m_ProductAdmissionView;
-            RaisePropertyChanged(nameof(ActiveView));
         }
 
-        private void OnShowProductListView()
+        private void OnPrintSite()
         {
-            m_ActiveView = m_ProductListView;
-            RaisePropertyChanged(nameof(ActiveView));
         }
 
         private void OnShowHomeView()
         {
-            m_ActiveView = null;
-            RaisePropertyChanged(nameof(ActiveView));
-        }
-
-        private void OnShowMainList()
-        {
-            m_ActiveView = m_MainListView;
+            m_ActiveView = m_HomeView;
             RaisePropertyChanged(nameof(ActiveView));
         }
         #endregion
 
         private void InitializeViews()
         {
+            m_HomeView = new HomeView();
             m_MainListView = new MainListView();
-            m_ProductListView = new UserControl1_Paul();
-            m_ProductAdmissionView = new ProductAdmissionView();
+            m_ProductListView = new ProductListView();
             m_FilterView = new FilterView();
+            m_ProductImportView = new ProductImportView();
+            m_ProductExportView = new ProductExportView();
         }
 
         public MainViewModel()

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FruitMarket.View.ProductAdmissionView"
+﻿<UserControl x:Class="FruitMarket.View.ProductImportView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -36,7 +36,7 @@
                    FontWeight="Bold" FontSize="15"/>
         <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="10,10,20,0"
                            DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
+
         <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
                 Command="{Binding SaveSupplierCommand}"
                 Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
