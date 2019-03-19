@@ -72,11 +72,18 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"
-                    Margin="20,10,20,10">
-            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Row="0"
+                      CanUserAddRows="True" CanUserDeleteRows="True"
                       AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
-                      SelectionMode="Single">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
                     <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
@@ -107,8 +114,7 @@
                     <DataGridTemplateColumn Header="Delete">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Click="Button_Click" 
-                                        Background="Transparent" BorderThickness="0">
+                                <Button Click="Button_Click" Style="{StaticResource RoundImageButton}">
                                     <Image Source="../Images/trash.png"/>
                                 </Button>
                             </DataTemplate>
@@ -116,13 +122,15 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Command="{Binding AddFruitsCommand}" 
-                    Width="32" Height="32" Background="Transparent"
-                    BorderThickness="0" HorizontalAlignment="Right"
-                    Margin="10,10,10,10" MaxWidth="20" MaxHeight="20"
-                    ToolTip="Save Incoming Fruits">
+
+            <Button Grid.Row="1"
+                Command="{Binding AddFruitsCommand}" 
+                Width="32" Height="32" Background="Transparent"
+                BorderThickness="0" HorizontalAlignment="Right"
+                Margin="10,10,10,10" MaxWidth="20" MaxHeight="20"
+                ToolTip="Save Incoming Fruits">
                 <Image Source="../Images/save-file-option.png" MaxWidth="20" MaxHeight="20"/>
             </Button>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -3,10 +3,38 @@
                     xmlns:local="clr-namespace:FruitMarket.View.Styles"
                     xmlns:converter="clr-namespace:FruitMarket.Converter">
     <converter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    <Style TargetType="Button" x:Key="RoundImageButton">
+    <!--<Style TargetType="Button" x:Key="RoundImageButton">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="5,5,0,0"/>
+    </Style>-->
+    <Style TargetType="Image" x:Key="RoundButtonImage">
+        <Setter Property="MaxHeight" Value="20"/>
+        <Setter Property="MaxWidth" Value="20"/>
+    </Style>
+    <Style TargetType="Button" x:Key="RoundImageButton">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="MaxWidth" Value="25"/>
+        <Setter Property="MaxHeight" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Button Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                    Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ContentPresenter Content="{TemplateBinding Content}" Margin="5"/>
+                    </Button>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Orange"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="Button" x:Key="TextImageButton">
         <Setter Property="Background" Value="White"/>
@@ -45,16 +73,20 @@
         <Setter Property="Margin" Value="20,5,0,0"/>
     </Style>
     <Style TargetType="DataGrid">
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="RowBackground" Value="White"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Margin" Value="10,5,10,5"/>
     </Style>
     <Style TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="Orange"/>
         <Setter Property="FontFamily" Value="../../Fonts/Ubuntu"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="DataGridCell">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
 </ResourceDictionary>

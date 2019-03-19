@@ -311,13 +311,6 @@ namespace FruitMarket.ViewModel
         public ProductImportViewModel()
         {
             InitializeCommands();
-            //m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
-            //m_Suppliers.Add(new Supplier("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413",  "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
-            //m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
-
-            //m_Producers.Add(new Producer("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
-            //m_Producers.Add(new Producer("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413", "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
-            //m_Producers.Add(new Producer("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
 
             m_Suppliers = TestDataReader.GetDefaultSuppliers();
             m_Producers = TestDataReader.GetDefaultProducers();
@@ -333,7 +326,7 @@ namespace FruitMarket.ViewModel
             }
             if (m_Producers.Count == 0)
             {
-                //OnNewProducer();
+                OnNewProducer();
             }
             RaisePropertyChanged(nameof(Fruits));
         }

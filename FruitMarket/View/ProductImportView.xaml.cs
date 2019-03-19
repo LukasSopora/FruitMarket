@@ -40,5 +40,13 @@ namespace FruitMarket.View
                 }
             }
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(sender.GetType() == typeof(DataGrid))
+            {
+                ((DataGrid)sender).UnselectAllCells();
+            }
+        }
     }
 }
