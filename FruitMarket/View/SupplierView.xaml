@@ -13,7 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black">
+    <Border CornerRadius="10" BorderThickness="2" BorderBrush="Teal" Background="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

@@ -14,8 +14,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="55*"/>
-            <RowDefinition Height="45*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -72,46 +73,40 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <DataGrid Grid.Row="0"
+        
+            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                       CanUserAddRows="True" CanUserDeleteRows="True"
                       AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
-                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
+                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}" Width="*"/>
+                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
+                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
                     <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
-                                                                         Path=DataContext.ImportDate, StringFormat=dd. MMM yyyy}" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Mindesthaltbarkeitsdatum">
+                                                                         Path=DataContext.ImportDate, StringFormat=dd. MMM yyyy}" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="MHD" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DatePicker SelectedDate="{Binding Expiration}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Reifungsdauer">
+                    <DataGridTemplateColumn Header="Reifedauer" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DockPanel>
+                                <DockPanel HorizontalAlignment="Center">
                                     <TextBox Text="{Binding Mature.Days}" MinWidth="30" Margin="5,0,0,0"/>
-                                    <TextBlock Text="Tage" Margin="5,0,0,0"/>
+                                    <TextBlock Text="d" Margin="5,0,0,0"/>
                                     <TextBox Text="{Binding Mature.Hours}" MinWidth="30" Margin="10,0,0,0"/>
-                                    <TextBlock Text="Stunden" Margin="5,0,0,0"/>
+                                    <TextBlock Text="h" Margin="5,0,5,0"/>
                                 </DockPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
-                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
-                    <DataGridTemplateColumn Header="Delete">
+                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}" Width="*"/>
+                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}" Width="*"/>
+                    <DataGridTemplateColumn Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Click="Button_Click" Style="{StaticResource RoundImageButton}">
@@ -123,14 +118,13 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Grid.Row="1"
+        <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
                 Command="{Binding AddFruitsCommand}" 
                 Width="32" Height="32" Background="Transparent"
                 BorderThickness="0" HorizontalAlignment="Right"
                 Margin="10,10,10,10" MaxWidth="20" MaxHeight="20"
                 ToolTip="Save Incoming Fruits">
-                <Image Source="../Images/save-file-option.png" MaxWidth="20" MaxHeight="20"/>
-            </Button>
-        </Grid>
+            <Image Source="../Images/save-file-option.png" MaxWidth="20" MaxHeight="20"/>
+        </Button>
     </Grid>
 </UserControl>
