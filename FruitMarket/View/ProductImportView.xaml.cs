@@ -1,4 +1,5 @@
-﻿using FruitMarket.ViewModel;
+﻿using FruitMarket.Model;
+using FruitMarket.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,19 @@ namespace FruitMarket.View
         {
             DataContext = new ProductImportViewModel();
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            if(sender.GetType() == typeof(Button))
+            {
+                if(((Button)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((Button)sender).DataContext;
+                    pivm.Fruits.Remove(fruit);
+                }
+            }
         }
     }
 }

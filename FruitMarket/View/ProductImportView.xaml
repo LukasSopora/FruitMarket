@@ -14,10 +14,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -27,60 +25,103 @@
         <TextBlock Text="Eingehende Produkte" 
                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"
-                   FontWeight="Bold" FontSize="24"
-                   Margin="0,10,0,10"/>
+                   FontWeight="Bold" FontSize="20"
+                   Margin="0,5,0,0"/>
 
 
-        <TextBlock Text="Lieferant"
-                   Grid.Row="1" Grid.Column="0"
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Lieferant"
+                   Grid.Row="0" HorizontalAlignment="Center"
                    FontWeight="Bold" FontSize="15"/>
-        <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="10,10,20,0"
-                           DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <view:SupplierView Grid.Row="1" Margin="10,10,20,0"
+                              DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Row="2" Style="{StaticResource TextImageButton}"
+                    Command="{Binding SaveSupplierCommand}"
+                    Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <DockPanel>
+                    <Image Source="../Images/save-file-option.png"/>
+                    <TextBlock Text="Lieferanten speichern"/>
+                </DockPanel>
+            </Button>
+        </Grid>
 
-        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
-                Command="{Binding SaveSupplierCommand}"
-                Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DockPanel>
-                <Image Source="../Images/save-file-option.png"/>
-                <TextBlock Text="Lieferanten speichern"/>
-            </DockPanel>
-        </Button>
 
-        <TextBlock Text="Produzent"
-                   Grid.Row="1" Grid.Column="1"
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Produzent"
+                   Grid.Row="0" HorizontalAlignment="Center"
                    FontWeight="Bold" FontSize="15"/>
-        <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,10,0"
+            <view:SupplierView Grid.Row="1" Margin="20,10,10,0"
                            DataContext="{Binding CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource TextImageButton}"
+            <Button Grid.Row="2" Style="{StaticResource TextImageButton}"
                 Command="{Binding SaveProducerCommand}"
                 Visibility="{Binding CurrentProducer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DockPanel>
-                <Image Source="../Images/save-file-option.png"/>
-                <TextBlock Text="Produzenten speichern"/>
-            </DockPanel>
-        </Button>
+                <DockPanel>
+                    <Image Source="../Images/save-file-option.png"/>
+                    <TextBlock Text="Produzenten speichern"/>
+                </DockPanel>
+            </Button>
+        </Grid>
 
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3"
                     Margin="20,10,20,10">
             <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
-                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
+                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
+                      SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
                     <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
-                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding Path=AdmissionDate, StringFormat=dd. MMM. yyyy}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
-                    <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
+                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
+                                                                         Path=DataContext.ImportDate, StringFormat=dd. MMM yyyy}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Mindesthaltbarkeitsdatum">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Expiration}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Reifungsdauer">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBox Text="{Binding Mature.Days}" MinWidth="30" Margin="5,0,0,0"/>
+                                    <TextBlock Text="Tage" Margin="5,0,0,0"/>
+                                    <TextBox Text="{Binding Mature.Hours}" MinWidth="30" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Stunden" Margin="5,0,0,0"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
                     <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="Button_Click" 
+                                        Background="Transparent" BorderThickness="0">
+                                    <Image Source="../Images/trash.png"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Command="{Binding AddFruitsCommand}" 
                     Width="32" Height="32" Background="Transparent"
                     BorderThickness="0" HorizontalAlignment="Right"
-                    Margin="10,10,10,10"
+                    Margin="10,10,10,10" MaxWidth="20" MaxHeight="20"
                     ToolTip="Save Incoming Fruits">
-                <Image Source="../Images/save-file-option.png"/>
+                <Image Source="../Images/save-file-option.png" MaxWidth="20" MaxHeight="20"/>
             </Button>
         </StackPanel>
     </Grid>

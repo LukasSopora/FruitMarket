@@ -44,7 +44,17 @@
         <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
         <Setter Property="Margin" Value="20,5,0,0"/>
     </Style>
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="RowBackground" Value="White"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
     <Style TargetType="DataGridColumnHeader">
-        <Setter Property="Background" Value="DarkCyan"/>
+        <Setter Property="Background" Value="Orange"/>
+        <Setter Property="FontFamily" Value="../../Fonts/Ubuntu"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
 </ResourceDictionary>

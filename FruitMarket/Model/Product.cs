@@ -18,7 +18,7 @@ namespace FruitMarket.Model
         private Producer m_Producer = null; 
         private DateTime m_PurchaseDate = DateTime.MinValue;
         private DateTime m_Expiration = DateTime.MinValue;
-        private TimeSpan m_Mature = TimeSpan.MinValue;
+        private Mature m_Mature = null;
         private string m_Origin = null;
         private double m_PurchasePrice = 0;
         private double m_SalesPrice = 0;
@@ -47,7 +47,7 @@ namespace FruitMarket.Model
             set { m_Origin = value; }
         }
 
-        public TimeSpan Mature
+        public Mature Mature
         {
             get { return m_Mature; }
             set { m_Mature = value; }
@@ -97,7 +97,7 @@ namespace FruitMarket.Model
 
         public Product(string p_Sort, int p_Amount, string p_Category,
                      Supplier p_Supplier, Producer p_Producer,
-                     DateTime p_Expiration, TimeSpan p_Mature, string p_Origin,
+                     DateTime p_Expiration, Mature p_Mature, string p_Origin,
                      double p_PurchasePrice, double p_SalesPrice)
         {
             m_Sort = p_Sort;
@@ -120,7 +120,7 @@ namespace FruitMarket.Model
             m_Producer = (Producer)info.GetValue(nameof(Producer), typeof(Producer));
             m_Expiration = (DateTime)info.GetValue(nameof(Expiration), typeof(DateTime));
             m_PurchaseDate = (DateTime)info.GetValue(nameof(PurchaseDate), typeof(DateTime));
-            m_Mature = (TimeSpan)info.GetValue(nameof(Mature), typeof(TimeSpan));
+            m_Mature = (Mature)info.GetValue(nameof(Mature), typeof(Mature));
             m_Origin = (string)info.GetValue(nameof(Origin), typeof(string));
             m_PurchasePrice = (double)info.GetValue(nameof(PurchasePrice), typeof(double));
             m_SalesPrice = (double)info.GetValue(nameof(SalesPrice), typeof(double));
