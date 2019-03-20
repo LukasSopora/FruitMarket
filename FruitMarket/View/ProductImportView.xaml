@@ -79,8 +79,30 @@
                       AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}" Width="*"/>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Sorte" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},
+                                                    Path=DataContext.Sorts}"
+                                      SelectedItem="{Binding Sort}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn Header="Sorte" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},
+                                                        Path=DataContext.Sorts}" SelectedItem="{Binding Sort}" IsManipulationEnabled="True"/>
+                                <DockPanel>
+                                    <TextBox Text="{Binding NewSort}"/>
+                                    <Button Content="Add" Command="{Binding AddNewSortCommand}"/>
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
                     <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
                     <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 

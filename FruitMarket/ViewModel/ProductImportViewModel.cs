@@ -19,11 +19,25 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Producer>();
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
+        private ObservableCollection<string> m_Sorts =
+            new ObservableCollection<string>();
+
         private DateTime m_ImportDate = DateTime.Now;
-
-
         private Producer m_CurrentProducer = null;
         private Supplier m_CurrentSupplier = null;
+        private string m_NewSort = null;
+
+        public string NewSort
+        {
+            get { return m_NewSort; }
+            set { SetProperty(ref m_NewSort, value); }
+        }
+
+        public ObservableCollection<string> Sorts
+        {
+            get { return m_Sorts; }
+            set { SetProperty(ref m_Sorts, value); }
+        }
 
         public DateTime ImportDate
         {
@@ -68,6 +82,7 @@ namespace FruitMarket.ViewModel
         public DelegateCommand SaveProducerCommand { get; private set; }
         public DelegateCommand DeleteProducerCommand { get; private set; }
         public DelegateCommand AddFruitsCommand { get; private set; }
+        public DelegateCommand AddNewSortCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -85,6 +100,21 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(DeleteProducerCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
+            AddNewSortCommand = new DelegateCommand(OnAddNewSort);
+            RaisePropertyChanged(nameof(AddNewSortCommand));
+        }
+
+        private void OnAddNewSort()
+        {
+            if(m_NewSort == null || m_NewSort == "")
+            {
+                return;
+            }
+            if(!m_Sorts.Contains(m_NewSort))
+            {
+                m_Sorts.Add(m_NewSort);
+            }
+            RaisePropertyChanged(nameof(Sorts));
         }
 
         private void OnDeleteProducer()
@@ -318,6 +348,11 @@ namespace FruitMarket.ViewModel
             m_CurrentSupplier = new Supplier();
             m_CurrentProducer = new Producer();
 
+            m_Sorts.Add("Apfel");
+            m_Sorts.Add("Kirsche");
+            m_Sorts.Add("Banane");
+            m_Sorts.Add("Ananas");
+
             m_Fruits.Add(new Product());
 
             if (m_Suppliers.Count == 0)
@@ -329,6 +364,8 @@ namespace FruitMarket.ViewModel
                 OnNewProducer();
             }
             RaisePropertyChanged(nameof(Fruits));
+
+            RaisePropertyChanged(nameof(Sorts));
         }
     }
 }

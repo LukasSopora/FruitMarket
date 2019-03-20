@@ -4,6 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:FruitMarket.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="Transparent"
+             TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="400">
     <UserControl.Resources>
@@ -13,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="10" BorderThickness="2" BorderBrush="Teal" Background="White">
+    <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" Background="{DynamicResource MaterialDesignPaper}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -34,7 +38,9 @@
                Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <TextBlock Text="Id" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
+            <DockPanel Grid.Row="0" Grid.Column="1">
+                <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
+            </DockPanel>
 
             <TextBlock Text="Firma" Grid.Row="1" Grid.Column="0"/>
             <TextBox Text="{Binding Company}" Grid.Row="1" Grid.Column="1"/>
@@ -49,7 +55,11 @@
             <DatePicker SelectedDate="{Binding Birthday}" Grid.Row="4" Grid.Column="1"/>
 
             <TextBlock Text="Telefon" Grid.Row="5" Grid.Column="0"/>
-            <TextBox Text="{Binding Phone}" Grid.Row="5" Grid.Column="1"/>
+            <!--<TextBox Text="{Binding Phone}" Grid.Row="5" Grid.Column="1"/>-->
+            <DockPanel Grid.Row="5" Grid.Column="1">
+                <materialDesign:PackIcon Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"/>
+                <TextBox x:Name="PhoneTextBox" materialDesign:TransitionAssist.DisableTransitions="True" />
+            </DockPanel>
 
             <TextBlock Text="Staße" Grid.Row="2" Grid.Column="2"/>
             <TextBox Text="{Binding Adress.Street}" Grid.Row="2" Grid.Column="3"/>
@@ -60,8 +70,12 @@
             <TextBlock Text="Ort" Grid.Row="4" Grid.Column="2"/>
             <TextBox Text="{Binding Adress.Place}" Grid.Row="4" Grid.Column="3"/>
 
-            <TextBlock Text="Mail" Grid.Row="5" Grid.Column="2"/>
-            <TextBox Text="{Binding Email}" Grid.Row="5" Grid.Column="3"/>
+            <!--<TextBlock Text="Mail" Grid.Row="5" Grid.Column="2"/>-->
+            <materialDesign:PackIcon Kind="AlternateEmail" Foreground="{Binding ElementName=MailTextBox, Path=BorderBrush}"
+                                     Grid.Row="5" Grid.Column="2"/>
+            <TextBox Text="{Binding Email}" x:Name="MailTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="5" Grid.Column="3"
+                         materialDesign:HintAssist.Hint="Email Adresse"/>
         </Grid>
     </Border>
 </UserControl>
