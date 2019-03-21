@@ -6,6 +6,10 @@
              xmlns:view="clr-namespace:FruitMarket.View"
              xmlns:converter="clr-namespace:FruitMarket.Converter"
              xmlns:local="clr-namespace:FruitMarket.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -41,13 +45,19 @@
                    FontWeight="Bold" FontSize="15"/>
             <view:SupplierView Grid.Row="1" Margin="10,10,20,0"
                               DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Row="2" Style="{StaticResource TextImageButton}"
+
+            <Button Grid.Row="2" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    ToolTip="Lieferanten speichern" HorizontalAlignment="Right"
+                    Margin="0,5,20,0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                     Command="{Binding SaveSupplierCommand}"
                     Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <DockPanel>
-                    <Image Source="../Images/save-file-option.png"/>
-                    <TextBlock Text="Lieferanten speichern"/>
-                </DockPanel>
+                <materialDesign:PackIcon
+                    Kind="Floppy"
+                    Height="24"
+                    Width="24" />
             </Button>
         </Grid>
 
@@ -63,23 +73,60 @@
                    FontWeight="Bold" FontSize="15"/>
             <view:SupplierView Grid.Row="1" Margin="20,10,10,0"
                            DataContext="{Binding CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Row="2" Style="{StaticResource TextImageButton}"
-                Command="{Binding SaveProducerCommand}"
-                Visibility="{Binding CurrentProducer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <DockPanel>
-                    <Image Source="../Images/save-file-option.png"/>
-                    <TextBlock Text="Produzenten speichern"/>
-                </DockPanel>
+
+            <Button Grid.Row="2" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    ToolTip="Lieferanten speichern" HorizontalAlignment="Right"
+                    Margin="0,5,10,0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Command="{Binding SaveProducerCommand}"
+                    Visibility="{Binding CurrentProducer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <materialDesign:PackIcon
+                    Kind="Floppy"
+                    Height="24"
+                    Width="24" />
             </Button>
         </Grid>
 
-        
-            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                      CanUserAddRows="True" CanUserDeleteRows="True"
-                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                  CanUserAddRows="True" CanUserDeleteRows="True"
+                  AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged"
+                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Sorte">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                materialDesign:HintAssist.Hint="(editable)"
+                                MinWidth="72"
+                                Margin="16 0 0 0"
+                                VerticalAlignment="Bottom"
+                                IsEditable="True"
+                                ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}">
+                                <ComboBox.Text>
+                                    <Binding
+                                        Path="Sort"
+                                        Mode="TwoWay"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                    </Binding>
+                                </ComboBox.Text>
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <materialDesign:MaterialDataGridComboBoxColumn
+                    Header="Sorte"
+                    SelectedValueBinding="{Binding Sort}"
+                    ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}" />
                 <DataGridTemplateColumn Header="Sorte" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -103,42 +150,42 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
-                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
-                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
-                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
+                <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
+                <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
+                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
                                                                          Path=DataContext.ImportDate, StringFormat=dd. MMM yyyy}" IsReadOnly="True" Width="*"/>
-                    <DataGridTemplateColumn Header="MHD" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Expiration}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Reifedauer" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DockPanel HorizontalAlignment="Center">
-                                    <TextBox Text="{Binding Mature.Days}" MinWidth="30" Margin="5,0,0,0"/>
-                                    <TextBlock Text="d" Margin="5,0,0,0"/>
-                                    <TextBox Text="{Binding Mature.Hours}" MinWidth="30" Margin="10,0,0,0"/>
-                                    <TextBlock Text="h" Margin="5,0,5,0"/>
-                                </DockPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}" Width="*"/>
-                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}" Width="*"/>
-                    <DataGridTemplateColumn Width="Auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Click="Button_Click" Style="{StaticResource RoundImageButton}">
-                                    <Image Source="../Images/trash.png"/>
-                                </Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                <DataGridTemplateColumn Header="MHD" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Expiration}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Reifedauer" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel HorizontalAlignment="Center">
+                                <TextBox Text="{Binding Mature.Days}" MinWidth="30" Margin="5,0,0,0"/>
+                                <TextBlock Text="d" Margin="5,0,0,0"/>
+                                <TextBox Text="{Binding Mature.Hours}" MinWidth="30" Margin="10,0,0,0"/>
+                                <TextBlock Text="h" Margin="5,0,5,0"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}" Width="*"/>
+                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Button_Click" Style="{StaticResource RoundImageButton}">
+                                <Image Source="../Images/trash.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
                 Command="{Binding AddFruitsCommand}" 

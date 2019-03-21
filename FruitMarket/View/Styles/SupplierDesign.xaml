@@ -3,12 +3,6 @@
                     xmlns:local="clr-namespace:FruitMarket.View.Styles"
                     xmlns:fonts="clr-namespace:FruitMarket.Fonts"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Style TargetType="TextBlock">
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-    </Style>
     <Style TargetType="DatePicker">
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -21,6 +15,6 @@
     <Style TargetType="materialDesign:PackIcon">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="2,0,2,0"/>
+        <Setter Property="Margin" Value="8"/>
     </Style>
 </ResourceDictionary>
