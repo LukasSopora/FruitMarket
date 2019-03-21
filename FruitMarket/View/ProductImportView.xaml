@@ -89,7 +89,43 @@
             </Button>
         </Grid>
 
-        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+        <DataGrid
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+            Margin="10,20,10,10"
+            ItemsSource="{Binding Fruits}"
+            CanUserAddRows="True"
+            AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Auto"
+            materialDesign:DataGridAssist.EnableEditBoxAssist="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Sorte">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Sort}"
+                                      materialDesign:HintAssist.Hint="(editable)"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Menge">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
+                                    <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" MouseDown="Amount_Decrease"  MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <materialDesign:MaterialDataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <!--<DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                   CanUserAddRows="True" CanUserDeleteRows="True"
                   AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -136,7 +172,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGridTemplateColumn Header="Sorte" Width="*">
+                --><!--<DataGridTemplateColumn Header="Sorte" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -149,7 +185,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
+                </DataGridTemplateColumn>--><!--
                 <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
                 <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
                 <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
@@ -185,7 +221,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
         <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
                 Command="{Binding AddFruitsCommand}" 

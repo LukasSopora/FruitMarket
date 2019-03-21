@@ -1,5 +1,6 @@
 ﻿using FruitMarket.Model;
 using FruitMarket.ViewModel;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,51 @@ namespace FruitMarket.View
             if(sender.GetType() == typeof(DataGrid))
             {
                 ((DataGrid)sender).UnselectAllCells();
+            }
+        }
+
+        private void AmountIncrease(object sender, MouseButtonEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            if(sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = ((PackIcon)sender).DataContext as Product;
+                    fruit.Amount++; 
+                    
+                }
+            }
+        }
+
+        private void PackIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if(sender.GetType() == typeof(PackIcon))
+            {
+                PackIcon icon = sender as PackIcon;
+                icon.Foreground = Brushes.LimeGreen;
+            }
+        }
+
+        private void PackIcon_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                PackIcon icon = sender as PackIcon;
+                icon.Foreground = Brushes.White;
+            }
+        }
+
+        private void Amount_Decrease(object sender, MouseButtonEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((PackIcon)sender).DataContext;
+                    fruit.Amount++;
+                }
             }
         }
     }
