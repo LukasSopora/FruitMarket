@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" Background="{DynamicResource MaterialDesignPaper}">
+    <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -37,40 +37,64 @@
             <Image Source="../Images/user.png"
                Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
-            <TextBlock Text="Id" Grid.Row="0" Grid.Column="0"/>
-            <DockPanel Grid.Row="0" Grid.Column="1">
-                <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
-            </DockPanel>
+            <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="IdentificationCard" 
+                                     Foreground="{Binding ElementName=IdTextBox, Path=BorderBrush}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="IdTextBox" 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Text="{Binding Id}" materialDesign:HintAssist.Hint="Id"
+                     IsReadOnly="True"/>
+            
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Company" 
+                                     Foreground="{Binding ElementName=CompanyTextBox, Path=BorderBrush}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="CompanyTextBox" 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Text="{Binding Company}" materialDesign:HintAssist.Hint="Firma"/>
 
-            <TextBlock Text="Firma" Grid.Row="1" Grid.Column="0"/>
-            <TextBox Text="{Binding Company}" Grid.Row="1" Grid.Column="1"/>
 
-            <TextBlock Text="Vorname" Grid.Row="2" Grid.Column="0"/>
-            <TextBox Text="{Binding FirstName}" Grid.Row="2" Grid.Column="1"/>
+            <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" 
+                                     Foreground="{Binding ElementName=FirstNameBox, Path=BorderBrush}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="FirstNameBox" 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Text="{Binding FirstName}" materialDesign:HintAssist.Hint="Vorname"/>
 
-            <TextBlock Text="Nachname" Grid.Row="3" Grid.Column="0"/>
-            <TextBox Text="{Binding LastName}" Grid.Row="3" Grid.Column="1"/>
+            
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="LastNameBox" 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Text="{Binding LastName}" materialDesign:HintAssist.Hint="Nachname"/>
 
-            <TextBlock Text="Geburtstag" Grid.Row="4" Grid.Column="0"/>
-            <DatePicker SelectedDate="{Binding Birthday}" Grid.Row="4" Grid.Column="1"/>
 
-            <TextBlock Text="Telefon" Grid.Row="5" Grid.Column="0"/>
-            <!--<TextBox Text="{Binding Phone}" Grid.Row="5" Grid.Column="1"/>-->
-            <DockPanel Grid.Row="5" Grid.Column="1">
-                <materialDesign:PackIcon Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"/>
-                <TextBox x:Name="PhoneTextBox" materialDesign:TransitionAssist.DisableTransitions="True" />
-            </DockPanel>
+            <materialDesign:PackIcon Grid.Row="4" Grid.Column="0" Kind="Star" 
+                                     Foreground="{Binding ElementName=DatePickerBox, Path=BorderBrush}"/>
+            <DatePicker Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Geburtsdatum" materialDesign:HintAssist.IsFloating="False"
+                        x:Name="DatePickerBox"
+                        SelectedDate="{Binding Birthday}"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
 
-            <TextBlock Text="Staße" Grid.Row="2" Grid.Column="2"/>
-            <TextBox Text="{Binding Adress.Street}" Grid.Row="2" Grid.Column="3"/>
 
-            <TextBlock Text="PLZ" Grid.Row="3" Grid.Column="2"/>
-            <TextBox Text="{Binding Adress.PostCode}" Grid.Row="3" Grid.Column="3"/>
+            <materialDesign:PackIcon Grid.Row="5" Grid.Column="0" Kind="Phone" 
+                                     Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"/>
+            <TextBox Grid.Row="5" Grid.Column="1" x:Name="PhoneTextBox" 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Text="{Binding Phone}" materialDesign:HintAssist.Hint="Telefonnummer"/>
+            
 
-            <TextBlock Text="Ort" Grid.Row="4" Grid.Column="2"/>
-            <TextBox Text="{Binding Adress.Place}" Grid.Row="4" Grid.Column="3"/>
+            <materialDesign:PackIcon Kind="Place" Foreground="{Binding ElementName=StreetTextBox, Path=BorderBrush}"
+                                     Grid.Row="2" Grid.Column="2"/>
+            <TextBox Text="{Binding Adress.Street}" x:Name="StreetTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="2" Grid.Column="3"
+                         materialDesign:HintAssist.Hint="Straße"/>
 
-            <!--<TextBlock Text="Mail" Grid.Row="5" Grid.Column="2"/>-->
+
+            <TextBox Text="{Binding Adress.PostCode}" x:Name="PostCodeTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="3" Grid.Column="3"
+                         materialDesign:HintAssist.Hint="Postleitzahl"/>
+
+
+            <TextBox Text="{Binding Adress.Place}" x:Name="PlaceTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="4" Grid.Column="3"
+                         materialDesign:HintAssist.Hint="Ort"/>
+
+            
             <materialDesign:PackIcon Kind="AlternateEmail" Foreground="{Binding ElementName=MailTextBox, Path=BorderBrush}"
                                      Grid.Row="5" Grid.Column="2"/>
             <TextBox Text="{Binding Email}" x:Name="MailTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
