@@ -111,9 +111,10 @@
                 <DataGridTemplateColumn Header="Menge">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DockPanel>
-                                <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <StackPanel>
+                            <DockPanel HorizontalAlignment="Center">
+                                <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="20"/>
+                                <StackPanel Margin="10,0,0,0">
                                     <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
                                     <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" MouseDown="Amount_Decrease"  MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
                                 </StackPanel>
@@ -121,7 +122,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <materialDesign:MaterialDataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
             </DataGrid.Columns>
         </DataGrid>
         

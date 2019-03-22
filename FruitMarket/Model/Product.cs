@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    public class Product : ISerializable
+    public class Product : BindableBase, ISerializable
     {
         private int m_Id = 0;
         private string m_Sort = null;
@@ -80,7 +80,7 @@ namespace FruitMarket.Model
         public int Amount
         {
             get { return m_Amount; }
-            set { m_Amount = value; }
+            set { SetProperty(ref m_Amount, value); }
         }
 
         public string Sort

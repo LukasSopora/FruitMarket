@@ -69,7 +69,7 @@ namespace FruitMarket.View
             if(sender.GetType() == typeof(PackIcon))
             {
                 PackIcon icon = sender as PackIcon;
-                icon.Foreground = Brushes.LimeGreen;
+                icon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
             }
         }
 
@@ -90,7 +90,10 @@ namespace FruitMarket.View
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
                 {
                     Product fruit = (Product)((PackIcon)sender).DataContext;
-                    fruit.Amount++;
+                    if(fruit.Amount > 1)
+                    {
+                        fruit.Amount--;
+                    }
                 }
             }
         }
