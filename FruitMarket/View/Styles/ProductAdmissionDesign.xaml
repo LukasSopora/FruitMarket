@@ -68,7 +68,7 @@
         <Setter Property="Margin" Value="20,5,0,0"/>
     </Style>
     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="../../Fonts/#Ubuntu"/>
         <Setter Property="FontWeight" Value="ExtraBold"/>

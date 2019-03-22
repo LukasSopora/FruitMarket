@@ -25,5 +25,15 @@ namespace FruitMarket.View
         {
             InitializeComponent();
         }
+
+        private void View_Mouse_Enter(object sender, MouseEventArgs e)
+        {
+            UserIcon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
+        }
+
+        private void View_Mouse_Leave(object sender, MouseEventArgs e)
+        {
+            UserIcon.Foreground = Brushes.White;
+        }
     }
 }

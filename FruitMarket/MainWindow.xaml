@@ -18,6 +18,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="2"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -385,7 +386,9 @@
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
 
-        <ContentControl Grid.Row="1" 
+        <Grid Grid.Row="1" Background="{DynamicResource SecondaryAccentBrush}"/>
+
+        <ContentControl Grid.Row="2" 
                         Content="{Binding ActiveView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
