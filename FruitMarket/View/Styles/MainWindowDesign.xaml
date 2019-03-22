@@ -14,7 +14,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="3,3,0,0"/>
     </Style>
-    <Style TargetType="ComboBox">
+    <Style TargetType="ComboBox" x:Key="RibbonComboBox">
         <Setter Property="MinWidth" Value="200"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -36,46 +36,9 @@
         <Setter Property="MinHeight" Value="64"/>
         <Setter Property="Margin" Value="0,5,0,0"/>
     </Style>
-    <!--<Style TargetType="Fluent:RibbonTabItem">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Fluent:RibbonTabItem}">
-                    <Grid>
-                        <Border 
-                                Name="Border"
-                                Margin="0,0,0,0" 
-                                Background="White"
-                                BorderBrush="Black" 
-                                BorderThickness="1,1,1,1" 
-                                CornerRadius="0,0,0,0" >
-                            <ContentPresenter x:Name="ContentSite"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    ContentSource="Header"
-                                    Margin="12,2,12,2"
-                                    RecognizesAccessKey="True"/>
-                        </Border>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Panel.ZIndex" Value="100" />
-                            <Setter TargetName="Border" Property="Background" Value="DarkCyan" />
-                            <Setter TargetName="Border" Property="BorderThickness" Value="2,2,2,0" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="White" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
-                            <Setter Property="Foreground" Value="Black" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style TargetType="Button" x:Key="RibbonNavigationButton" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
+        <Setter Property="Width" Value="55"/>
+        <Setter Property="Height" Value="55"/>
+        <Setter Property="Margin" Value="15,10,0,5"/>
     </Style>
-    <Style TargetType="Fluent:RibbonGroupBox">
-        <Setter Property="Background" Value="LightGray"/>
-    </Style>
-    <Style TargetType="Fluent:RibbonGroupsContainer">
-        <Setter Property="Background" Value="LightGray"/>
-    </Style>-->
 </ResourceDictionary>

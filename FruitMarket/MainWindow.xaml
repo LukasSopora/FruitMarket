@@ -25,102 +25,207 @@
 
             <Fluent:RibbonTabItem Header="Hauptmenü" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Lager" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Produkte" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Suche" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
                     <DockPanel>
@@ -128,12 +233,26 @@
                             <TextBlock Text="Lieferanten:" HorizontalAlignment="Left"/>
                             <ComboBox ItemsSource="{Binding ActiveView.DataContext.Suppliers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding ActiveView.DataContext.CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <DockPanel HorizontalAlignment="Right">
-                                <Button Command="{Binding ActiveView.DataContext.NewSupplierCommand}" Style="{StaticResource RoundButton}">
-                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.AddSupplierCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    ToolTip="Lieferanten hinzufügen">
+                                    <materialDesign:PackIcon
+                                        Kind="Add"
+                                        Height="18"
+                                        Width="18" />
                                 </Button>
-                                <Button Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}" Style="{StaticResource RoundButton}">
-                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    ToolTip="Kunden hinzufügen">
+                                    <materialDesign:PackIcon
+                                        Kind="Delete"
+                                        Height="18"
+                                        Width="18" />
                                 </Button>
                             </DockPanel>
                         </StackPanel>
@@ -142,11 +261,25 @@
                             <ComboBox ItemsSource="{Binding ActiveView.DataContext.Producers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding ActiveView.DataContext.CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <DockPanel HorizontalAlignment="Right">
-                                <Button Command="{Binding ActiveView.DataContext.NewProducerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
-                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.NewProducerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    ToolTip="Produzenten hinzufügen">
+                                    <materialDesign:PackIcon
+                                        Kind="Add"
+                                        Height="18"
+                                        Width="18" />
                                 </Button>
-                                <Button Command="{Binding ActiveView.DataContext.DeleteProducerCommand}" Style="{StaticResource RoundButton}">
-                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.DeleteProducerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    ToolTip="Lieferanten hinzufügen">
+                                    <materialDesign:PackIcon
+                                        Kind="Delete"
+                                        Height="18"
+                                        Width="18" />
                                 </Button>
                             </DockPanel>
                         </StackPanel>
@@ -161,22 +294,43 @@
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Verkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
-                    <Fluent:Button Header="Hauptmenü"
-                                   Command="{Binding ShowHomeViewCommand}"
-                                   LargeIcon="Images/home-icon-silhouette.png"
-                                   ToolTip="Gehe zum Hauptmenü"/>
-                    <Fluent:Button Header="Drucken"
-                                   Command="{Binding PrintSiteCommand}"
-                                   LargeIcon="Images/printer.png"
-                                   ToolTip="Aktuelle Seite drucken"/>
-                    <Fluent:Button Header="Info"
-                                   Command="{Binding ShowInformationCommand}"
-                                   LargeIcon="Images/information.png"
-                                   ToolTip="Informationen über FruitMarket©"/>
-                    <Fluent:Button Header="Hilfe"
-                                   Command="{Binding ShowHelpCommand}"
-                                   LargeIcon="Images/help.png"
-                                   ToolTip="Hilfe zur aktuellen Ansicht"/>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowInformationCommand}"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Lieferanten- und Produzentenauswahl">
                     <DockPanel>
@@ -199,6 +353,7 @@
                                       SelectedItem="{Binding ActiveView.DataContext.CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <DockPanel HorizontalAlignment="Right">
                                 <Button
+                                    Command="{Binding ActiveView.DataContext.AddCostumerCommand}"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                     Width="20" Height="20"
                                     ToolTip="Kunden hinzufügen">
@@ -207,11 +362,15 @@
                                         Height="18"
                                         Width="18" />
                                 </Button>
-                                <!--<Button Command="{Binding ActiveView.DataContext.NewCostumerCommand}" Style="{StaticResource ResourceKey=RoundButton}">
-                                    <Image Source="Images/plus.png" Style="{StaticResource RoundButtonImage}"/>
-                                </Button>-->
-                                <Button Command="{Binding ActiveView.DataContext.DeleteCostumerCommand}" Style="{StaticResource RoundButton}">
-                                    <Image Source="Images/error.png" Style="{StaticResource RoundButtonImage}"/>
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.DeleteCostumerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    Width="20" Height="20"
+                                    ToolTip="Kunden löschen">
+                                    <materialDesign:PackIcon
+                                        Kind="Delete"
+                                        Height="18"
+                                        Width="18" />
                                 </Button>
                             </DockPanel>
                         </StackPanel>
