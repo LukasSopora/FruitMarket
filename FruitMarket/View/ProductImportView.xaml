@@ -99,19 +99,19 @@
             materialDesign:DataGridAssist.EnableEditBoxAssist="True">
             <DataGrid.Columns>
                 <!--Sorte-->
-                <DataGridTemplateColumn Header="Sorte">
+                <DataGridTemplateColumn Header="Sorte" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox Style="{StaticResource DataGridCombobox}"
                                       SelectedValue="{Binding Sort}"
-                                      materialDesign:HintAssist.Hint="(editable)"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Menge-->
-                <DataGridTemplateColumn Header="Menge">
+                <DataGridTemplateColumn Header="Menge" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -130,39 +130,39 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Kategorie-->
-                <DataGridTemplateColumn Header="Kategorie">
+                <DataGridTemplateColumn Header="Kategorie" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox Style="{StaticResource DataGridCombobox}"
                                       SelectedValue="{Binding Category}"
-                                      materialDesign:HintAssist.Hint="(editable)"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Categories}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Einkaufsdatum-->
-                <DataGridTemplateColumn Header="Einkaufsdatum">
+                <DataGridTemplateColumn Header="Einkaufsdatum" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding PurchaseDate}"
-                                        MinWidth="100"
+                                        MinWidth="80"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Mindesthaltbarkeitsdatum-->
-                <DataGridTemplateColumn Header="MHD">
+                <DataGridTemplateColumn Header="MHD" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding ExpirationDate}"
-                                        MinWidth="100"
+                                        MinWidth="80"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Reifedauer-->
-                <DataGridTemplateColumn Header="Reifedauer">
+                <DataGridTemplateColumn Header="Reifedauer" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>
@@ -179,19 +179,19 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Herkunft-->
-                <DataGridTemplateColumn Header="Herkunft">
+                <DataGridTemplateColumn Header="Herkunft" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox Style="{StaticResource DataGridCombobox}"
                                       SelectedValue="{Binding Oriigin}"
-                                      materialDesign:HintAssist.Hint="(editable)"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--Einkaufspreis-->
-                <DataGridTemplateColumn Header="Einkaufspreis">
+                <DataGridTemplateColumn Header="Einkaufspreis" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding PurchasePrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -199,7 +199,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!--DELETE-->
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
@@ -211,104 +211,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <!--<DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                  CanUserAddRows="True" CanUserDeleteRows="True"
-                  AutoGenerateColumns="False" ItemsSource="{Binding Fruits}"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged"
-                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Sorte">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox
-                                materialDesign:HintAssist.Hint="(editable)"
-                                MinWidth="72"
-                                Margin="16 0 0 0"
-                                VerticalAlignment="Bottom"
-                                IsEditable="True"
-                                ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}">
-                                <ComboBox.Text>
-                                    <Binding
-                                        Path="Sort"
-                                        Mode="TwoWay"
-                                        UpdateSourceTrigger="PropertyChanged">
-                                    </Binding>
-                                </ComboBox.Text>
-                                <ComboBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ComboBox.ItemsPanel>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <materialDesign:MaterialDataGridComboBoxColumn
-                    Header="Sorte"
-                    SelectedValueBinding="{Binding Sort}"
-                    ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}" />
-                <DataGridTemplateColumn Header="Sorte" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},
-                                                    Path=DataContext.Sorts}"
-                                      SelectedItem="{Binding Sort}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                --><!--<DataGridTemplateColumn Header="Sorte" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},
-                                                        Path=DataContext.Sorts}" SelectedItem="{Binding Sort}" IsManipulationEnabled="True"/>
-                                <DockPanel>
-                                    <TextBox Text="{Binding NewSort}"/>
-                                    <Button Content="Add" Command="{Binding AddNewSortCommand}"/>
-                                </DockPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>--><!--
-                <DataGridTextColumn Header="Menge" Binding="{Binding Amount}" Width="*"/>
-                <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}" Width="*"/>
-                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, 
-                                                                         Path=DataContext.ImportDate, StringFormat=dd. MMM yyyy}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="MHD" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Expiration}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Reifedauer" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DockPanel HorizontalAlignment="Center">
-                                <TextBox Text="{Binding Mature.Days}" MinWidth="30" Margin="5,0,0,0"/>
-                                <TextBlock Text="d" Margin="5,0,0,0"/>
-                                <TextBox Text="{Binding Mature.Hours}" MinWidth="30" Margin="10,0,0,0"/>
-                                <TextBlock Text="h" Margin="5,0,5,0"/>
-                            </DockPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}" Width="*"/>
-                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}" Width="*"/>
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="Button_Click" Style="{StaticResource RoundImageButton}">
-                                <Image Source="../Images/trash.png"/>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>-->
 
         <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
                 Command="{Binding AddFruitsCommand}" 
