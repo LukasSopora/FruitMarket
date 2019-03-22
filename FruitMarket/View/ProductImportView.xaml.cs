@@ -29,19 +29,6 @@ namespace FruitMarket.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
-            if(sender.GetType() == typeof(Button))
-            {
-                if(((Button)sender).DataContext.GetType() == typeof(Product))
-                {
-                    Product fruit = (Product)((Button)sender).DataContext;
-                    pivm.Fruits.Remove(fruit);
-                }
-            }
-        }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(sender.GetType() == typeof(DataGrid))
@@ -93,6 +80,22 @@ namespace FruitMarket.View
                     if(fruit.Amount > 1)
                     {
                         fruit.Amount--;
+                    }
+                }
+            }
+        }
+
+        private void DeleteFruit(object sender, MouseButtonEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((PackIcon)sender).DataContext;
+                    if(pivm.Fruits.Contains(fruit))
+                    {
+                        pivm.Fruits.Remove(fruit);
                     }
                 }
             }

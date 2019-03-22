@@ -98,27 +98,114 @@
             VerticalScrollBarVisibility="Auto"
             materialDesign:DataGridAssist.EnableEditBoxAssist="True">
             <DataGrid.Columns>
+                <!--Sorte-->
                 <DataGridTemplateColumn Header="Sorte">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox Style="{StaticResource DataGridCombobox}"
                                       SelectedValue="{Binding Sort}"
                                       materialDesign:HintAssist.Hint="(editable)"
+                                      VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <!--Menge-->
                 <DataGridTemplateColumn Header="Menge">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DockPanel HorizontalAlignment="Center">
+                            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
                                 <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          MinWidth="20"/>
                                 <StackPanel Margin="10,0,0,0">
-                                    <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
-                                    <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" MouseDown="Amount_Decrease"  MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"/>
+                                    <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
+                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                    <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
+                                                             MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
+                                                             MouseLeave="PackIcon_MouseLeave"/>
                                 </StackPanel>
                             </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Kategorie-->
+                <DataGridTemplateColumn Header="Kategorie">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Category}"
+                                      materialDesign:HintAssist.Hint="(editable)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Categories}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Einkaufsdatum-->
+                <DataGridTemplateColumn Header="Einkaufsdatum">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding PurchaseDate}"
+                                        MinWidth="100"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Mindesthaltbarkeitsdatum-->
+                <DataGridTemplateColumn Header="MHD">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding ExpirationDate}"
+                                        MinWidth="100"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Reifedauer-->
+                <DataGridTemplateColumn Header="Reifedauer">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="30"/>
+                                <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours}"
+                                                           materialDesign:HintAssist.Hint=""
+                                                           Is24Hours="True"
+                                                           VerticalAlignment="Bottom" MinWidth="50"/>
+                                <TextBlock Text="Stunden" Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Herkunft-->
+                <DataGridTemplateColumn Header="Herkunft">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Oriigin}"
+                                      materialDesign:HintAssist.Hint="(editable)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Einkaufspreis-->
+                <DataGridTemplateColumn Header="Einkaufspreis">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding PurchasePrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--DELETE-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"
+                                                     MouseDown="DeleteFruit"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -19,7 +19,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Fluent:Ribbon Grid.Row="0" IsQuickAccessToolBarVisible="False">
@@ -229,8 +228,6 @@
 
         <ContentControl Grid.Row="1" 
                         Content="{Binding ActiveView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <view:LogView Grid.Row="2"/>
 
     </Grid>
 </Fluent:RibbonWindow>
