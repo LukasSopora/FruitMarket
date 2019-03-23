@@ -1,6 +1,6 @@
-﻿using Fluent;
-using FruitMarket.Helper;
+﻿using FruitMarket.Helper;
 using FruitMarket.ViewModel;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,6 @@ namespace FruitMarket
         /// </summary>
         public MyFirstWindow()
         {
-            ThemeManager.ChangeAppTheme(this, "Dark.Red");
             DataContext = new MainViewModel();
             this.InitializeComponent();
         }
@@ -53,6 +52,38 @@ namespace FruitMarket
                 }
 
                 mvm.ChangeView(type);
+            }
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if(sender.GetType() == typeof(Button))
+            {
+                Button btn = sender as Button;
+                btn.BorderThickness = new Thickness(1);
+                btn.BorderBrush = FindResource("SecondaryAccentBrush") as Brush;
+                if(btn.Content.GetType() == typeof(PackIcon))
+                {
+                    PackIcon icon = btn.Content as PackIcon;
+                    icon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
+                }
+
+            }
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender.GetType() == typeof(Button))
+            {
+                Button btn = sender as Button;
+                btn.BorderThickness = new Thickness(0);
+                btn.BorderBrush = Brushes.Transparent;
+                if (btn.Content.GetType() == typeof(PackIcon))
+                {
+                    PackIcon icon = btn.Content as PackIcon;
+                    icon.Foreground = Brushes.White;
+                }
+
             }
         }
     }

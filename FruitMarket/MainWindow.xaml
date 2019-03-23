@@ -28,7 +28,9 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
-                            ToolTip="Gehe zum Hauptmenü">
+                            ToolTip="Gehe zum Hauptmenü"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Kind="Home"
@@ -37,6 +39,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -46,7 +50,9 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowInformationCommand}"
-                            ToolTip="Informationen über FruitMarket©">
+                            ToolTip="Informationen über FruitMarket©"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Kind="InformationVariant"
@@ -56,6 +62,8 @@
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
                             ToolTip="Hilfe zur aktuellen Ansicht"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -69,6 +77,8 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Gehe zum Hauptmenü">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -78,6 +88,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -87,6 +99,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowInformationCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Informationen über FruitMarket©">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -97,6 +111,8 @@
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
                             ToolTip="Hilfe zur aktuellen Ansicht"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -110,6 +126,8 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Gehe zum Hauptmenü">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -119,6 +137,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -132,12 +152,16 @@
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Kind="InformationVariant"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             Height="34"
                             Width="34" />
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
                             ToolTip="Hilfe zur aktuellen Ansicht"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -151,6 +175,8 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Gehe zum Hauptmenü">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -160,6 +186,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -169,6 +197,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowInformationCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Informationen über FruitMarket©">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -179,6 +209,8 @@
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
                             ToolTip="Hilfe zur aktuellen Ansicht"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -192,6 +224,8 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Gehe zum Hauptmenü">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -201,6 +235,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -210,6 +246,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowInformationCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Informationen über FruitMarket©">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -219,6 +257,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Hilfe zur aktuellen Ansicht"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
@@ -297,6 +337,8 @@
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Gehe zum Hauptmenü">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -306,6 +348,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Aktuelle Ansicht drucken">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -315,6 +359,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowInformationCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Informationen über FruitMarket©">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -324,6 +370,8 @@
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHelpCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
                             ToolTip="Hilfe zur aktuellen Ansicht"
                             Margin="15,10,15,0">
                         <materialDesign:PackIcon
