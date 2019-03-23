@@ -16,7 +16,7 @@
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="35*"/>
@@ -25,9 +25,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
 
-        <TextBlock Text="Eingehende Produkte" 
+        <!--<TextBlock Text="Eingehende Produkte" 
                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"
                    FontWeight="Bold" FontSize="20"
@@ -87,9 +87,9 @@
                     Height="24"
                     Width="24" />
             </Button>
-        </Grid>
+        </Grid>-->
 
-        <DataGrid
+        <!--<DataGrid
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
             Margin="10,10,10,10"
             ItemsSource="{Binding Fruits}"
@@ -98,7 +98,7 @@
             VerticalScrollBarVisibility="Auto"
             materialDesign:DataGridAssist.EnableEditBoxAssist="True">
             <DataGrid.Columns>
-                <!--Sorte-->
+                --><!--Sorte--><!--
                 <DataGridTemplateColumn Header="Sorte" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -110,7 +110,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Menge-->
+                --><!--Menge--><!--
                 <DataGridTemplateColumn Header="Menge" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -129,7 +129,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Kategorie-->
+                --><!--Kategorie--><!--
                 <DataGridTemplateColumn Header="Kategorie" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -141,7 +141,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Einkaufsdatum-->
+                --><!--Einkaufsdatum--><!--
                 <DataGridTemplateColumn Header="Einkaufsdatum" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -151,7 +151,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Mindesthaltbarkeitsdatum-->
+                --><!--Mindesthaltbarkeitsdatum--><!--
                 <DataGridTemplateColumn Header="MHD" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -161,7 +161,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Reifedauer-->
+                --><!--Reifedauer--><!--
                 <DataGridTemplateColumn Header="Reifedauer" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -178,7 +178,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Herkunft-->
+                --><!--Herkunft--><!--
                 <DataGridTemplateColumn Header="Herkunft" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -190,7 +190,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Einkaufspreis-->
+                --><!--Einkaufspreis--><!--
                 <DataGridTemplateColumn Header="Einkaufspreis" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -198,7 +198,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--DELETE-->
+                --><!--DELETE--><!--
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -210,15 +210,228 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
+       
 
-        <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
+        <!--<Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"
                 Command="{Binding AddFruitsCommand}" 
                 Width="32" Height="32" Background="Transparent"
                 BorderThickness="0" HorizontalAlignment="Right"
                 Margin="10,10,10,10" MaxWidth="20" MaxHeight="20"
                 ToolTip="Save Incoming Fruits">
             <Image Source="../Images/save-file-option.png" MaxWidth="20" MaxHeight="20"/>
-        </Button>
+        </Button>-->
+
+        <materialDesign:Transitioner
+            SelectedIndex="0"
+            AutoApplyTransitionOrigins="True">
+            <materialDesign:Transitioner.InputBindings>
+                <KeyBinding
+                    Key="Left"
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
+                <KeyBinding
+                    Key="Right"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
+            </materialDesign:Transitioner.InputBindings>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Lieferanten- / Produzenten Auswahl"
+                               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,10"
+                               FontSize="20"/>
+
+                    <TextBlock Text="Lieferant"
+                               Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
+                    <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="20,10,20,10"
+                              DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Produzent"
+                               Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
+                    <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,20,10"
+                              DataContext="{Binding CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DockPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Weiter">
+                            <materialDesign:PackIcon
+                                Kind="StepForward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                    </DockPanel>
+
+                </Grid>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="10,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Eingehende Produkte"
+                               Grid.Row="0" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="20"/>
+                    <DataGrid
+                        Grid.Row="1"
+                        Margin="10,10,10,10"
+                        ItemsSource="{Binding Fruits}"
+                        CanUserAddRows="True"
+                        AutoGenerateColumns="False"
+                        VerticalScrollBarVisibility="Auto"
+                        materialDesign:DataGridAssist.EnableEditBoxAssist="True">
+                        <DataGrid.Columns>
+                            <!--Sorte-->
+                            <DataGridTemplateColumn Header="Sorte" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Sort}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Menge-->
+                            <DataGridTemplateColumn Header="Menge" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                            <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="20"/>
+                                            <StackPanel Margin="10,0,0,0">
+                                                <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
+                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                                <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
+                                                             MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Kategorie-->
+                            <DataGridTemplateColumn Header="Kategorie" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Category}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Categories}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Einkaufsdatum-->
+                            <DataGridTemplateColumn Header="Einkaufsdatum" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding PurchaseDate}"
+                                        MinWidth="80"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Mindesthaltbarkeitsdatum-->
+                            <DataGridTemplateColumn Header="MHD" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding ExpirationDate}"
+                                        MinWidth="80"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Reifedauer-->
+                            <DataGridTemplateColumn Header="Reifedauer" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="30"/>
+                                            <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours}"
+                                                           materialDesign:HintAssist.Hint=""
+                                                           Is24Hours="True"
+                                                           VerticalAlignment="Bottom" MinWidth="50"/>
+                                            <TextBlock Text="Stunden" Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Herkunft-->
+                            <DataGridTemplateColumn Header="Herkunft" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Oriigin}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Einkaufspreis-->
+                            <DataGridTemplateColumn Header="Einkaufspreis" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding PurchasePrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--DELETE-->
+                            <DataGridTemplateColumn Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"
+                                                     MouseDown="DeleteFruit"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            ToolTip="Zurück">
+                            <materialDesign:PackIcon
+                                Kind="StepBackward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Weiter">
+                            <materialDesign:PackIcon
+                                Kind="StepForward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                    </DockPanel>
+                </Grid>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
+
     </Grid>
 </UserControl>

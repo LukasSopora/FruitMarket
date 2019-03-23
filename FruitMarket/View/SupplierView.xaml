@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}"
-            MouseEnter="View_Mouse_Enter" MouseLeave="View_Mouse_Leave">
+            MouseEnter="View_Mouse_Enter" MouseLeave="View_Mouse_Leave" x:Name="SupplierViewBorder">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
@@ -74,7 +74,8 @@
             <DatePicker Grid.Row="5" Grid.Column="2" materialDesign:HintAssist.Hint="Geburtsdatum" materialDesign:HintAssist.IsFloating="False"
                         x:Name="DatePickerBox"
                         SelectedDate="{Binding Birthday}"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                        VerticalAlignment="Bottom"/>
 
 
             <materialDesign:PackIcon Grid.Row="6" Grid.Column="1" Kind="Phone" 
