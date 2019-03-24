@@ -26,6 +26,35 @@ namespace FruitMarket.ViewModel
         private Producer m_CurrentProducer = null;
         private Supplier m_CurrentSupplier = null;
         private string m_NewSort = null;
+        private int m_PageIndex = 0;
+        private bool m_DescriptionVisible = false;
+        private string m_PageDescription = null;
+
+        public string PageDescription
+        {
+            get
+            {
+                switch(m_PageIndex)
+                {
+                    case 0: return ToolConstants.PRODUCT_IMPORT_CHOSE_SUPPLIER_PRODUCER_DESC;
+                    case 1: return "";
+                    case 2: return "";
+                    default: return "";
+                }
+            }
+        }
+
+        public bool DescriptionVisible
+        {
+            get { return m_DescriptionVisible; }
+            set { SetProperty(ref m_DescriptionVisible, value); }
+        }
+
+        public int PageIndex
+        {
+            get { return m_PageIndex; }
+            set { SetProperty(ref m_PageIndex, value); }
+        }
 
         public string NewSort
         {
@@ -82,6 +111,7 @@ namespace FruitMarket.ViewModel
         public DelegateCommand SaveProducerCommand { get; private set; }
         public DelegateCommand DeleteProducerCommand { get; private set; }
         public DelegateCommand AddProductCommand { get; private set; }
+        public DelegateCommand ShowHelpCommand { get; private set; }
         public DelegateCommand AddFruitsCommand { get; private set; }
         public DelegateCommand AddNewSortCommand { get; private set; }
 
@@ -101,10 +131,25 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(DeleteProducerCommand));
             AddProductCommand = new DelegateCommand(OnAddProduct);
             RaisePropertyChanged(nameof(AddProductCommand));
+            ShowHelpCommand = new DelegateCommand(OnShowDescription);
+            RaisePropertyChanged(nameof(ShowHelpCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
             AddNewSortCommand = new DelegateCommand(OnAddNewSort);
             RaisePropertyChanged(nameof(AddNewSortCommand));
+        }
+
+        private void OnShowDescription()
+        {
+            if(m_DescriptionVisible == false)
+            {
+                m_DescriptionVisible = true;
+            }
+            else
+            {
+                m_DescriptionVisible = false;
+            }
+            RaisePropertyChanged(nameof(DescriptionVisible));
         }
 
         private void OnAddProduct()

@@ -135,5 +135,26 @@ namespace FruitMarket.Helper
         #endregion
 
         #endregion
+
+        #region PageDescription
+
+        #region ProductImport
+        public const string PRODUCT_IMPORT_CHOSE_SUPPLIER_PRODUCER_DESC =
+            "Auswahl über den Produzenten und Lieferanten der eingehenden Produkte.\n" +
+            "Produzenten/Lieferanten können über die entsprechenden Buttons\n" +
+            "in der obigen Suchleiste hinzugefügt oder gelöscht werden.";
+
+        public const string PRODUCT_IMPORT_CHOSE_INCOMING_PRODUCTS_DESC =
+            "Angabe der eingehenden Produkte. Ist die Sorte eines Produkts noch nicht\n" +
+            "in der Datenbank gespeichert, kann auch eine neue Sorte angegeben werden.\n" +
+            "Diese wird dann in die Datenbank ünernommen.";
+
+        public const string PRODUCT_IMPORT_CONFIRM_AND_SEND_DESC =
+            "Hier erfolgt die Bestätigung der Einlagerung.\n" +
+            "Wahlweise kann ein eingescannter Lieferschein hochgeladen, kein Lieferscheib angegeben\n" +
+            "oder ein neuer automatisch erstellt werden.";
+        #endregion
+
+        #endregion
     }
 }

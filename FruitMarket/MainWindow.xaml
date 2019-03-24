@@ -245,7 +245,6 @@
                             Width="34" />
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
-                            Command="{Binding ShowInformationCommand}"
                             MouseEnter="Button_MouseEnter"
                             MouseLeave="Button_MouseLeave"
                             ToolTip="Informationen über FruitMarket©">
@@ -256,7 +255,7 @@
                             Width="34" />
                     </Button>
                     <Button Style="{StaticResource RibbonNavigationButton}"
-                            Command="{Binding ShowHelpCommand}"
+                            Command="{Binding ActiveView.DataContext.ShowHelpCommand }"
                             MouseEnter="Button_MouseEnter"
                             MouseLeave="Button_MouseLeave"
                             ToolTip="Hilfe zur aktuellen Ansicht"

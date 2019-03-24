@@ -16,8 +16,18 @@
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                   Grid.Row="0"
+                   Visibility="{Binding DescriptionVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
         <materialDesign:Transitioner
-            SelectedIndex="0"
+            Grid.Row="1"
+            SelectedIndex="{Binding PageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AutoApplyTransitionOrigins="True">
             <materialDesign:Transitioner.InputBindings>
                 <KeyBinding
