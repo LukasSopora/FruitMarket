@@ -37,8 +37,8 @@ namespace FruitMarket.ViewModel
                 switch(m_PageIndex)
                 {
                     case 0: return ToolConstants.PRODUCT_IMPORT_CHOSE_SUPPLIER_PRODUCER_DESC;
-                    case 1: return "";
-                    case 2: return "";
+                    case 1: return ToolConstants.PRODUCT_IMPORT_CHOSE_INCOMING_PRODUCTS_DESC;
+                    case 2: return ToolConstants.PRODUCT_IMPORT_CONFIRM_AND_SEND_DESC;
                     default: return "";
                 }
             }
@@ -53,7 +53,11 @@ namespace FruitMarket.ViewModel
         public int PageIndex
         {
             get { return m_PageIndex; }
-            set { SetProperty(ref m_PageIndex, value); }
+            set
+            {
+                SetProperty(ref m_PageIndex, value);
+                RaisePropertyChanged(nameof(PageDescription));
+            }
         }
 
         public string NewSort
@@ -149,6 +153,7 @@ namespace FruitMarket.ViewModel
             {
                 m_DescriptionVisible = false;
             }
+            RaisePropertyChanged(nameof(PageDescription));
             RaisePropertyChanged(nameof(DescriptionVisible));
         }
 
