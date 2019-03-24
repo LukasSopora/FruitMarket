@@ -331,6 +331,12 @@
                         <DatePicker SelectedDate="{Binding ActiveView.DataContext.ImportDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox>
+                    <view:PageDescriptionView
+                        VerticalAlignment="Center" Margin="5"
+                        DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Visibility="{Binding ActiveView.DataContext.DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Verkauf" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">

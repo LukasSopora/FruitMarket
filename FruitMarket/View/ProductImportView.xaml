@@ -21,10 +21,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                   Grid.Row="0"
-                   Visibility="{Binding DescriptionVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
         <materialDesign:Transitioner
             Grid.Row="1"
             SelectedIndex="{Binding PageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -264,11 +260,11 @@
                         <DockPanel>
                             <Button
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="80" Height="80" Margin="10"
+                            Width="60" Height="60" Margin="10"
                             ToolTip="Lieferschein Scan hochladen">
                                 <materialDesign:PackIcon
                                 Kind="Scanner"
-                                Width="55" Height="55"
+                                Width="35" Height="35"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
                             </Button>
@@ -278,11 +274,11 @@
                         <DockPanel>
                             <Button
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="80" Height="80" Margin="10"
+                            Width="60" Height="60" Margin="10"
                             ToolTip="Absenden und fertigstellen">
                                 <materialDesign:PackIcon
                                 Kind="FileSend"
-                                Width="55" Height="55"
+                                Width="35" Height="35"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
                             </Button>
@@ -292,11 +288,11 @@
                         <DockPanel>
                             <Button
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="80" Height="80" Margin="10"
+                            Width="60" Height="60" Margin="10"
                             ToolTip="Absenden ohne Lieferschein">
                                 <materialDesign:PackIcon
                                 Kind="FileRemove"
-                                Width="55" Height="55"
+                                Width="35" Height="35"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
                             </Button>
@@ -306,11 +302,11 @@
                         <DockPanel>
                             <Button
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="80" Height="80" Margin="10"
+                            Width="60" Height="60" Margin="10"
                             ToolTip="Absenden und Lieferschein automatisch generieren">
                                 <materialDesign:PackIcon
                                 Kind="AutoUpload"
-                                Width="55" Height="55"
+                                Width="35" Height="35"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
                             </Button>

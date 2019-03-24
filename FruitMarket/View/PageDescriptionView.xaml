@@ -10,37 +10,28 @@
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
-    <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}">
+    <Border CornerRadius="5" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <DockPanel>
-                <materialDesign:PackIcon
-                    Grid.Row="0"
-                    Kind="HelpOutline"
-                    Width="24" Height="24"
-                    VerticalAlignment="Center"
-                    Margin="5"/>
-                <TextBlock
-                    Text="Hilfe zur aktuellen Seite:"
-                    FontWeight="SemiBold"
-                    VerticalAlignment="Center"
-                    Margin="5"/>
-            </DockPanel>
+            <materialDesign:PackIcon
+                Grid.Column="0"
+                Kind="HelpOutline"
+                Width="20" Height="20"
+                VerticalAlignment="Top"
+                Margin="3,3,0,0"/>
 
-            <Separator
-                Grid.Row="1"
-                Background="{StaticResource PrimaryHueMidBrush}"/>
-
-            <TextBlock 
-                Grid.Row="2"
-                Text="{Binding}"
-                Margin="5"
-                FontWeight="Light"/>
+            <ScrollViewer 
+                Grid.Column="2"
+                Margin="0,3,0,3">
+                <TextBlock 
+                    Text="{Binding}"
+                    Margin="5"
+                    FontWeight="Light"/>
+            </ScrollViewer>
         </Grid>
     </Border>
 </UserControl>
