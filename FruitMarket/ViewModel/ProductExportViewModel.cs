@@ -19,11 +19,50 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Costumer>();
         private ObservableCollection<Product> m_Fruits =
             new ObservableCollection<Product>();
+        private ObservableCollection<string> m_Sorts =
+            new ObservableCollection<string>();
+
         private DateTime m_ExportDate = DateTime.Now;
-
-
         private Costumer m_CurrentCostumer = null;
         private Supplier m_CurrentSupplier = null;
+        private string m_NewSort = null;
+        private int m_PageIndex = 0;
+
+        public string PageDescription
+        {
+            get
+            {
+                switch (m_PageIndex)
+                {
+                    case 0: return ToolConstants.PRODUCT_EXPORT_CHOSE_SUPPLIER_COSTUMER_DESC;
+                    case 1: return ToolConstants.PRODUCT_EXPORT_CHOSE_OUTGOING_PRODUCTS_DESC;
+                    case 2: return ToolConstants.PRODUCT_EXPORT_CONFIRM_AND_SEND_DESC;
+                    default: return "";
+                }
+            }
+        }
+
+        public int PageIndex
+        {
+            get { return m_PageIndex; }
+            set
+            {
+                SetProperty(ref m_PageIndex, value);
+                RaisePropertyChanged(nameof(PageDescription));
+            }
+        }
+
+        public string NewSort
+        {
+            get { return m_NewSort; }
+            set { SetProperty(ref m_NewSort, value); }
+        }
+
+        public ObservableCollection<string> Sorts
+        {
+            get { return m_Sorts; }
+            set { SetProperty(ref m_Sorts, value); }
+        }
 
         public DateTime ExportDate
         {
@@ -64,10 +103,13 @@ namespace FruitMarket.ViewModel
         public DelegateCommand NewSupplierCommand { get; private set; }
         public DelegateCommand SaveSupplierCommand { get; private set; }
         public DelegateCommand DeleteSupplierCommand { get; private set; }
-        public DelegateCommand NewProducerCommand { get; private set; }
-        public DelegateCommand SaveProducerCommand { get; private set; }
-        public DelegateCommand DeleteProducerCommand { get; private set; }
+        public DelegateCommand NewCostumerCommand { get; private set; }
+        public DelegateCommand SaveCostumerCommand { get; private set; }
+        public DelegateCommand DeleteCostumerCommand { get; private set; }
+        public DelegateCommand AddProductCommand { get; private set; }
+        public DelegateCommand ShowHelpCommand { get; private set; }
         public DelegateCommand AddFruitsCommand { get; private set; }
+        public DelegateCommand AddNewSortCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -77,14 +119,37 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(SaveSupplierCommand));
             DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
             RaisePropertyChanged(nameof(DeleteSupplierCommand));
-            NewProducerCommand = new DelegateCommand(OnNewCostumer);
-            RaisePropertyChanged(nameof(NewProducerCommand));
-            SaveProducerCommand = new DelegateCommand(OnSaveCostumer);
-            RaisePropertyChanged(nameof(SaveProducerCommand));
-            DeleteProducerCommand = new DelegateCommand(OnDeleteCostumer);
-            RaisePropertyChanged(nameof(DeleteProducerCommand));
+            NewCostumerCommand = new DelegateCommand(OnNewCostumer);
+            RaisePropertyChanged(nameof(NewCostumerCommand));
+            SaveCostumerCommand = new DelegateCommand(OnSaveCostumer);
+            RaisePropertyChanged(nameof(SaveCostumerCommand));
+            DeleteCostumerCommand = new DelegateCommand(OnDeleteCostumer);
+            RaisePropertyChanged(nameof(DeleteCostumerCommand));
+            AddProductCommand = new DelegateCommand(OnAddProduct);
+            RaisePropertyChanged(nameof(AddProductCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
+            AddNewSortCommand = new DelegateCommand(OnAddNewSort);
+            RaisePropertyChanged(nameof(AddNewSortCommand));
+        }
+
+        private void OnAddProduct()
+        {
+            m_Fruits.Add(new Product());
+            RaisePropertyChanged(nameof(Fruits));
+        }
+
+        private void OnAddNewSort()
+        {
+            if (m_NewSort == null || m_NewSort == "")
+            {
+                return;
+            }
+            if (!m_Sorts.Contains(m_NewSort))
+            {
+                m_Sorts.Add(m_NewSort);
+            }
+            RaisePropertyChanged(nameof(Sorts));
         }
 
         private void OnDeleteCostumer()
@@ -92,7 +157,7 @@ namespace FruitMarket.ViewModel
             if (m_Costumers.Contains(m_CurrentCostumer))
             {
                 if (System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Kunden \"{0}\" löschen?", m_CurrentCostumer), "Kunden löschen?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentCostumer), "Delete Costumer?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
                 {
                     m_Costumers.Remove(m_CurrentCostumer);
                     RaisePropertyChanged(nameof(Costumers));
@@ -286,7 +351,7 @@ namespace FruitMarket.ViewModel
                 }
                 if (f.Mature == null || f.Mature.Days == 0 && f.Mature.Hours == 0)
                 {
-                    System.Windows.MessageBox.Show("Mature cannot be zero.");
+                    System.Windows.MessageBox.Show("Mature cannot be empty.");
                     return false;
                 }
                 if (f.Origin == null || f.Origin == "")
@@ -306,19 +371,17 @@ namespace FruitMarket.ViewModel
         public ProductExportViewModel()
         {
             InitializeCommands();
-            //m_Suppliers.Add(new Supplier("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
-            //m_Suppliers.Add(new Supplier("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413",  "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
-            //m_Suppliers.Add(new Supplier("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
-
-            //m_Producers.Add(new Producer("Lustig", "Peter", new Adress("Musterstrasse 12", "11111", "Musterhausen"), DateTime.Parse("1985-03-03"), "+49 666 666", "9Live", "peter@lustig.com"));
-            //m_Producers.Add(new Producer("Wurst", "Hans", new Adress("Zur Fielbecke 5", "57413", "Finnentrop"), DateTime.Parse("1975-02-08"), "+49 234 234", "Metten", "hans@wurst.de"));
-            //m_Producers.Add(new Producer("Schnösel", "Godehardth", new Adress("Auf der Kö 69", "40210", "Düsseldorf"), DateTime.Parse("1969-06-09"), "+49 6969 6969", "Apple", "der-godehardt@kö.de"));
 
             m_Suppliers = TestDataReader.GetDefaultSuppliers();
             m_Costumers = TestDataReader.GetDefaultCostumers();
 
             m_CurrentSupplier = new Supplier();
             m_CurrentCostumer = new Costumer();
+
+            m_Sorts.Add("Apfel");
+            m_Sorts.Add("Kirsche");
+            m_Sorts.Add("Banane");
+            m_Sorts.Add("Ananas");
 
             m_Fruits.Add(new Product());
 
@@ -328,9 +391,10 @@ namespace FruitMarket.ViewModel
             }
             if (m_Costumers.Count == 0)
             {
-                //OnNewProducer();
+                OnNewCostumer();
             }
             RaisePropertyChanged(nameof(Fruits));
+            RaisePropertyChanged(nameof(Sorts));
         }
     }
 }

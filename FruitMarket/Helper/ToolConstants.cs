@@ -155,6 +155,23 @@ namespace FruitMarket.Helper
             "oder ein neuer automatisch erstellt werden.";
         #endregion
 
+        #region ProductExport
+        public static string PRODUCT_EXPORT_CHOSE_SUPPLIER_COSTUMER_DESC =
+            "Auswahl über den Kunden und Lieferanten der ausgehenden Produkte.\n" +
+            "Kunden/Lieferanten können über die entsprechenden Buttons\n" +
+            "in der obigen Suchleiste hinzugefügt oder gelöscht werden.";
+
+        public static string PRODUCT_EXPORT_CHOSE_OUTGOING_PRODUCTS_DESC =
+            "Angabe der ausgehenden Produkte. Ist die Sorte eines Produkts noch nicht\n" +
+            "in der Datenbank gespeichert, kann auch eine neue Sorte angegeben werden.\n" +
+            "Diese wird dann in die Datenbank ünernommen.";
+
+        public static string PRODUCT_EXPORT_CONFIRM_AND_SEND_DESC =
+            "Hier erfolgt die Bestätigung der Auslagerung.\n" +
+            "Es muss der passende Lieferschein ausgewählt werden.\n" +
+            "Dann kann der Auftrag abgesehdet werden";
+        #endregion
+
         #endregion
     }
 }

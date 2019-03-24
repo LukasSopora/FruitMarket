@@ -23,6 +23,16 @@ namespace FruitMarket.Model
         private double m_PurchasePrice = 0;
         private double m_SalesPrice = 0;
 
+
+        public int Remaining
+        {
+            get
+            {
+                //When Database exists, you have to check the real remainig amonut!
+                return 1000 - m_Amount;
+            }
+        }
+
         public Producer Producer
         {
             get { return m_Producer; }
@@ -80,7 +90,11 @@ namespace FruitMarket.Model
         public int Amount
         {
             get { return m_Amount; }
-            set { SetProperty(ref m_Amount, value); }
+            set
+            {
+                SetProperty(ref m_Amount, value);
+                RaisePropertyChanged(nameof(Remaining));
+            }
         }
 
         public string Sort

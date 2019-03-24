@@ -39,7 +39,6 @@ namespace FruitMarket.View
 
         private void AmountIncrease(object sender, MouseButtonEventArgs e)
         {
-            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
             if(sender.GetType() == typeof(PackIcon))
             {
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
@@ -71,7 +70,6 @@ namespace FruitMarket.View
 
         private void Amount_Decrease(object sender, MouseButtonEventArgs e)
         {
-            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
             if (sender.GetType() == typeof(PackIcon))
             {
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))

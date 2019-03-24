@@ -6,6 +6,10 @@
              xmlns:view="clr-namespace:FruitMarket.View"
              xmlns:converter="clr-namespace:FruitMarket.Converter"
              xmlns:local="clr-namespace:FruitMarket.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -14,74 +18,308 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Ausgehende Produkte" 
-                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center"
-                   FontWeight="Bold" FontSize="24"
-                   Margin="0,10,0,10"/>
+        <materialDesign:Transitioner
+            Grid.Row="1"
+            SelectedIndex="{Binding PageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            AutoApplyTransitionOrigins="True">
+            <materialDesign:Transitioner.InputBindings>
+                <KeyBinding
+                    Key="Left"
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
+                <KeyBinding
+                    Key="Right"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
+            </materialDesign:Transitioner.InputBindings>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock Text="Lieferanten- / Kunden Auswahl"
+                               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,10"
+                               FontSize="20"/>
 
-        <TextBlock Text="Lieferant"
-                   Grid.Row="1" Grid.Column="0"
-                   FontWeight="Bold" FontSize="15"/>
-        <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="10,10,20,0"
-                           DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Lieferant"
+                               Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
+                    <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="20,10,20,10"
+                              DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TextImageButton}"
-                Command="{Binding SaveSupplierCommand}"
-                Visibility="{Binding CurrentSupplier.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DockPanel>
-                <Image Source="../Images/save-file-option.png"/>
-                <TextBlock Text="Lieferanten speichern"/>
-            </DockPanel>
-        </Button>
+                    <TextBlock Text="Kunde"
+                               Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
+                    <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,20,10"
+                              DataContext="{Binding CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DockPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Weiter">
+                            <materialDesign:PackIcon
+                                Kind="StepForward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                    </DockPanel>
 
-        <TextBlock Text="Kunde"
-                   Grid.Row="1" Grid.Column="1"
-                   FontWeight="Bold" FontSize="15"/>
-        <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,10,0"
-                           DataContext="{Binding CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource TextImageButton}"
-                Command="{Binding SaveCostumerCommand}"
-                Visibility="{Binding CurrentCostumer.Editing, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DockPanel>
-                <Image Source="../Images/save-file-option.png"/>
-                <TextBlock Text="Kunden speichern"/>
-            </DockPanel>
-        </Button>
+                </Grid>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="10,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Ausgehende Produkte"
+                               Grid.Row="0" HorizontalAlignment="Center" FontSize="20"/>
+                    <DataGrid
+                        Grid.Row="1"
+                        Margin="10,10,10,10"
+                        ItemsSource="{Binding Fruits}"
+                        CanUserAddRows="True"
+                        AutoGenerateColumns="False"
+                        VerticalScrollBarVisibility="Auto"
+                        materialDesign:DataGridAssist.EnableEditBoxAssist="True">
+                        <DataGrid.Columns>
+                            <!--Sorte-->
+                            <DataGridTemplateColumn Header="Sorte" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Sort}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Menge-->
+                            <DataGridTemplateColumn Header="Menge" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                            <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="20"/>
+                                            <StackPanel Margin="10,0,0,0">
+                                                <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
+                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                                <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
+                                                             MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Übrig auf dem Lager-->
+                            <DataGridTemplateColumn Header="Übrig" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock 
+                                            Text="{Binding Remaining, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                            VerticalAlignment="Bottom"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Kategorie-->
+                            <DataGridTemplateColumn Header="Kategorie" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Category}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Categories}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Einkaufsdatum-->
+                            <DataGridTemplateColumn Header="Einkaufsdatum" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding PurchaseDate}"
+                                        MinWidth="80"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Mindesthaltbarkeitsdatum-->
+                            <DataGridTemplateColumn Header="MHD" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding ExpirationDate}"
+                                        MinWidth="80"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Reifedauer-->
+                            <DataGridTemplateColumn Header="Reifedauer" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="30"/>
+                                            <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours}"
+                                                           materialDesign:HintAssist.Hint=""
+                                                           Is24Hours="True"
+                                                           VerticalAlignment="Bottom" MinWidth="50"/>
+                                            <TextBlock Text="Stunden" Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Herkunft-->
+                            <DataGridTemplateColumn Header="Herkunft" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Oriigin}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Verkaufspreis-->
+                            <DataGridTemplateColumn Header="Einkaufspreis" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding SalesPrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--DELETE-->
+                            <DataGridTemplateColumn Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"
+                                                     MouseDown="DeleteFruit"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"
-                    Margin="20,10,20,10">
-            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"
-                      AutoGenerateColumns="False" ItemsSource="{Binding Fruits}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
-                    <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Kategorie" Binding="{Binding Sort}"/>
-                    <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding Path=AdmissionDate, StringFormat=dd. MMM. yyyy}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration}"/>
-                    <DataGridTextColumn Header="Reifungsdauer" Binding="{Binding Mature}"/>
-                    <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
-                    <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Command="{Binding AddFruitsCommand}" 
-                    Width="32" Height="32" Background="Transparent"
-                    BorderThickness="0" HorizontalAlignment="Right"
-                    Margin="10,10,10,10"
-                    ToolTip="Save Incoming Fruits">
-                <Image Source="../Images/save-file-option.png"/>
-            </Button>
-        </StackPanel>
+                    <Button Grid.Row="2" HorizontalAlignment="Right"
+                            Command="{Binding AddProductCommand}"
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="70"
+                            ToolTip="Produkt hinzufügen">
+                        <materialDesign:PackIcon
+                                Kind="Plus"
+                                Width="24" Height="24"/>
+                    </Button>
+
+                    <DockPanel Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            ToolTip="Zurück">
+                            <materialDesign:PackIcon
+                                Kind="StepBackward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Weiter">
+                            <materialDesign:PackIcon
+                                Kind="StepForward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                    </DockPanel>
+                </Grid>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Fertigstellen und Absenden"
+                               Grid.Row="0"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,10"
+                               FontSize="20"/>
+
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="60" Height="60" Margin="10"
+                            ToolTip="Lieferschein auswählen">
+                                <materialDesign:PackIcon
+                                Kind="FileUpload"
+                                Width="35" Height="35"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Lieferschein auswählen" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="60" Height="60" Margin="10"
+                            ToolTip="Fertigstellen und Auftrag absenden">
+                                <materialDesign:PackIcon
+                                Kind="CubeSend"
+                                Width="31" Height="31"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Fertigstellen und Auftrag absenden" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                    <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            ToolTip="Zurück">
+                            <materialDesign:PackIcon
+                                Kind="StepBackward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Fertigstellen">
+                            <materialDesign:PackIcon
+                                Kind="Check"
+                                Height="34"
+                                Width="34" />
+                        </Button>
+                    </DockPanel>
+
+                </Grid>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
     </Grid>
 </UserControl>

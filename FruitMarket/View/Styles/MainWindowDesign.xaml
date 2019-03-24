@@ -22,14 +22,8 @@
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    <Style TargetType="ComboBoxItem">
-        <Setter Property="Background" Value="White"/>
-    </Style>
     <Style TargetType="StackPanel" x:Key="RibbonStack">
         <Setter Property="Margin" Value="20,10,0,0"/>
-    </Style>
-    <Style TargetType="DatePicker">
-        <Setter Property="FontFamily" Value="../../Fonts/Ubuntu"/>
     </Style>
     <Style TargetType="Fluent:Button">
         <Setter Property="MinWidth" Value="64"/>
