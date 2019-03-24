@@ -23,7 +23,7 @@ namespace FruitMarket.View
     {
         public FilterView()
         {
-            DataContext = new FilterViewModel()
+            DataContext = new FilterViewModel();
             InitializeComponent();
         }
 
