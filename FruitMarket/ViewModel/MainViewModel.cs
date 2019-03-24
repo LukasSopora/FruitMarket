@@ -21,6 +21,14 @@ namespace FruitMarket.ViewModel
         private ProductImportView m_ProductImportView = null;
         private ProductExportView m_ProductExportView = null;
         private FilterView m_FilterView = null;
+        private bool m_DescriptionVisible = false;
+
+        public bool DescriptionVisible
+        {
+            get { return m_DescriptionVisible; }
+            set { SetProperty(ref m_DescriptionVisible, value); }
+        }
+
 
         public UserControl ActiveView
         {
@@ -62,6 +70,15 @@ namespace FruitMarket.ViewModel
 
         private void OnShowHelp()
         {
+            if (m_DescriptionVisible == false)
+            {
+                m_DescriptionVisible = true;
+            }
+            else
+            {
+                m_DescriptionVisible = false;
+            }
+            RaisePropertyChanged(nameof(DescriptionVisible));
         }
 
         private void OnShowInformation()

@@ -27,8 +27,6 @@ namespace FruitMarket.ViewModel
         private Supplier m_CurrentSupplier = null;
         private string m_NewSort = null;
         private int m_PageIndex = 0;
-        private bool m_DescriptionVisible = false;
-        private string m_PageDescription = null;
 
         public string PageDescription
         {
@@ -42,12 +40,6 @@ namespace FruitMarket.ViewModel
                     default: return "";
                 }
             }
-        }
-
-        public bool DescriptionVisible
-        {
-            get { return m_DescriptionVisible; }
-            set { SetProperty(ref m_DescriptionVisible, value); }
         }
 
         public int PageIndex
@@ -135,26 +127,10 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(DeleteProducerCommand));
             AddProductCommand = new DelegateCommand(OnAddProduct);
             RaisePropertyChanged(nameof(AddProductCommand));
-            ShowHelpCommand = new DelegateCommand(OnShowDescription);
-            RaisePropertyChanged(nameof(ShowHelpCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
             AddNewSortCommand = new DelegateCommand(OnAddNewSort);
             RaisePropertyChanged(nameof(AddNewSortCommand));
-        }
-
-        private void OnShowDescription()
-        {
-            if(m_DescriptionVisible == false)
-            {
-                m_DescriptionVisible = true;
-            }
-            else
-            {
-                m_DescriptionVisible = false;
-            }
-            RaisePropertyChanged(nameof(PageDescription));
-            RaisePropertyChanged(nameof(DescriptionVisible));
         }
 
         private void OnAddProduct()

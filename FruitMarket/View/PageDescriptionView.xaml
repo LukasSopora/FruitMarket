@@ -8,7 +8,7 @@
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="Transparent"
              TextElement.FontWeight="Medium"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="300">
     <Border CornerRadius="5" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}">
         <Grid>
