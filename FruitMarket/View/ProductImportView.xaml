@@ -281,12 +281,12 @@
                 <Grid Margin="10,10,20,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Eingehende Produkte"
-                               Grid.Row="0" HorizontalAlignment="Center"
-                               FontWeight="Bold" FontSize="20"/>
+                               Grid.Row="0" HorizontalAlignment="Center" FontSize="20"/>
                     <DataGrid
                         Grid.Row="1"
                         Margin="10,10,10,10"
@@ -409,7 +409,18 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+
+                    <Button Grid.Row="2" HorizontalAlignment="Right"
+                            Command="{Binding AddProductCommand}"
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="70"
+                            ToolTip="Produkt hinzufügen">
+                        <materialDesign:PackIcon
+                                Kind="Plus"
+                                Width="24" Height="24"/>
+                    </Button>
+
+                    <DockPanel Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                         <Button
                             Style="{StaticResource TransitionNavigationButton}"
                             Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
@@ -431,7 +442,102 @@
                     </DockPanel>
                 </Grid>
             </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Grid Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <TextBlock Text="Fertigstellen und Absenden"
+                               Grid.Row="0"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,10"
+                               FontSize="20"/>
+                    
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="80" Height="80" Margin="10"
+                            ToolTip="Lieferschein Scan hochladen">
+                                <materialDesign:PackIcon
+                                Kind="Scanner"
+                                Width="55" Height="55"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Lieferschein Scan hochladen" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="80" Height="80" Margin="10"
+                            ToolTip="Absenden und fertigstellen">
+                                <materialDesign:PackIcon
+                                Kind="FileSend"
+                                Width="55" Height="55"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Absenden und fertigstellen" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="80" Height="80" Margin="10"
+                            ToolTip="Absenden ohne Lieferschein">
+                                <materialDesign:PackIcon
+                                Kind="FileRemove"
+                                Width="55" Height="55"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Absenden ohne Lieferschein" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="80" Height="80" Margin="10"
+                            ToolTip="Absenden und Lieferschein automatisch generieren">
+                                <materialDesign:PackIcon
+                                Kind="AutoUpload"
+                                Width="55" Height="55"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Absenden und Lieferschein automatisch generieren" FontSize="18"
+                                       FontWeight="Thin" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </StackPanel>
+                    
+                    <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            ToolTip="Zurück">
+                            <materialDesign:PackIcon
+                                Kind="StepBackward"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource TransitionNavigationButton}"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            ToolTip="Fertigstellen">
+                            <materialDesign:PackIcon
+                                Kind="Check"
+                                Height="34"
+                                Width="34" />
+                        </Button>
+                    </DockPanel>
+
+                </Grid>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
     </Grid>
 </UserControl>

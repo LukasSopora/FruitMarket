@@ -81,6 +81,7 @@ namespace FruitMarket.ViewModel
         public DelegateCommand NewProducerCommand { get; private set; }
         public DelegateCommand SaveProducerCommand { get; private set; }
         public DelegateCommand DeleteProducerCommand { get; private set; }
+        public DelegateCommand AddProductCommand { get; private set; }
         public DelegateCommand AddFruitsCommand { get; private set; }
         public DelegateCommand AddNewSortCommand { get; private set; }
 
@@ -98,10 +99,18 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(SaveProducerCommand));
             DeleteProducerCommand = new DelegateCommand(OnDeleteProducer);
             RaisePropertyChanged(nameof(DeleteProducerCommand));
+            AddProductCommand = new DelegateCommand(OnAddProduct);
+            RaisePropertyChanged(nameof(AddProductCommand));
             AddFruitsCommand = new DelegateCommand(OnAddFruits);
             RaisePropertyChanged(nameof(AddFruitsCommand));
             AddNewSortCommand = new DelegateCommand(OnAddNewSort);
             RaisePropertyChanged(nameof(AddNewSortCommand));
+        }
+
+        private void OnAddProduct()
+        {
+            m_Fruits.Add(new Product());
+            RaisePropertyChanged(nameof(Fruits));
         }
 
         private void OnAddNewSort()
