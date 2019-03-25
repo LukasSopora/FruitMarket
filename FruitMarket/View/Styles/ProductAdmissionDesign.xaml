@@ -77,7 +77,7 @@
     <Style TargetType="ComboBox" x:Key="DataGridCombobox" BasedOn="{StaticResource MaterialDesignDataGridComboBox}">
         <Setter Property="IsEditable" Value="True"/>
     </Style>
-    <Style TargetType="Button" x:Key="TransitionNavigationButton" BasedOn="{StaticResource MaterialDesignFloatingActionAccentButton}">
+    <Style TargetType="Button" x:Key="TransitionNavigationButton" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
         <Setter Property="Margin" Value="10"/>
     </Style>
 </ResourceDictionary>

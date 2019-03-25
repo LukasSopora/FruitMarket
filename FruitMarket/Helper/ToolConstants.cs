@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,6 +173,24 @@ namespace FruitMarket.Helper
             "Dann kann der Auftrag abgesehdet werden";
         #endregion
 
+        #endregion
+
+        #region Filter
+        public static ObservableCollection<string> FILTER_CRITERIA = new ObservableCollection<string>
+        {
+            "Sorte",
+            "Kategorie",
+            "Mindesthaltbarkeitsdatum",
+            "ausstehende Reifungsdauee",
+            "Herkunft",
+            "Einkaufspreis",
+            "Verkaufspreis",
+            "Bestand",
+            "Lieferant",
+            "Produzent",
+            "Kunde",
+            "Lieferschein"
+        };
         #endregion
     }
 }

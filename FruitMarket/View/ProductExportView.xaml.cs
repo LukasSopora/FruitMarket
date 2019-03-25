@@ -54,7 +54,7 @@ namespace FruitMarket.View
             if (sender.GetType() == typeof(PackIcon))
             {
                 PackIcon icon = sender as PackIcon;
-                icon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
+                icon.Foreground = FindResource("PrimaryHueMidBrush") as Brush;
             }
         }
 

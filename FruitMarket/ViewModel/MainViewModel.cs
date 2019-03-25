@@ -110,6 +110,9 @@ namespace FruitMarket.ViewModel
         {
             InitializeViews();
             InitializeCommands();
+
+            m_DescriptionVisible = false;
+            RaisePropertyChanged(nameof(DescriptionVisible));
         }
     }
 }

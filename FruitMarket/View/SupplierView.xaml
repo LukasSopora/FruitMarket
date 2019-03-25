@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="10" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}"
+    <Border CornerRadius="5" BorderThickness="3" BorderBrush="White" Background="{DynamicResource MaterialDesignPaper}"
             MouseEnter="View_Mouse_Enter" MouseLeave="View_Mouse_Leave" x:Name="SupplierViewBorder">
         <Grid>
             <Grid.RowDefinitions>

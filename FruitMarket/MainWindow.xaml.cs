@@ -61,11 +61,11 @@ namespace FruitMarket
             {
                 Button btn = sender as Button;
                 btn.BorderThickness = new Thickness(1);
-                btn.BorderBrush = FindResource("SecondaryAccentBrush") as Brush;
+                btn.BorderBrush = Brushes.White;
                 if(btn.Content.GetType() == typeof(PackIcon))
                 {
                     PackIcon icon = btn.Content as PackIcon;
-                    icon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
+                    icon.Foreground = Brushes.White;
                 }
 
             }
@@ -81,7 +81,7 @@ namespace FruitMarket
                 if (btn.Content.GetType() == typeof(PackIcon))
                 {
                     PackIcon icon = btn.Content as PackIcon;
-                    icon.Foreground = Brushes.White;
+                    icon.Foreground = Brushes.Black;
                 }
 
             }

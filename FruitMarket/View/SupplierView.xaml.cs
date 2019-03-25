@@ -28,14 +28,14 @@ namespace FruitMarket.View
 
         private void View_Mouse_Enter(object sender, MouseEventArgs e)
         {
-            UserIcon.Foreground = FindResource("SecondaryAccentBrush") as Brush;
-            SupplierViewBorder.BorderBrush = FindResource("SecondaryAccentBrush") as Brush;
+            UserIcon.Foreground = FindResource("PrimaryHueMidBrush") as Brush;
+            SupplierViewBorder.BorderBrush = FindResource("PrimaryHueMidBrush") as Brush;
         }
 
         private void View_Mouse_Leave(object sender, MouseEventArgs e)
         {
             UserIcon.Foreground = Brushes.White;
-            SupplierViewBorder.BorderBrush = FindResource("PrimaryHueMidBrush") as Brush;
+            SupplierViewBorder.BorderBrush = Brushes.White;
         }
     }
 }

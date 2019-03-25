@@ -23,7 +23,7 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
     <Style TargetType="StackPanel" x:Key="RibbonStack">
-        <Setter Property="Margin" Value="20,10,0,0"/>
+        <Setter Property="Margin" Value="20,10,0,-10"/>
     </Style>
     <Style TargetType="Fluent:Button">
         <Setter Property="MinWidth" Value="64"/>

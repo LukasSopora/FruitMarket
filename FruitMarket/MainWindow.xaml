@@ -3,6 +3,7 @@
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:local="clr-namespace:FruitMarket"
                      xmlns:view="clr-namespace:FruitMarket.View"
+                     xmlns:converter="clr-namespace:FruitMarket.Converter"
                      xmlns:Fluent="urn:fluent-ribbon"
                      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                      Title="Fruit Market" 
@@ -218,6 +219,33 @@
                             Height="30"
                             Width="30" />
                     </Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox>
+                    <DockPanel Margin="0,0,20,0">
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Filterkriterium:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Criteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentFilter.Criteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      MinWidth="100"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Filtertext:" HorizontalAlignment="Left"/>
+                            <TextBox Text="{Binding ActiveView.DataContext.CurrentFilter.FilterText}" MinWidth="100"
+                                     VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <Button VerticalAlignment="Bottom"
+                                    Command="{Binding ActiveView.DataContext.AddFilterCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    ToolTip="Filter hinzufügen">
+                                <materialDesign:PackIcon
+                                        Kind="Add"
+                                        Height="18"
+                                        Width="18" />
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
@@ -458,7 +486,7 @@
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
 
-        <Grid Grid.Row="1" Background="{DynamicResource SecondaryAccentBrush}"/>
+        <Grid Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}"/>
 
         <ContentControl Grid.Row="2" 
                         Content="{Binding ActiveView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>

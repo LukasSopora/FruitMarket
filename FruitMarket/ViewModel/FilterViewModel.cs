@@ -1,4 +1,5 @@
-﻿using FruitMarket.Model;
+﻿using FruitMarket.Helper;
+using FruitMarket.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -16,7 +17,16 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Filter>();
         private ObservableCollection<Product> m_Products =
             new ObservableCollection<Product>();
+        private ObservableCollection<string> m_FilterCriteria =
+            new ObservableCollection<string>();
+
         private Filter m_CurrentFilter = null;
+
+        public ObservableCollection<string> FilterCriteria
+        {
+            get { return m_FilterCriteria; }
+            set { SetProperty(ref m_FilterCriteria, value); }
+        }
 
         public ObservableCollection<Product> Products
         {
@@ -67,7 +77,7 @@ namespace FruitMarket.ViewModel
             {
                 return;
             }
-            if(m_CurrentFilter.Property == null)
+            if(m_CurrentFilter.Criteria == null)
             {
                 System.Windows.MessageBox.Show("Kein Filterkriterium ausgewählt.");
             }
@@ -90,6 +100,9 @@ namespace FruitMarket.ViewModel
         public FilterViewModel()
         {
             InitializeCommands();
+
+            m_FilterCriteria = ToolConstants.FILTER_CRITERIA;
+            RaisePropertyChanged(nameof(FilterCriteria));
         }
     }
 }

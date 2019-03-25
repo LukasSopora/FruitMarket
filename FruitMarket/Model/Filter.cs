@@ -8,7 +8,7 @@ namespace FruitMarket.Model
 {
     public class Filter
     {
-        private string m_Property = null;
+        private string m_Criteria = null;
         private string m_FilterText = null;
         private bool m_Enabled = false;
 
@@ -24,15 +24,15 @@ namespace FruitMarket.Model
             set { m_FilterText = value; }
         }
 
-        public string Property
+        public string Criteria
         {
-            get { return m_Property; }
-            set { m_Property = value; }
+            get { return m_Criteria; }
+            set { m_Criteria = value; }
         }
 
-        public Filter(string p_Property, string p_FilterText)
+        public Filter(string p_Criteria, string p_FilterText)
         {
-            m_Property = p_Property;
+            m_Criteria = p_Criteria;
             m_FilterText = p_FilterText;
             m_Enabled = true;
         }
