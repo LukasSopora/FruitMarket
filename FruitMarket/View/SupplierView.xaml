@@ -48,6 +48,7 @@
             <materialDesign:PackIcon Grid.Row="1" Grid.Column="1" Kind="IdentificationCard" 
                                      Foreground="{Binding ElementName=IdTextBox, Path=BorderBrush}"/>
             <TextBox Grid.Row="1" Grid.Column="2" x:Name="IdTextBox" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:TransitionAssist.DisableTransitions="True"
                      Text="{Binding Id}" materialDesign:HintAssist.Hint="Id"
                      IsReadOnly="True"/>
@@ -55,16 +56,19 @@
             <materialDesign:PackIcon Grid.Row="2" Grid.Column="1" Kind="Company" 
                                      Foreground="{Binding ElementName=CompanyTextBox, Path=BorderBrush}"/>
             <TextBox Grid.Row="2" Grid.Column="2" x:Name="CompanyTextBox"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding Company}" materialDesign:HintAssist.Hint="Firma"/>
 
 
             <materialDesign:PackIcon Grid.Row="3" Grid.Column="1" Kind="Account" 
                                      Foreground="{Binding ElementName=FirstNameBox, Path=BorderBrush}"/>
             <TextBox Grid.Row="3" Grid.Column="2" x:Name="FirstNameBox"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding FirstName}" materialDesign:HintAssist.Hint="Vorname"/>
 
 
             <TextBox Grid.Row="4" Grid.Column="2" x:Name="LastNameBox" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:TransitionAssist.DisableTransitions="True"
                      Text="{Binding LastName}" materialDesign:HintAssist.Hint="Nachname"/>
 
@@ -81,6 +85,7 @@
             <materialDesign:PackIcon Grid.Row="6" Grid.Column="1" Kind="Phone" 
                                      Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"/>
             <TextBox Grid.Row="6" Grid.Column="2" x:Name="PhoneTextBox" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:TransitionAssist.DisableTransitions="True"
                      Text="{Binding Phone}" materialDesign:HintAssist.Hint="Telefonnummer"/>
 
@@ -89,16 +94,19 @@
                                      Grid.Row="3" Grid.Column="3"/>
             <TextBox Text="{Binding Adress.Street}" x:Name="StreetTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
                          Grid.Row="3" Grid.Column="4"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Straße"/>
 
 
             <TextBox Text="{Binding Adress.PostCode}" x:Name="PostCodeTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
                          Grid.Row="4" Grid.Column="4"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Postleitzahl"/>
 
 
             <TextBox Text="{Binding Adress.Place}" x:Name="PlaceTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
                          Grid.Row="5" Grid.Column="4"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Ort"/>
 
 
@@ -106,6 +114,7 @@
                                      Grid.Row="6" Grid.Column="3"/>
             <TextBox Text="{Binding Email}" x:Name="MailTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
                          Grid.Row="6" Grid.Column="4"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Email Adresse"/>
         </Grid>
     </Border>

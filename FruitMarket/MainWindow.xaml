@@ -315,7 +315,7 @@
                                 </Button>
                                 <Button
                                     Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                     Width="20" Height="20" Margin="5,3,0,0"
                                     ToolTip="Kunden hinzufügen">
                                     <materialDesign:PackIcon
@@ -433,7 +433,7 @@
                                 </Button>
                                 <Button
                                     Command="{Binding ActiveView.DataContext.DeleteSupplierCommand}"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                     Width="20" Height="20" Margin="5,3,0,0"
                                     ToolTip="Kunden hinzufügen">
                                     <materialDesign:PackIcon

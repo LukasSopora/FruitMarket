@@ -21,12 +21,28 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Product>();
         private ObservableCollection<string> m_Sorts =
             new ObservableCollection<string>();
+        private ObservableCollection<string> m_Categories =
+            new ObservableCollection<string>();
+        private ObservableCollection<string> m_Origins =
+            new ObservableCollection<string>();
 
         private DateTime m_ImportDate = DateTime.Now;
         private Producer m_CurrentProducer = null;
         private Supplier m_CurrentSupplier = null;
         private string m_NewSort = null;
         private int m_PageIndex = 0;
+
+        public ObservableCollection<string> Origins
+        {
+            get { return m_Origins; }
+            set { SetProperty(ref m_Origins, value); }
+        }
+
+        public ObservableCollection<string> Categories
+        {
+            get { return m_Categories; }
+            set { SetProperty(ref m_Categories, value); }
+        }
 
         public string PageDescription
         {
@@ -379,16 +395,13 @@ namespace FruitMarket.ViewModel
 
             m_Suppliers = TestDataReader.GetDefaultSuppliers();
             m_Producers = TestDataReader.GetDefaultProducers();
+            m_Sorts = ToolConstants.DEFAULT_FRUITS;
+            m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;
+            m_Origins = ToolConstants.DEFAULT_ORIGINS;
 
             m_CurrentSupplier = new Supplier();
             m_CurrentProducer = new Producer();
 
-            m_Sorts.Add("Apfel");
-            m_Sorts.Add("Kirsche");
-            m_Sorts.Add("Banane");
-            m_Sorts.Add("Ananas");
-
-            m_Fruits.Add(new Product());
 
             if (m_Suppliers.Count == 0)
             {
@@ -398,9 +411,11 @@ namespace FruitMarket.ViewModel
             {
                 OnNewProducer();
             }
-            RaisePropertyChanged(nameof(Fruits));
 
+            RaisePropertyChanged(nameof(Fruits));
             RaisePropertyChanged(nameof(Sorts));
+            RaisePropertyChanged(nameof(Categories));
+            RaisePropertyChanged(nameof(Origins));
         }
     }
 }

@@ -97,7 +97,7 @@
                         materialDesign:DataGridAssist.EnableEditBoxAssist="True">
                         <DataGrid.Columns>
                             <!--Sorte-->
-                            <DataGridTemplateColumn Header="Sorte" Width="*">
+                            <DataGridTemplateColumn Header="Sorte" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
@@ -109,7 +109,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Menge-->
-                            <DataGridTemplateColumn Header="Menge" Width="*">
+                            <DataGridTemplateColumn Header="Menge" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -128,7 +128,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Kategorie-->
-                            <DataGridTemplateColumn Header="Kategorie" Width="*">
+                            <DataGridTemplateColumn Header="Kategorie" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
@@ -140,27 +140,27 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Einkaufsdatum-->
-                            <DataGridTemplateColumn Header="Einkaufsdatum" Width="*">
+                            <DataGridTemplateColumn Header="Kaufdatum" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DatePicker SelectedDate="{Binding PurchaseDate}"
-                                        MinWidth="80"
+                                        MinWidth="100"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Mindesthaltbarkeitsdatum-->
-                            <DataGridTemplateColumn Header="MHD" Width="*">
+                            <DataGridTemplateColumn Header="MHD" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DatePicker SelectedDate="{Binding ExpirationDate}"
-                                        MinWidth="80"
+                                        MinWidth="100"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Reifedauer-->
-                            <DataGridTemplateColumn Header="Reifedauer" Width="*">
+                            <DataGridTemplateColumn Header="Reifedauer" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
@@ -177,11 +177,11 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Herkunft-->
-                            <DataGridTemplateColumn Header="Herkunft" Width="*">
+                            <DataGridTemplateColumn Header="Herkunft" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
-                                      SelectedValue="{Binding Oriigin}"
+                                      SelectedValue="{Binding Origin}"
                                       materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>
@@ -189,7 +189,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Einkaufspreis-->
-                            <DataGridTemplateColumn Header="Einkaufspreis" Width="*">
+                            <DataGridTemplateColumn Header="Kaufpreis" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding PurchasePrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -197,7 +197,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--DELETE-->
-                            <DataGridTemplateColumn Width="Auto">
+                            <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"

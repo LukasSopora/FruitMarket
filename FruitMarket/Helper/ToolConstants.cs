@@ -192,5 +192,46 @@ namespace FruitMarket.Helper
             "Lieferschein"
         };
         #endregion
+
+        #region DefaultVaules
+
+        #region Fruits
+        public static ObservableCollection<string> DEFAULT_FRUITS = new ObservableCollection<string>
+        {
+            "Apfel",
+            "Banane",
+            "Birne",
+            "Kirsche",
+            "Ananas",
+            "Orange",
+            "Aubergine",
+            "Pfirsich",
+            "Erdbeere",
+            "Heidelbeere"
+        };
+
+        public static ObservableCollection<string> DEFAULT_ORIGINS = new ObservableCollection<string>
+        {
+            "Deutschland",
+            "Spanien",
+            "Griechenland",
+            "Brasilien",
+            "Norwegen",
+            "Italien",
+            "Portugal",
+            "Schottland",
+            "Österreich",
+            "Belgien",
+        };
+
+        public static ObservableCollection<string> DEFAULT_FRUIT_CATEGORIES = new ObservableCollection<string>
+        {
+            "Kl 1",
+            "Kl 2",
+            "Kl 3"
+        };
+        #endregion
+
+        #endregion
     }
 }
