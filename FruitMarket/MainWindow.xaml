@@ -484,6 +484,54 @@
                         Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Lieferschein" GotFocus="RibbonTabItem_GotFocus">
+                <Fluent:RibbonGroupBox Header="Navigation">
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHomeViewCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
+                            ToolTip="Gehe zum Hauptmenü">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Home"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding PrintSiteCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
+                            ToolTip="Aktuelle Ansicht drucken">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="LocalPrintShop"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
+                            ToolTip="Informationen über FruitMarket©">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="InformationVariant"
+                            Height="34"
+                            Width="34" />
+                    </Button>
+                    <Button Style="{StaticResource RibbonNavigationButton}"
+                            Command="{Binding ShowHelpCommand}"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
+                            ToolTip="Hilfe zur aktuellen Ansicht"
+                            Margin="15,10,15,0">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Kind="Help"
+                            Height="30"
+                            Width="30" />
+                    </Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
 
         <Grid Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}"/>

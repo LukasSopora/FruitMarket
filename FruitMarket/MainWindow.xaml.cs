@@ -60,12 +60,10 @@ namespace FruitMarket
             if(sender.GetType() == typeof(Button))
             {
                 Button btn = sender as Button;
-                btn.BorderThickness = new Thickness(1);
-                btn.BorderBrush = Brushes.White;
                 if(btn.Content.GetType() == typeof(PackIcon))
                 {
                     PackIcon icon = btn.Content as PackIcon;
-                    icon.Foreground = Brushes.White;
+                    icon.Foreground = Brushes.DarkCyan;
                 }
 
             }
@@ -76,8 +74,6 @@ namespace FruitMarket
             if (sender.GetType() == typeof(Button))
             {
                 Button btn = sender as Button;
-                btn.BorderThickness = new Thickness(0);
-                btn.BorderBrush = Brushes.Transparent;
                 if (btn.Content.GetType() == typeof(PackIcon))
                 {
                     PackIcon icon = btn.Content as PackIcon;
