@@ -1,4 +1,5 @@
-﻿using FruitMarket.ViewModel;
+﻿using FruitMarket.Model;
+using FruitMarket.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,14 @@ namespace FruitMarket.View
             InitializeComponent();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            StackPanel parent = btn.Parent as StackPanel;
+            Filter filter = parent.DataContext as Filter;
 
+            FilterViewModel fvm = DataContext as FilterViewModel;
+            fvm.Filter.Remove(filter);
         }
     }
 }

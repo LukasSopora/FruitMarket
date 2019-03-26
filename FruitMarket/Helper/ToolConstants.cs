@@ -181,7 +181,7 @@ namespace FruitMarket.Helper
             "Sorte",
             "Kategorie",
             "Mindesthaltbarkeitsdatum",
-            "ausstehende Reifungsdauee",
+            "ausstehende Reifungsdauer",
             "Herkunft",
             "Einkaufspreis",
             "Verkaufspreis",

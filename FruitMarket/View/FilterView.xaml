@@ -13,8 +13,97 @@
 
 
     <Grid>
-        <TextBlock Text="Filterkriterium" HorizontalAlignment = "Left" Margin = "89,10,0,410" Height = "30"/>
-        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,30,0,400" SelectionChanged="ComboBox_SelectionChanged" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Text="Angewendete Filter:"
+            Grid.Row="0"/>
+
+        <!--<DataGrid
+            ItemsSource="{Binding Filter}"
+            AutoGenerateColumns="True"
+            Grid.Row="1"/>-->
+
+        <ItemsControl
+            Grid.Row="1"
+            ItemsSource="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="10"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        CornerRadius="3">
+                        <StackPanel Margin="5">
+                            <DockPanel>
+                                <TextBlock Text="Kriterium: "/>
+                                <TextBox Text="{Binding Criteria}" IsReadOnly="True"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock Text="Suchtext: "/>
+                                <TextBox Text="{Binding FilterText}" IsReadOnly="True"/>
+                            </DockPanel>
+                            <DockPanel HorizontalAlignment="Right">
+                                <TextBlock Text="Aktiv: "/>
+                                <CheckBox IsChecked="{Binding Enabled}"/>
+                            </DockPanel>
+                            <Button
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="100"
+                                ToolTip="Filter löschen"
+                                Click="Button_Click">
+                                <TextBlock Text="Delete"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <!--<ItemsControl
+            ItemsSource="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Width="100" Height="40"
+                        BorderBrush="White"
+                        BorderThickness="3" CornerRadius="3">
+                        <StackPanel>
+                            <DockPanel>
+                                <TextBlock Text="Kriterium: "/>
+                                <TextBox Text="{Binding Criteria}" IsReadOnly="True"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock Text="Filtertext: "/>
+                                <TextBox Template="{Binding FilterText}" IsReadOnly="True"/>
+                            </DockPanel>
+                            <DockPanel HorizontalAlignment="Right">
+                                <TextBlock Text="Aktiviert: "/>
+                                <CheckBox IsChecked="{Binding Enabled}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>-->
+        
+        <!--<TextBlock Text="Filterkriterium" HorizontalAlignment = "Left" Margin = "89,10,0,410" Height = "30"/>
+        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,30,0,400">
             <ComboBoxItem Content = "Sorte/Bezeichnung"/>
             <ComboBoxItem Content = "Kategorie / Klasse"/>
             <ComboBoxItem Content = "Mindesthaltbarkeitsdatum"/>
@@ -32,7 +121,7 @@
 
 
         <TextBlock Text="Verknüpfung" HorizontalAlignment = "Left" Margin = "487,10,0,410" Height = "30"/>
-        <ComboBox Height = "20" Width = "60" HorizontalAlignment = "Left" Margin = "487,62,0,368" SelectionChanged="ComboBox_SelectionChanged"  >
+        <ComboBox Height = "20" Width = "60" HorizontalAlignment = "Left" Margin = "487,62,0,368">
             <ComboBoxItem Content = "Oder"/>
             <ComboBoxItem Content = "Und"/>
 
@@ -45,7 +134,7 @@
 
         <Button Height = "20" Width="100" Margin="553,30,147,400">Weiteres Kriterium</Button>
         <Button Height = "20" Width="100" Margin="669,30,31,400">Suchen</Button>
-        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,62,0,368" SelectionChanged="ComboBox_SelectionChanged" >
+        <ComboBox Height = "20" Width = "180" HorizontalAlignment = "Left" Margin = "89,62,0,368">
             <ComboBoxItem Content = "Sorte/Bezeichnung"/>
             <ComboBoxItem Content = "Kategorie / Klasse"/>
             <ComboBoxItem Content = "Mindesthaltbarkeitsdatum"/>
@@ -60,7 +149,7 @@
             <ComboBoxItem Content = "Kunde"/>
             <ComboBoxItem Content = "Lieferschein"/>
         </ComboBox>
-        <TextBox Height = "20" Width = "170" HorizontalAlignment = "Left" Margin = "288,30,0,400"/>
+        <TextBox Height = "20" Width = "170" HorizontalAlignment = "Left" Margin = "288,30,0,400"/>-->
     </Grid>
 
 

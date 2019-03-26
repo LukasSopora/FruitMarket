@@ -20,7 +20,21 @@ namespace FruitMarket.ViewModel
         private ObservableCollection<string> m_FilterCriteria =
             new ObservableCollection<string>();
 
-        private Filter m_CurrentFilter = null;
+        private string m_CurrentFilterCriteria = null;
+        private string m_CurrentFilterText = null;
+
+
+        public string CurrentFilterText
+        {
+            get { return m_CurrentFilterText; }
+            set { SetProperty(ref m_CurrentFilterText, value); }
+        }
+
+        public string CurrentFilterCriteria
+        {
+            get { return m_CurrentFilterCriteria; }
+            set { SetProperty(ref m_CurrentFilterCriteria, value); }
+        }
 
         public ObservableCollection<string> FilterCriteria
         {
@@ -32,12 +46,6 @@ namespace FruitMarket.ViewModel
         {
             get { return m_Products; }
             set { SetProperty(ref m_Products, value); }
-        }
-
-        public Filter CurrentFilter
-        {
-            get { return m_CurrentFilter; }
-            set { SetProperty(ref m_CurrentFilter, value); }
         }
 
         public ObservableCollection<Filter> Filter
@@ -73,27 +81,23 @@ namespace FruitMarket.ViewModel
 
         private void OnAddFilter()
         {
-            if(m_CurrentFilter == null)
+            if(m_CurrentFilterCriteria == null || m_CurrentFilterCriteria == "")
             {
+                System.Windows.MessageBox.Show("Es muss ein Filterkriterium ausgewählt sein");
                 return;
             }
-            if(m_CurrentFilter.Criteria == null)
+            if(m_CurrentFilterText == null)
             {
-                System.Windows.MessageBox.Show("Kein Filterkriterium ausgewählt.");
+                m_CurrentFilterText = "";
             }
-            if(m_CurrentFilter.FilterText == null)
-            {
-                m_CurrentFilter.FilterText = "";
-            }
-            if(!m_Filter.Contains(m_CurrentFilter))
-            {
-                m_Filter.Add(m_CurrentFilter);
-                RaisePropertyChanged(nameof(Filter));
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Filter ist bereits angewendet.");
-            }
+            m_Filter.Add(new Filter(m_CurrentFilterCriteria, m_CurrentFilterText));
+            RaisePropertyChanged(nameof(Filter));
+
+            m_CurrentFilterText = null;
+            RaisePropertyChanged(nameof(CurrentFilterText));
+
+            m_CurrentFilterCriteria = null;
+            RaisePropertyChanged(nameof(CurrentFilterCriteria));
         }
         #endregion
 

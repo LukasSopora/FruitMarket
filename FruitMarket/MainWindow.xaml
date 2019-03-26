@@ -224,13 +224,13 @@
                     <DockPanel Margin="0,0,20,0">
                         <StackPanel Style="{StaticResource RibbonStack}">
                             <TextBlock Text="Filterkriterium:" HorizontalAlignment="Left"/>
-                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Criteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding ActiveView.DataContext.CurrentFilter.Criteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.FilterCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentFilterCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       MinWidth="100"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource RibbonStack}">
                             <TextBlock Text="Filtertext:" HorizontalAlignment="Left"/>
-                            <TextBox Text="{Binding ActiveView.DataContext.CurrentFilter.FilterText}" MinWidth="100"
+                            <TextBox Text="{Binding ActiveView.DataContext.CurrentFilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"
                                      VerticalAlignment="Bottom"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource RibbonStack}">
