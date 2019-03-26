@@ -180,8 +180,8 @@ namespace FruitMarket.Helper
         {
             "Sorte",
             "Kategorie",
-            "Mindesthaltbarkeitsdatum",
-            "ausstehende Reifungsdauer",
+            "MHD",
+            "Reifungsdauer",
             "Herkunft",
             "Einkaufspreis",
             "Verkaufspreis",

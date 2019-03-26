@@ -1,5 +1,6 @@
 ﻿using FruitMarket.Model;
 using FruitMarket.ViewModel;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,26 @@ namespace FruitMarket.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Delete_Filter(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            StackPanel parent = btn.Parent as StackPanel;
+            PackIcon btn = sender as PackIcon;
+            Grid parent = btn.Parent as Grid;
             Filter filter = parent.DataContext as Filter;
 
             FilterViewModel fvm = DataContext as FilterViewModel;
             fvm.Filter.Remove(filter);
+        }
+
+        private void PackIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            PackIcon btn = sender as PackIcon;
+            btn.Foreground = FindResource("PrimaryHueMidBrush") as Brush;
+        }
+
+        private void PackIcon_MouseLeave(object sender, MouseEventArgs e)
+        {
+            PackIcon btn = sender as PackIcon;
+            btn.Foreground = Brushes.White;
         }
     }
 }
