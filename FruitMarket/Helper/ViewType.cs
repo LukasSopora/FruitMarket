@@ -13,6 +13,7 @@ namespace FruitMarket.Helper
         ProductListView = 2,
         FilterView = 3,
         ProductAdmissionView = 4,
-        ProductDeliveryView = 5
+        ProductDeliveryView = 5,
+        DeliveryView = 6
     };
 }

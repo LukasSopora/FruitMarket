@@ -21,6 +21,7 @@ namespace FruitMarket.ViewModel
         private ProductImportView m_ProductImportView = null;
         private ProductExportView m_ProductExportView = null;
         private FilterView m_FilterView = null;
+        private DeliveryView m_DeliveryView = null;
         private bool m_DescriptionVisible = false;
 
         public bool DescriptionVisible
@@ -46,12 +47,13 @@ namespace FruitMarket.ViewModel
         {
             switch(p_Type)
             {
-                case ViewType.HomeView: m_ActiveView = null; break;
+                case ViewType.HomeView: m_ActiveView = m_HomeView; break;
                 case ViewType.MainListView: m_ActiveView = m_MainListView; break;
                 case ViewType.ProductListView: m_ActiveView = m_ProductListView; break;
                 case ViewType.FilterView: m_ActiveView = m_FilterView; break;
                 case ViewType.ProductAdmissionView: m_ActiveView = m_ProductImportView; break;
                 case ViewType.ProductDeliveryView: m_ActiveView = m_ProductExportView; break;
+                case ViewType.DeliveryView: m_ActiveView = m_DeliveryView; break;
             }
             RaisePropertyChanged(nameof(ActiveView));
         }
@@ -104,12 +106,16 @@ namespace FruitMarket.ViewModel
             m_FilterView = new FilterView();
             m_ProductImportView = new ProductImportView();
             m_ProductExportView = new ProductExportView();
+            m_DeliveryView = new DeliveryView();
         }
 
         public MainViewModel()
         {
             InitializeViews();
             InitializeCommands();
+
+            m_ActiveView = m_HomeView;
+            RaisePropertyChanged(nameof(ActiveView));
 
             m_DescriptionVisible = false;
             RaisePropertyChanged(nameof(DescriptionVisible));

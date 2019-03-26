@@ -108,6 +108,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Producer.cs" />
     <Compile Include="Model\Supplier.cs" />
+    <Compile Include="ViewModel\DeliveryViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
