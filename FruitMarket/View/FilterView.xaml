@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -125,8 +126,15 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
+        <Button
+            Grid.Row="3" HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Width="100">
+            Filtern
+        </Button>
+
         <DataGrid
-            Grid.Row="3" Margin="10"
+            Grid.Row="4" Margin="10"
             ItemsSource="{Binding Products}"
             CanUserAddRows="False" CanUserDeleteRows="False"
             AutoGenerateColumns="False">

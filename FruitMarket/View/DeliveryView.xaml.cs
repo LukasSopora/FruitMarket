@@ -1,4 +1,6 @@
-﻿using FruitMarket.ViewModel;
+﻿using FruitMarket.Model;
+using FruitMarket.ViewModel;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,82 @@ namespace FruitMarket.View
         {
             DataContext = new DeliveryViewModel();
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender.GetType() == typeof(DataGrid))
+            {
+                ((DataGrid)sender).UnselectAllCells();
+            }
+        }
+
+        private void AmountIncrease(object sender, MouseButtonEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = ((PackIcon)sender).DataContext as Product;
+                    fruit.Amount++;
+
+                }
+            }
+        }
+
+        private void PackIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                PackIcon icon = sender as PackIcon;
+                icon.Foreground = FindResource("PrimaryHueMidBrush") as Brush;
+            }
+        }
+
+        private void PackIcon_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                PackIcon icon = sender as PackIcon;
+                icon.Foreground = Brushes.White;
+            }
+        }
+
+        private void Amount_Decrease(object sender, MouseButtonEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((PackIcon)sender).DataContext;
+                    if (fruit.Amount > 1)
+                    {
+                        fruit.Amount--;
+                    }
+                }
+            }
+        }
+
+        private void DeleteFruit(object sender, MouseButtonEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((PackIcon)sender).DataContext;
+                    if (pivm.Fruits.Contains(fruit))
+                    {
+                        pivm.Fruits.Remove(fruit);
+                    }
+                }
+            }
+        }
+
+        private void DataGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            DeliveryViewModel dvm = DataContext as DeliveryViewModel;
+            dvm.UpdateSum();
         }
     }
 }

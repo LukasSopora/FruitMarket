@@ -195,6 +195,13 @@ namespace FruitMarket.Helper
             "Die Liste kann in eine PDF-Datei exportiert werden.";
         #endregion
 
+        #region DeliveryView
+        public const string DELIVERY_VIEW_DESC =
+            "Hier kann ein Lieferschein erstellt werden. Dazu muss ein Kunde und das Versandatum " +
+            "ausgewählt werden. Anschließend können die entsprechenden Produkte ausgewählt werden. " +
+            "Dabei wird die Positionssumme und die Gesamtsumme der Verkäufe immer berechnet und angezeigt.";
+        #endregion
+
         #endregion
 
         #region Filter

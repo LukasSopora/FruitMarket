@@ -1,5 +1,6 @@
 ﻿using FruitMarket.Helper;
 using FruitMarket.Model;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,10 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Product>();
         private ObservableCollection<Costumer> m_Costumers =
             new ObservableCollection<Costumer>();
-        private Costumer m_Costumer = null;
-        private DateTime m_DeliveryDate;
+        private ObservableCollection<string> m_Sorts =
+            new ObservableCollection<string>();
+        private Costumer m_CurrentCostumer = null;
+        private DateTime m_DeliveryDate = DateTime.Now;
         private double m_Sum;
 
         public double Sum
@@ -30,6 +33,20 @@ namespace FruitMarket.ViewModel
                     result += p.PositionSum;
                 }
                 return result;
+            }
+        }
+
+        public ObservableCollection<string> Sorts
+        {
+            get { return m_Sorts; }
+            set { SetProperty(ref m_Sorts, value); }
+        }
+
+        public string PageDescription
+        {
+            get
+            {
+                return ToolConstants.DELIVERY_VIEW_DESC;
             }
         }
 
@@ -51,16 +68,53 @@ namespace FruitMarket.ViewModel
             set { SetProperty(ref m_DeliveryDate, value); }
         }
 
-        public Costumer Costumer
+        public Costumer CurrentCostumer
         {
-            get { return m_Costumer; }
-            set { SetProperty(ref m_Costumer, value); }
+            get { return m_CurrentCostumer; }
+            set { SetProperty(ref m_CurrentCostumer, value); }
         }
+
+        #region Commands
+        public DelegateCommand NewCostumerCommand { get; private set; }
+        public DelegateCommand SaveCostumerCommand { get; private set; }
+        public DelegateCommand DeleteCostumerCommand { get; private set; }
+        public DelegateCommand AddProductCommand { get; private set; }
+
+
+        private void InitializeCommands()
+        {
+            AddProductCommand = new DelegateCommand(OnAddProduct);
+            RaisePropertyChanged(nameof(AddProductCommand));
+        }
+
+        private void OnAddProduct()
+        {
+            m_Products.Add(new Product());
+            RaisePropertyChanged(nameof(Products));
+        }
+
+
+        #endregion
 
         public DeliveryViewModel()
         {
+            InitializeCommands();
+
             m_Costumers = TestDataReader.GetDefaultCostumers();
             RaisePropertyChanged(nameof(Costumers));
+
+            m_Sorts = ToolConstants.DEFAULT_FRUITS;
+            RaisePropertyChanged(nameof(Sorts));
+        }
+
+        public void UpdateSum()
+        {
+            m_Sum = 0.0;
+            foreach(Product p in m_Products)
+            {
+                m_Sum += p.PositionSum;
+            }
+            RaisePropertyChanged(nameof(Sum));
         }
     }
 }

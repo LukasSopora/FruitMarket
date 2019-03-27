@@ -42,7 +42,11 @@ namespace FruitMarket.Model
         public double SalesPrice
         {
             get { return m_SalesPrice; }
-            set { m_SalesPrice = value; }
+            set
+            {
+                m_SalesPrice = value;
+                RaisePropertyChanged(nameof(PositionSum));
+            }
         }
 
         public double PurchasePrice
@@ -94,6 +98,7 @@ namespace FruitMarket.Model
             {
                 SetProperty(ref m_Amount, value);
                 RaisePropertyChanged(nameof(Remaining));
+                RaisePropertyChanged(nameof(PositionSum));
             }
         }
 
@@ -101,7 +106,7 @@ namespace FruitMarket.Model
         {
             get
             {
-                return m_PurchasePrice * m_Amount;
+                return m_SalesPrice * m_Amount;
             }
         }
 

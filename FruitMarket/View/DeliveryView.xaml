@@ -10,48 +10,162 @@
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Language="de"
+             d:DesignHeight="1200" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
     </UserControl.Resources>
-    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="400"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto" MinWidth="400"/>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="400"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" MinWidth="400"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock
+            <TextBlock
             Text="Lieferschein erstellen"
             Grid.Row="0"
             FontSize="24" FontWeight="Bold"/>
 
-        <TextBlock Margin="20,20,0,10"
+            <TextBlock Margin="20,20,0,10"
                 Text="Verkaufende Firma: "
                 FontWeight="SemiBold" FontSize="18"
                 Grid.Row="1" Grid.Column="0"/>
 
-        <view:CompanyView
+            <view:CompanyView
             Grid.Row="2" Grid.Column="0"
             Margin="10,0,0,0"/>
 
-        <TextBlock Margin="0,20,20,10"
+            <TextBlock Margin="0,20,20,10"
                 Text="Kunde: "
                 FontWeight="SemiBold" FontSize="20"
-                Grid.Row="1" Grid.Column="3"/>
+                Grid.Row="1" Grid.Column="2"/>
 
-        <view:SupplierView
-            Grid.Row="2" Grid.Column="3"
+            <view:SupplierView
+            Grid.Row="2" Grid.Column="2"
             Margin="0,0,10,0"
-            DataContext="{Binding Costumer}"/>
-        
-        
-        
-    </Grid>
+            DataContext="{Binding CurrentCostumer}"/>
+
+            <TextBlock
+            Grid.Row="3" Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            Text="Produkte" FontSize="18"
+            FontWeight="SemiBold"/>
+
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                <DataGrid
+            HorizontalAlignment="Center"
+            Margin="10,5,10,5" MouseMove="DataGrid_MouseMove"
+            ItemsSource="{Binding Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <!--Sorte-->
+                        <DataGridTemplateColumn Header="Sorte" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Style="{StaticResource DataGridCombobox}"
+                                      SelectedValue="{Binding Sort}"
+                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      VerticalAlignment="Bottom"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--Menge-->
+                        <DataGridTemplateColumn Header="Menge" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MinWidth="20"/>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
+                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                            <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
+                                                             MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--Verkaufspreis-->
+                        <DataGridTemplateColumn Header="Verkaufspreis" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding SalesPrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--Positionssumme-->
+                        <DataGridTemplateColumn Header="Positionssumme" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding PositionSum, StringFormat=C, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 IsReadOnly="True"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--DELETE-->
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"
+                                                     MouseDown="DeleteFruit" Foreground="White"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button 
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddProductCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="70" Margin="0,0,10,0"
+                    ToolTip="Produkt hinzufügen">
+                    <materialDesign:PackIcon
+                        Kind="Plus"
+                        Width="24" Height="24"/>
+                </Button>
+
+                <DockPanel Margin="0,20,20,30"
+                HorizontalAlignment="Right">
+                    <TextBlock Text="Gesamtsumme: " Margin="0,0,10,0" VerticalAlignment="Bottom" FontSize="15"/>
+                    <TextBox 
+                        Text="{Binding Sum, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}" 
+                        MinWidth="70" IsReadOnly="True" VerticalAlignment="Bottom"/>
+                </DockPanel>
+
+                <Button 
+                    Margin="0,10,20,10" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Width="180"
+                    HorizontalContentAlignment="Center"
+                    ToolTip="Liste als PDF exportieren">
+                    <DockPanel>
+                        <materialDesign:PackIcon
+                            Kind="FilePdf"
+                            Width="24" Height="24"/>
+                        <TextBlock Text="PDF Export"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>
