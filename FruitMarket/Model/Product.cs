@@ -97,6 +97,14 @@ namespace FruitMarket.Model
             }
         }
 
+        public double PositionSum
+        {
+            get
+            {
+                return m_PurchasePrice * m_Amount;
+            }
+        }
+
         public string Sort
         {
             get { return m_Sort; }

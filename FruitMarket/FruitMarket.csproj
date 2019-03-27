@@ -92,13 +92,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\EmptyCollectionConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="Converter\NullToVisibilityConverter.cs" />
     <Compile Include="Database\Connection.cs" />
     <Compile Include="Helper\TestDataReader.cs" />
     <Compile Include="Helper\ToolConstants.cs" />
-    <Compile Include="Helper\LogEntry.cs" />
-    <Compile Include="Helper\LogType.cs" />
     <Compile Include="Helper\ViewType.cs" />
     <Compile Include="Model\Adress.cs" />
     <Compile Include="Model\Costumer.cs" />
@@ -111,7 +110,6 @@
     <Compile Include="ViewModel\DeliveryViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
-    <Compile Include="ViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\ProductExportViewModel.cs" />
     <Compile Include="ViewModel\ProductImportViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
@@ -125,9 +123,6 @@
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LogView.xaml.cs">
-      <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainListView.xaml.cs">
       <DependentUpon>MainListView.xaml</DependentUpon>
@@ -168,10 +163,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

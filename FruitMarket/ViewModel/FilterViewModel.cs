@@ -23,6 +23,13 @@ namespace FruitMarket.ViewModel
         private string m_CurrentFilterCriteria = null;
         private string m_CurrentFilterText = null;
 
+        public string PageDescription
+        {
+            get
+            {
+                return ToolConstants.FILTER_VIEW_DESC;
+            }
+        }
 
         public string CurrentFilterText
         {

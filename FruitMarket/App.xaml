@@ -11,10 +11,12 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                
+                
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Colors/BaseDark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Accents/Teal.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="MaterialDesignPaper" Color="#505050"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

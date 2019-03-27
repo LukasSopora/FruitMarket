@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FruitMarket.View"
+             xmlns:converter="clr-namespace:FruitMarket.Converter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-
+    <UserControl.Resources>
+        <converter:EmptyCollectionConverter x:Key="EmptyCollectionConverter"/>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -20,6 +23,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock
+            Visibility="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EmptyCollectionConverter}}"
             Text="Angewendete Filter:"
             Grid.Row="0"
             Margin="5"

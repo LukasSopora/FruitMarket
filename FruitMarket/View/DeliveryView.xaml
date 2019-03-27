@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FruitMarket.View"
+             xmlns:view="clr-namespace:FruitMarket.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -13,6 +14,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -20,5 +23,60 @@
             Text="Lieferschein erstellen"
             Grid.Row="0" HorizontalAlignment="Center"
             FontWeight="Bold" FontSize="20"/>
+
+        <Grid
+            Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Margin="5"
+                Text="Verkaufende Firma: "
+                FontWeight="SemiBold" FontSize="20"
+                Grid.Row="0" Grid.ColumnSpan="2"/>
+
+            <TextBlock
+                Text="Name: "
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Grid.Row="1" Grid.Column="0"/>
+
+            <TextBox
+                Text="Obst und Gemüse Meier OHG"
+                VerticalAlignment="Bottom"
+                Margin="10,0,0,0"
+                Grid.Row="1" Grid.Column="1"
+                IsReadOnly="True"/>
+
+            <TextBlock
+                Text="Anschrift: "
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.Row="2" Grid.Column="0"/>
+
+            <TextBox
+                Text="Musterstrasse 12, 12345 Musterstadt"
+                Margin="10,0,0,0"
+                Grid.Row="2" Grid.Column="1"
+                VerticalAlignment="Bottom"
+                IsReadOnly="True"/>
+        </Grid>
+
+        <TextBlock
+            Text="Kunde: "
+            Grid.Row="2"
+            Margin="5"
+            FontWeight="DemiBold"
+            FontSize="20"/>
+
+        <view:SupplierView
+            Grid.Row="3"
+            DataContext="{Binding Costumer}"
+            MaxWidth="500" MaxHeight="300"/>
     </Grid>
 </UserControl>
