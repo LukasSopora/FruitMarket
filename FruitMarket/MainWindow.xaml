@@ -268,7 +268,7 @@
                         Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Einkauf" GotFocus="RibbonTabItem_GotFocus">
+            <Fluent:RibbonTabItem Header="Einlagerung" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"
@@ -394,7 +394,7 @@
                         Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Verkauf" GotFocus="RibbonTabItem_GotFocus">
+            <Fluent:RibbonTabItem Header="Auslagerung" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
                             Command="{Binding ShowHomeViewCommand}"

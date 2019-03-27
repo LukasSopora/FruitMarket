@@ -21,8 +21,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Produkte" Grid.Row="0" FontWeight="Bold" FontSize="20"
-                   Margin="20,10,20,10"/>
+        <TextBlock 
+            Text="Produkt-nach-Lieferant-Liste" 
+            Grid.Row="0" FontWeight="Bold" FontSize="24"/>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Fruits}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
@@ -35,7 +36,7 @@
                 <DataGridTextColumn Header="Produzent" Binding="{Binding Producer}"/>
                 <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="MHD" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature, StringFormat=dd}"/>
+                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature}"/>
                 <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
                 <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice, StringFormat=C}"/>
                 <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice, StringFormat=C}"/>

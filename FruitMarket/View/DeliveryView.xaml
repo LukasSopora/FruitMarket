@@ -11,6 +11,9 @@
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,8 +24,8 @@
 
         <TextBlock
             Text="Lieferschein erstellen"
-            Grid.Row="0" HorizontalAlignment="Center"
-            FontWeight="Bold" FontSize="20"/>
+            Grid.Row="0"
+            FontSize="24" FontWeight="Bold"/>
 
         <Grid
             Grid.Row="1">

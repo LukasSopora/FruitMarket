@@ -23,8 +23,7 @@
         </Grid.RowDefinitions >
     
 
-        <TextBlock Text="Alphabetische Liste" Grid.Row="0" FontWeight="Bold" FontSize="20"
-                   Margin="20,10,20,10"/>
+        <TextBlock Text="Alphabetische Liste" Grid.Row="0" FontWeight="Bold" FontSize="24"/>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Fruits}"
                   CanUserAddRows="False" CanUserDeleteRows="False"

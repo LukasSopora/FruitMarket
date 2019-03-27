@@ -46,8 +46,8 @@ namespace FruitMarket
                     case "Lager": type = ViewType.MainListView; break;
                     case "Produkte": type = ViewType.ProductListView; break;
                     case "Suche": type = ViewType.FilterView; break;
-                    case "Einkauf": type = ViewType.ProductAdmissionView; break;
-                    case "Verkauf": type = ViewType.ProductDeliveryView; break;
+                    case "Einlagerung": type = ViewType.ProductAdmissionView; break;
+                    case "Auslagerung": type = ViewType.ProductDeliveryView; break;
                     case "Lieferschein": type = ViewType.DeliveryView; break;
                     default: type = ViewType.HomeView; break;
                 }

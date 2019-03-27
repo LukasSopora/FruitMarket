@@ -22,6 +22,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock
+            Text="Auslagerung"
+            Grid.Row="0"
+            FontSize="24" FontWeight="Bold"/>
+        
         <materialDesign:Transitioner
             Grid.Row="1"
             SelectedIndex="{Binding PageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

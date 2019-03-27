@@ -118,7 +118,7 @@ namespace FruitMarket.Model
         }
 
         public Product(string p_Sort, int p_Amount, string p_Category,
-                     Supplier p_Supplier, Producer p_Producer,
+                     Supplier p_Supplier, Producer p_Producer, DateTime p_PurchaseDate,
                      DateTime p_Expiration, Mature p_Mature, string p_Origin,
                      double p_PurchasePrice, double p_SalesPrice)
         {
@@ -127,6 +127,7 @@ namespace FruitMarket.Model
             m_Category = p_Category;
             m_Supplier = p_Supplier;
             m_Producer = p_Producer;
+            m_PurchaseDate = p_PurchaseDate;
             m_Expiration = p_Expiration;
             m_Mature = p_Mature;
             m_Origin = p_Origin;

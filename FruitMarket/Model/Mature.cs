@@ -57,5 +57,10 @@ namespace FruitMarket.Model
             info.AddValue(nameof(Days), m_Days);
             info.AddValue(nameof(Hours), m_Hours);
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0} d, {1} h", m_Days, m_Hours);
+        }
     }
 }

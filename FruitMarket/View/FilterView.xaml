@@ -13,25 +13,36 @@
              Language="de"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         <converter:EmptyCollectionConverter x:Key="EmptyCollectionConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock
+            Grid.Row="0"
+            Text="Filter Suche"
+            FontWeight="Bold" FontSize="24"/>
+
+        <TextBlock
             Visibility="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EmptyCollectionConverter}}"
             Text="Angewendete Filter:"
-            Grid.Row="0"
-            Margin="5"
+            Grid.Row="1"
+            Margin="10,15,0,10"
             FontSize="20"/>
 
         <ItemsControl
-            Grid.Row="1"
+            Grid.Row="2"
             ItemsSource="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -115,7 +126,7 @@
         </ItemsControl>
 
         <DataGrid
-            Grid.Row="2"
+            Grid.Row="3" Margin="10"
             ItemsSource="{Binding Products}"
             CanUserAddRows="False" CanUserDeleteRows="False"
             AutoGenerateColumns="False">

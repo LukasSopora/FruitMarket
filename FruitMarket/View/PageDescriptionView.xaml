@@ -20,8 +20,9 @@
             <materialDesign:PackIcon
                 Grid.Column="0"
                 Kind="HelpOutline"
-                Width="20" Height="20"
+                Width="24" Height="24"
                 VerticalAlignment="Top"
+                Foreground="{StaticResource PrimaryHueMidBrush}"
                 Margin="3,3,0,0"/>
 
             <ScrollViewer 
