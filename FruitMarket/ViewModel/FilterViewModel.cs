@@ -17,11 +17,21 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Filter>();
         private ObservableCollection<Product> m_Products =
             new ObservableCollection<Product>();
+        private ObservableCollection<Product> m_Filtered =
+            new ObservableCollection<Product>();
+
+
         private ObservableCollection<string> m_FilterCriteria =
             new ObservableCollection<string>();
 
         private string m_CurrentFilterCriteria = null;
         private string m_CurrentFilterText = null;
+
+        public ObservableCollection<Product> Filtered
+        {
+            get { return m_Filtered; }
+            set { SetProperty(ref m_Filtered, value); }
+        }
 
         public string PageDescription
         {
@@ -65,25 +75,37 @@ namespace FruitMarket.ViewModel
         public DelegateCommand AddFilterCommand { get; private set; }
         public DelegateCommand DeleteFilterCommand { get; private set; }
         public DelegateCommand DeleteAllCommand { get; private set; }
+        public DelegateCommand FilterProducts { get; private set; }
 
         private void InitializeCommands()
         {
             AddFilterCommand = new DelegateCommand(OnAddFilter);
             RaisePropertyChanged(nameof(AddFilterCommand));
-            DeleteFilterCommand = new DelegateCommand(OnDeleteFilter);
-            RaisePropertyChanged(nameof(DeleteAllCommand));
-            DeleteAllCommand = new DelegateCommand(OnDeleteAll);
-            RaisePropertyChanged(nameof(DeleteAllCommand));
+            FilterProducts = new DelegateCommand(OnFilterProducts);
+            RaisePropertyChanged(nameof(FilterProducts));
         }
 
-        private void OnDeleteAll()
+        private void OnFilterProducts()
         {
-            throw new NotImplementedException();
-        }
+            ObservableCollection<Product> result = new ObservableCollection<Product>();
 
-        private void OnDeleteFilter()
-        {
-            throw new NotImplementedException();
+            foreach(Filter f in m_Filter)
+            {
+                switch(f.Criteria)
+                {
+                    case "Sorte": break;
+                    case "Kategorie": break;
+                    case "MHD": break;
+                    case "Reifungsdauer": break;
+                    case "Verkaufspreis": break;
+                    case "Bestand": break;
+                    case "Lieferant": break;
+                    case "Produzent": break;
+                    case "Kunde": break;
+                    case "Lieferschein": break;
+                    default: break;
+                }
+            }
         }
 
         private void OnAddFilter()
@@ -114,6 +136,14 @@ namespace FruitMarket.ViewModel
 
             m_FilterCriteria = ToolConstants.FILTER_CRITERIA;
             RaisePropertyChanged(nameof(FilterCriteria));
+
+            m_Filtered = new ObservableCollection<Product>
+            {
+                new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0),
+                new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0),
+                new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 8.0), "Spanien", 6.0, 9.0),
+            };
+            RaisePropertyChanged(nameof(Filtered));
         }
     }
 }

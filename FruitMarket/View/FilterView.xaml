@@ -129,13 +129,20 @@
         <Button
             Grid.Row="3" HorizontalAlignment="Right"
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            Width="100">
-            Filtern
+            Width="120" Margin="10"
+            Command="{Binding FilterProducts}">
+            <DockPanel>
+                <materialDesign:PackIcon 
+                    Kind="filter"
+                    Width="24" Height="24"/>
+                <TextBlock Text="Filtern" Margin="3,0,0,0"
+                           VerticalAlignment="Center" FontSize="15"/>
+            </DockPanel>
         </Button>
 
         <DataGrid
             Grid.Row="4" Margin="10"
-            ItemsSource="{Binding Products}"
+            ItemsSource="{Binding Filtered}"
             CanUserAddRows="False" CanUserDeleteRows="False"
             AutoGenerateColumns="False">
             <DataGrid.Columns >
