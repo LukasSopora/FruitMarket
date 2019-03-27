@@ -1,5 +1,4 @@
-﻿using FruitMarket.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,13 +16,12 @@ using System.Windows.Shapes;
 namespace FruitMarket.View
 {
     /// <summary>
-    /// Interaction logic for DeliveryView.xaml
+    /// Interaction logic for CompanyView.xaml
     /// </summary>
-    public partial class DeliveryView : UserControl
+    public partial class CompanyView : UserControl
     {
-        public DeliveryView()
+        public CompanyView()
         {
-            DataContext = new DeliveryViewModel();
             InitializeComponent();
         }
 

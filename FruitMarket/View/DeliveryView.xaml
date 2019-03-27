@@ -36,13 +36,37 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Text="Lieferschein erstellen"
+                Grid.Row="0" FontWeight="Bold" FontSize="24"/>
+            
 
             <TextBlock Margin="5"
                 Text="Verkaufende Firma: "
                 FontWeight="SemiBold" FontSize="20"
-                Grid.Row="0" Grid.ColumnSpan="2"/>
+                Grid.Row="1" Grid.Column="0"/>
+
+            <Border
+                Grid.Row="2" Grid.Column="0"
+                CornerRadius="5" BorderThickness="3" BorderBrush="White" Background="{DynamicResource MaterialDesignPaper}"
+                MouseEnter="View_Mouse_Enter" MouseLeave="View_Mouse_Leave" x:Name="SupplierViewBorder">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                </Grid>
+            </Border>
 
             <TextBlock
                 Text="Name: "
