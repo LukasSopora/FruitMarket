@@ -535,6 +535,52 @@
                             Width="30" />
                     </Button>
                 </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox>
+                    <DockPanel Margin="0,0,20,0">
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Kunden:" HorizontalAlignment="Left"/>
+                            <ComboBox ItemsSource="{Binding ActiveView.DataContext.Costumers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding ActiveView.DataContext.CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      MinWidth="100"/>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.NewCostumerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    MouseEnter="Button_MouseEnter"
+                                    MouseLeave="Button_MouseLeave"
+                                    ToolTip="Kunden hinzufügen">
+                                    <materialDesign:PackIcon
+                                        Kind="Add"
+                                        Height="18"
+                                        Width="18" />
+                                </Button>
+                                <Button
+                                    Command="{Binding ActiveView.DataContext.DeleteCostumerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Width="20" Height="20" Margin="5,3,0,0"
+                                    MouseEnter="Button_MouseEnter"
+                                    MouseLeave="Button_MouseLeave"
+                                    ToolTip="Kunden löschen">
+                                    <materialDesign:PackIcon
+                                        Kind="Delete"
+                                        Height="18"
+                                        Width="18" />
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource RibbonStack}">
+                            <TextBlock Text="Versanddatum auswählen" HorizontalAlignment="Left"/>
+                            <DatePicker SelectedDate="{Binding ActiveView.DataContext.DeliveryDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox>
+                    <view:PageDescriptionView
+                        VerticalAlignment="Center" Margin="5"
+                        DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
 

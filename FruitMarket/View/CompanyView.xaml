@@ -9,7 +9,7 @@
              Background="Transparent"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d"  
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,8 +26,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -40,75 +38,58 @@
             </Grid.ColumnDefinitions>
 
 
-            <materialDesign:PackIcon Grid.Row="0" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="2"
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="2"
                                      Kind="Company" Width="70" Height="70"
                                      HorizontalAlignment="Center" VerticalAlignment="Center"
                                      x:Name="UserIcon"/>
 
 
-            <materialDesign:PackIcon Grid.Row="2" Grid.Column="1" Kind="Company" 
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="1" Kind="Company" 
                                      Foreground="{Binding ElementName=CompanyTextBox, Path=BorderBrush}"/>
-            <TextBox Grid.Row="2" Grid.Column="2" x:Name="CompanyTextBox"
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="CompanyTextBox"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding Company}" materialDesign:HintAssist.Hint="Firma"/>
+                     Text="Obst und Gemüse Meier OHG" materialDesign:HintAssist.Hint="Firma"/>
 
 
-            <materialDesign:PackIcon Grid.Row="3" Grid.Column="1" Kind="Account" 
-                                     Foreground="{Binding ElementName=FirstNameBox, Path=BorderBrush}"/>
-            <TextBox Grid.Row="3" Grid.Column="2" x:Name="FirstNameBox"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding FirstName}" materialDesign:HintAssist.Hint="Vorname"/>
-
-
-            <TextBox Grid.Row="4" Grid.Column="2" x:Name="LastNameBox" 
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:TransitionAssist.DisableTransitions="True"
-                     Text="{Binding LastName}" materialDesign:HintAssist.Hint="Nachname"/>
-
-
-            <materialDesign:PackIcon Grid.Row="5" Grid.Column="1" Kind="Star" 
-                                     Foreground="{Binding ElementName=DatePickerBox, Path=BorderBrush}"/>
-            <DatePicker Grid.Row="5" Grid.Column="2" materialDesign:HintAssist.Hint="Geburtsdatum" materialDesign:HintAssist.IsFloating="False"
-                        x:Name="DatePickerBox"
-                        SelectedDate="{Binding Birthday}"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                        VerticalAlignment="Bottom"/>
-
-
-            <materialDesign:PackIcon Grid.Row="6" Grid.Column="1" Kind="Phone" 
+            <materialDesign:PackIcon Grid.Row="2" Grid.Column="3" Kind="Phone" 
                                      Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"/>
-            <TextBox Grid.Row="6" Grid.Column="2" x:Name="PhoneTextBox" 
+            <TextBox Grid.Row="2" Grid.Column="4" x:Name="PhoneTextBox" 
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:TransitionAssist.DisableTransitions="True"
-                     Text="{Binding Phone}" materialDesign:HintAssist.Hint="Telefonnummer"/>
+                     Text="0174 6123449" materialDesign:HintAssist.Hint="Telefonnummer"/>
 
 
             <materialDesign:PackIcon Kind="Place" Foreground="{Binding ElementName=StreetTextBox, Path=BorderBrush}"
-                                     Grid.Row="3" Grid.Column="3"/>
-            <TextBox Text="{Binding Adress.Street}" x:Name="StreetTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
-                         Grid.Row="3" Grid.Column="4"
+                                     Grid.Row="2" Grid.Column="1" RenderTransformOrigin="0.76,-4.573"/>
+            <TextBox Text="Klempnerweg 24" x:Name="StreetTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="2" Grid.Column="2"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Straße"/>
 
 
-            <TextBox Text="{Binding Adress.PostCode}" x:Name="PostCodeTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
-                         Grid.Row="4" Grid.Column="4"
+            <TextBox Text="21614" x:Name="PostCodeTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="3" Grid.Column="2"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Postleitzahl"/>
 
 
-            <TextBox Text="{Binding Adress.Place}" x:Name="PlaceTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
-                         Grid.Row="5" Grid.Column="4"
+            <TextBox Text="Buxtehude" x:Name="PlaceTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="4" Grid.Column="2"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Ort"/>
 
-
             <materialDesign:PackIcon Kind="AlternateEmail" Foreground="{Binding ElementName=MailTextBox, Path=BorderBrush}"
-                                     Grid.Row="6" Grid.Column="3"/>
-            <TextBox Text="{Binding Email}" x:Name="MailTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
-                         Grid.Row="6" Grid.Column="4"
+                                     Grid.Row="3" Grid.Column="3"/>
+            <TextBox Text="Meier.Obst@gmail.com" x:Name="MailTextBox" materialDesign:TransitionAssist.DisableTransitions="True"
+                         Grid.Row="3" Grid.Column="4"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Email Adresse"/>
+
+            <materialDesign:PackIcon Grid.Row="4" Grid.Column="3" Kind="Account" 
+                                     Foreground="{Binding ElementName=FirstNameBox, Path=BorderBrush}"/>
+            <TextBox Grid.Row="4" Grid.Column="4" x:Name="FirstNameBox"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="Peter Klein" materialDesign:HintAssist.Hint="Verantwortlicher"/>
         </Grid>
     </Border>
 </UserControl>

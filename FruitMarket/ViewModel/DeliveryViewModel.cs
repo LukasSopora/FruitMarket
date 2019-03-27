@@ -1,4 +1,5 @@
-﻿using FruitMarket.Model;
+﻿using FruitMarket.Helper;
+using FruitMarket.Model;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace FruitMarket.ViewModel
     {
         private ObservableCollection<Product> m_Products =
             new ObservableCollection<Product>();
+        private ObservableCollection<Costumer> m_Costumers =
+            new ObservableCollection<Costumer>();
         private Costumer m_Costumer = null;
         private DateTime m_DeliveryDate;
         private double m_Sum;
@@ -28,6 +31,12 @@ namespace FruitMarket.ViewModel
                 }
                 return result;
             }
+        }
+
+        public ObservableCollection<Costumer> Costumers
+        {
+            get { return m_Costumers; }
+            set { SetProperty(ref m_Costumers, value); }
         }
 
         public ObservableCollection<Product> Products
@@ -48,5 +57,10 @@ namespace FruitMarket.ViewModel
             set { SetProperty(ref m_Costumer, value); }
         }
 
+        public DeliveryViewModel()
+        {
+            m_Costumers = TestDataReader.GetDefaultCostumers();
+            RaisePropertyChanged(nameof(Costumers));
+        }
     }
 }

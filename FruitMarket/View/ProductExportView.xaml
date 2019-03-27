@@ -311,15 +311,6 @@
                                 Height="24"
                                 Width="24" />
                         </Button>
-                        <Button
-                            Style="{StaticResource TransitionNavigationButton}"
-                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-                            ToolTip="Fertigstellen">
-                            <materialDesign:PackIcon
-                                Kind="Check"
-                                Height="34"
-                                Width="34" />
-                        </Button>
                     </DockPanel>
 
                 </Grid>
