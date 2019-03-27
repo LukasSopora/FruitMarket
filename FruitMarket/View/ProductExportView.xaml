@@ -11,6 +11,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
+             Language="de"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
@@ -198,8 +199,16 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <!--Verkaufspreis-->
+                            <!--Einkaufspreis-->
                             <DataGridTemplateColumn Header="Einkaufspreis" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding PurchasePrice, StringFormat=C, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--Verkaufspreis-->
+                            <DataGridTemplateColumn Header="Verkaufspreis" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding SalesPrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -213,7 +222,7 @@
                                         <materialDesign:PackIcon Kind="RubbishBinEmpty" Width="24" Height="24"
                                                      HorizontalAlignment="Center" VerticalAlignment="Center"
                                                      MouseEnter="PackIcon_MouseEnter" MouseLeave="PackIcon_MouseLeave"
-                                                     MouseDown="DeleteFruit"/>
+                                                     MouseDown="DeleteFruit" Foreground="White"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

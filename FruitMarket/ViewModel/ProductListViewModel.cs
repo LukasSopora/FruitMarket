@@ -1,4 +1,5 @@
-﻿using FruitMarket.Model;
+﻿using FruitMarket.Helper;
+using FruitMarket.Model;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,14 @@ namespace FruitMarket.ViewModel
         {
             get { return m_Fruits; }
             set { SetProperty(ref m_Fruits, value); }
+        }
+
+        public string PageDescription
+        {
+            get
+            {
+                return ToolConstants.PRODUCT_LIST_VIEW_DESC;
+            }
         }
 
         public ProductListViewModel()

@@ -18,6 +18,7 @@
 
         <TextBlock
             Text="Obst und Gemüse Meier OHG"
+            Margin="10"
             Grid.Row="0" HorizontalAlignment="Center"
             FontWeight="Bold" FontSize="20"/>
 
@@ -27,8 +28,25 @@
             <TextBlock
                 Text="Aktuelle Meldungen:"
                 FontWeight="DemiBold" FontSize="15"/>
-            <ListView ItemsSource="{Binding ToolMessages}">
-            </ListView>
+
+            <DataGrid
+                Grid.Row="2" Margin="0,10,0,0"
+                ItemsSource="{Binding Messages}"
+                CanUserAddRows="False" CanUserDeleteRows="False"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <materialDesign:MaterialDataGridTextColumn
+                        Header="Typ" Binding="{Binding Type}" IsReadOnly="True"
+                        Width="Auto"/>
+                    <materialDesign:MaterialDataGridTextColumn
+                        Header="Datum" Binding="{Binding Date, StringFormat=dd.MM.yyyy}" IsReadOnly="True"
+                        Width="Auto"/>
+                    <materialDesign:MaterialDataGridTextColumn
+                        Header="Nachricht" Binding="{Binding MessageText}" IsReadOnly="True"
+                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </StackPanel>
     </Grid>
 </UserControl>

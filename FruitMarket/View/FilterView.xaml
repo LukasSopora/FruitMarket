@@ -7,9 +7,10 @@
              xmlns:converter="clr-namespace:FruitMarket.Converter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
+             Background="{StaticResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d"
+             Language="de"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converter:EmptyCollectionConverter x:Key="EmptyCollectionConverter"/>
@@ -41,7 +42,9 @@
                 <DataTemplate>
                     <Border
                         Margin="10"
-                        BorderBrush="{StaticResource PrimaryHueMidBrush}"
+                        BorderBrush="White"
+                        MouseEnter="Border_MouseEnter"
+                        MouseLeave="Border_MouseLeave"
                         BorderThickness="1"
                         CornerRadius="3">
                         <Grid Margin="5">
@@ -99,6 +102,7 @@
                             <materialDesign:PackIcon
                                 Grid.Row="2" Grid.Column="1"
                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Foreground="White"
                                 Kind="Trash"
                                 Width="20" Height="20"
                                 MouseDown="Delete_Filter"
@@ -109,5 +113,26 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <DataGrid
+            Grid.Row="2"
+            ItemsSource="{Binding Products}"
+            CanUserAddRows="False" CanUserDeleteRows="False"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
+                <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Header="Kategorie" Binding="{Binding Category}"/>
+                <DataGridTextColumn Header="Lieferant" Binding="{Binding Supplier}"/>
+                <DataGridTextColumn Header="Produzent" Binding="{Binding Producer}"/>
+                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="MHD" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature, StringFormat=dd}"/>
+                <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
+                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice, StringFormat=C}"/>
+                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice, StringFormat=C}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
     </Grid>
 </UserControl>

@@ -189,6 +189,12 @@ namespace FruitMarket.Helper
 
         #endregion
 
+        #region ProductListView
+        public const string PRODUCT_LIST_VIEW_DESC =
+            "Hier findet die Ausgabe sämtlicher Produkte aller Lieferanten statt (auch mit Bestand 0).\n" +
+            "Die Liste kann in eine PDF-Datei exportiert werden.";
+        #endregion
+
         #endregion
 
         #region Filter

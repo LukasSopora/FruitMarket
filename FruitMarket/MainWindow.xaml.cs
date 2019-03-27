@@ -64,7 +64,7 @@ namespace FruitMarket
                 if(btn.Content.GetType() == typeof(PackIcon))
                 {
                     PackIcon icon = btn.Content as PackIcon;
-                    icon.Foreground = Brushes.DarkCyan;
+                    icon.Foreground = Brushes.White;
                 }
 
             }

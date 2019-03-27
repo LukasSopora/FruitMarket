@@ -10,7 +10,7 @@
              TextElement.FontWeight="Medium"
              mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="300">
-    <Border CornerRadius="5" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="{DynamicResource MaterialDesignPaper}">
+    <Border CornerRadius="5" BorderThickness="3" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Background="Transparent">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -25,11 +25,13 @@
                 Margin="3,3,0,0"/>
 
             <ScrollViewer 
-                Grid.Column="2"
+                VerticalScrollBarVisibility="Auto"
+                Grid.Column="2" CanContentScroll="True"
                 Margin="0,3,0,3">
                 <TextBlock 
                     Text="{Binding}"
-                    Margin="5"
+                    Margin="5" TextWrapping="WrapWithOverflow"
+                    MaxWidth="400"
                     FontWeight="Light"/>
             </ScrollViewer>
         </Grid>

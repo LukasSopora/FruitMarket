@@ -51,5 +51,17 @@ namespace FruitMarket.View
             PackIcon btn = sender as PackIcon;
             btn.Foreground = Brushes.White;
         }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Border border = sender as Border;
+            border.BorderBrush = FindResource("PrimaryHueMidBrush") as Brush;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Border border = sender as Border;
+            border.BorderBrush = Brushes.White;
+        }
     }
 }

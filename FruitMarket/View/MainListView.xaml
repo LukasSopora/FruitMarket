@@ -9,6 +9,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
+             Language="de"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
@@ -30,17 +31,17 @@
                   AutoGenerateColumns="False" 
                   Margin="20,10,20,10">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Sorte/Bezeichnung" Binding="{Binding Sort}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Kategorie" Binding="{Binding Category}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Lieferant" Binding="{Binding Supplier.Company}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Produzent" Binding="{Binding Producer.Company}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="ausstehende Reifungsdauer" Binding="{Binding Mature, StringFormat=dd}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="MHD" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature, StringFormat=dd}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice, StringFormat=C}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice,StringFormat=C}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 

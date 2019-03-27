@@ -9,6 +9,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              mc:Ignorable="d" 
+             Language="de"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/ProductAdmissionDesign.xaml"/>
@@ -27,16 +28,17 @@
                   CanUserAddRows="False" CanUserDeleteRows="False"
                   AutoGenerateColumns="False" Margin="20,10,20,10">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Sorte/Bezeichnung" Binding="{Binding Sort}"/>
+                <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
                 <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Kategorie / Klasse" Binding="{Binding Category}"/>
-                <DataGridTextColumn Header="Lieferant / Produzent" Binding="{Binding Supplier.LastName}"/>
+                <DataGridTextColumn Header="Kategorie" Binding="{Binding Category}"/>
+                <DataGridTextColumn Header="Lieferant" Binding="{Binding Supplier}"/>
+                <DataGridTextColumn Header="Produzent" Binding="{Binding Producer}"/>
                 <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="Mindesthaltbarkeitsdatum" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="ausstehende Reifungsdauer" Binding="{Binding Mature, StringFormat=dd}"/>
+                <DataGridTextColumn Header="MHD" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature, StringFormat=dd}"/>
                 <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
-                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice}"/>
-                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice}"/>
+                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice, StringFormat=C}"/>
+                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice, StringFormat=C}"/>
             </DataGrid.Columns>
         </DataGrid>
 
