@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
+    [Serializable]
     public class Mature : ISerializable
     {
         private int m_Days;

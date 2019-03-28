@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
+    [Serializable]
     public class Product : BindableBase, ISerializable
     {
         private int m_Id = 0;

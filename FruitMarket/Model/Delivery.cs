@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
+    [Serializable]
     public class Delivery : ISerializable
     {
         private int m_Id = 0;

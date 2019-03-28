@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
+    [Serializable]
     public class Adress : ISerializable
     {
         private string m_Street = null;
