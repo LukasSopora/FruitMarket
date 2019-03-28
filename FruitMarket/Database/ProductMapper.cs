@@ -47,8 +47,8 @@ namespace FruitMarket.Database
             byte[] productData = memoryStream.ToArray();
             memoryStream.Close();
 
-            command.Parameters.Add("@1", System.Data.DbType.Int32).Value = p_Product.Amount;
-            command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Product.Sort;
+            command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Product.Sort;
+            command.Parameters.Add("@2", System.Data.DbType.Int32).Value = p_Product.Amount;
             command.Parameters.Add("@3", System.Data.DbType.Int32).Value = p_Product.Producer.Id;
             command.Parameters.Add("@4", System.Data.DbType.String).Value = p_Product.Producer.Company;
             command.Parameters.Add("@5", System.Data.DbType.Int32).Value = p_Product.Supplier.Id;
