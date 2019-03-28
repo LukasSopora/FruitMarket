@@ -12,12 +12,12 @@ namespace FruitMarket.Model
     public class Mature : ISerializable
     {
         private int m_Days;
-        private double m_Hours;
+        private DateTime m_Hours;
 
-        public double Hours
+        public DateTime Hours
         {
             get { return m_Hours; }
-            set { m_Hours = value; Format(); }
+            set { m_Hours = value; }
         }
 
         public int Days
@@ -26,31 +26,27 @@ namespace FruitMarket.Model
             set { m_Days = value; }
         }
 
-        private void Format()
-        {
-            while(m_Hours > 23)
-            {
-                m_Hours -= 23;
-                m_Days++;
-            }
-        }
-
         public Mature()
         {
 
         }
 
-        public Mature(int p_Days, double p_Hours)
+        public Mature(int p_Days, DateTime p_Hours)
         {
             m_Days = p_Days;
             m_Hours = p_Hours;
-            Format();
+        }
+
+        public Mature(int p_Days, double p_Hours)
+        {
+            m_Days = p_Days;
+            m_Hours = DateTime.Now.Date.AddHours(p_Hours);
         }
 
         public Mature(SerializationInfo info, StreamingContext context)
         {
             m_Days = (int)info.GetValue(nameof(Days), typeof(int));
-            m_Hours = (double)info.GetValue(nameof(Hours), typeof(double));
+            m_Hours = (DateTime)info.GetValue(nameof(Hours), typeof(DateTime));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

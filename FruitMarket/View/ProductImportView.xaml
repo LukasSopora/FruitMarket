@@ -96,7 +96,7 @@
                     <DataGrid
                         Grid.Row="1"
                         Margin="10,10,10,10"
-                        ItemsSource="{Binding Fruits}"
+                        ItemsSource="{Binding Products}"
                         CanUserAddRows="True"
                         AutoGenerateColumns="False"
                         VerticalScrollBarVisibility="Auto"
@@ -107,7 +107,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
-                                      SelectedValue="{Binding Sort}"
+                                      SelectedValue="{Binding Sort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
@@ -138,7 +138,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
-                                      SelectedValue="{Binding Category}"
+                                      SelectedValue="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Categories}"/>
@@ -149,7 +149,7 @@
                             <DataGridTemplateColumn Header="Kaufdatum" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <DatePicker SelectedDate="{Binding PurchaseDate}"
+                                        <DatePicker SelectedDate="{Binding PurchaseDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         MinWidth="100"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                     </DataTemplate>
@@ -159,7 +159,7 @@
                             <DataGridTemplateColumn Header="MHD" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <DatePicker SelectedDate="{Binding ExpirationDate}"
+                                        <DatePicker SelectedDate="{Binding Expiration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         MinWidth="100"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                     </DataTemplate>
@@ -173,7 +173,7 @@
                                             <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          MinWidth="30"/>
                                             <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
-                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours}"
+                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                            materialDesign:HintAssist.Hint=""
                                                            Is24Hours="True"
                                                            VerticalAlignment="Bottom" MinWidth="50"/>
@@ -187,7 +187,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
-                                      SelectedValue="{Binding Origin}"
+                                      SelectedValue="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="(Hinzufügen)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Origins}"/>

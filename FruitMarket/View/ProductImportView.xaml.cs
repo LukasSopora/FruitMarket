@@ -91,9 +91,9 @@ namespace FruitMarket.View
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
                 {
                     Product fruit = (Product)((PackIcon)sender).DataContext;
-                    if(pivm.Fruits.Contains(fruit))
+                    if(pivm.Products.Contains(fruit))
                     {
-                        pivm.Fruits.Remove(fruit);
+                        pivm.Products.Remove(fruit);
                     }
                 }
             }

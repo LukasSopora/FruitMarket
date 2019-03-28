@@ -137,12 +137,12 @@ namespace FruitMarket.ViewModel
             m_FilterCriteria = ToolConstants.FILTER_CRITERIA;
             RaisePropertyChanged(nameof(FilterCriteria));
 
-            m_Filtered = new ObservableCollection<Product>
-            {
-                new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0),
-                new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0),
-                new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 8.0), "Spanien", 6.0, 9.0),
-            };
+            //m_Filtered = new ObservableCollection<Product>
+            //{
+            //    new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0),
+            //    new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0),
+            //    new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 8.0), "Spanien", 6.0, 9.0),
+            //};
             RaisePropertyChanged(nameof(Filtered));
         }
     }

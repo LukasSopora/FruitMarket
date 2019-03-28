@@ -18,7 +18,7 @@ namespace FruitMarket.ViewModel
             new ObservableCollection<Supplier>();
         private ObservableCollection<Producer> m_Producers =
             new ObservableCollection<Producer>();
-        private ObservableCollection<Product> m_Fruits =
+        private ObservableCollection<Product> m_Products =
             new ObservableCollection<Product>();
         private ObservableCollection<string> m_Sorts =
             new ObservableCollection<string>();
@@ -99,10 +99,10 @@ namespace FruitMarket.ViewModel
             set { SetProperty(ref m_Producers, value); }
         }
 
-        public ObservableCollection<Product> Fruits
+        public ObservableCollection<Product> Products
         {
-            get { return m_Fruits; }
-            set { SetProperty(ref m_Fruits, value); }
+            get { return m_Products; }
+            set { SetProperty(ref m_Products, value); }
         }
 
         public Supplier CurrentSupplier
@@ -152,8 +152,8 @@ namespace FruitMarket.ViewModel
 
         private void OnAddProduct()
         {
-            m_Fruits.Add(new Product());
-            RaisePropertyChanged(nameof(Fruits));
+            m_Products.Add(new Product());
+            RaisePropertyChanged(nameof(Products));
         }
 
         private void OnAddNewSort()
@@ -205,7 +205,12 @@ namespace FruitMarket.ViewModel
         {
             if (CheckSupplier() && CheckFruits())
             {
-                ProductMapper.SaveProducts(m_Fruits);
+                foreach(Product p in m_Products)
+                {
+                    p.Producer = m_CurrentProducer;
+                    p.Supplier = m_CurrentSupplier;
+                }
+                ProductMapper.SaveProducts(m_Products);
             }
         }
 
@@ -339,12 +344,12 @@ namespace FruitMarket.ViewModel
 
         private bool CheckFruits()
         {
-            if (m_Fruits.Count == 0)
+            if (m_Products.Count == 0)
             {
                 return false;
             }
 
-            foreach (Product f in m_Fruits)
+            foreach (Product f in m_Products)
             {
                 if (f.Sort == null || f.Sort == "")
                 {
@@ -371,7 +376,7 @@ namespace FruitMarket.ViewModel
                     System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
                     return false;
                 }
-                if (f.Mature == null || f.Mature.Days == 0 && f.Mature.Hours == 0)
+                if (f.Mature == null || f.Mature.Days == 0 && f.Mature.Hours.Hour == 0)
                 {
                     System.Windows.MessageBox.Show("Mature cannot be empty.");
                     return false;
@@ -403,11 +408,11 @@ namespace FruitMarket.ViewModel
             m_CurrentSupplier = new Supplier();
             m_CurrentProducer = new Producer();
 
-            m_Fruits.Add(new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0));
-            m_Fruits.Add(new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0));
-            m_Fruits.Add(new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 8.0), "Spanien", 6.0, 9.0));
+            //m_Fruits.Add(new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0));
+            //m_Fruits.Add(new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0));
+            m_Products.Add(new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 22.30), "Spanien", 6.0, 9.0));
 
-            RaisePropertyChanged(nameof(Fruits));
+            RaisePropertyChanged(nameof(Products));
 
             if (m_Suppliers.Count == 0)
             {
@@ -418,7 +423,7 @@ namespace FruitMarket.ViewModel
                 OnNewProducer();
             }
 
-            RaisePropertyChanged(nameof(Fruits));
+            RaisePropertyChanged(nameof(Products));
             RaisePropertyChanged(nameof(Sorts));
             RaisePropertyChanged(nameof(Categories));
             RaisePropertyChanged(nameof(Origins));
