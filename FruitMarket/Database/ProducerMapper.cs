@@ -25,10 +25,62 @@ namespace FruitMarket.Database
         private static void SaveProducer(Producer p_Producer)
         {
             SQLiteConnection con = Connection.GetConnection();
-
             SQLiteCommand command = new SQLiteCommand(con);
 
+            bool alreadyExists = false;
+
             command.CommandText = string.Format(
+                "SELECT {0} FROM {1} " +
+                "WHERE {0} = @0",
+                ToolConstants.DB_PRODUCER_ID,
+                ToolConstants.DB_PRODUCER_TABLE);
+
+            command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_Producer.Id;
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            if(reader.HasRows)
+            {
+                alreadyExists = true;
+            }
+
+            reader.Close();
+
+            if(alreadyExists)
+            {
+                command.CommandText = string.Format(
+                    "UPDATE {0} SET " +
+                    "{1} = @1, " + 
+                    "{2} = @2, " + 
+                    "{3} = @3, " + 
+                    "{4} = @4 " +
+                    "WHERE {5} = @5",
+                    ToolConstants.DB_PRODUCER_TABLE,
+                    ToolConstants.DB_PRODUCER_LAST_NAME,
+                    ToolConstants.DB_PRODUCER_FIRST_NAME,
+                    ToolConstants.DB_PRODUCER_COMPANY,
+                    ToolConstants.DB_PRODUCER_DATA,
+                    ToolConstants.DB_PRODUCER_ID
+                    );
+
+                MemoryStream memoryStream = new MemoryStream();
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(memoryStream, p_Producer);
+
+                byte[] productData = memoryStream.ToArray();
+                memoryStream.Close();
+
+                command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
+                command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
+                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
+                command.Parameters.Add("@4", System.Data.DbType.Binary, productData.Length).Value = productData;
+                command.Parameters.Add("@5", System.Data.DbType.Int32).Value = p_Producer.Id;
+
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                command.CommandText = string.Format(
                 "INSERT INTO {0} ({1}, {2}, {3}, {4}) " +
                 "VALUES (@1, @2, @3, @4)",
                 ToolConstants.DB_PRODUCER_TABLE,
@@ -37,19 +89,20 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCER_COMPANY,
                 ToolConstants.DB_PRODUCER_DATA);
 
-            MemoryStream memoryStream = new MemoryStream();
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(memoryStream, p_Producer);
+                MemoryStream memoryStream = new MemoryStream();
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(memoryStream, p_Producer);
 
-            byte[] productData = memoryStream.ToArray();
-            memoryStream.Close();
+                byte[] productData = memoryStream.ToArray();
+                memoryStream.Close();
 
-            command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
-            command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
-            command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
-            command.Parameters.Add("@4", System.Data.DbType.Binary, productData.Length).Value = productData;
+                command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
+                command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
+                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
+                command.Parameters.Add("@4", System.Data.DbType.Binary, productData.Length).Value = productData;
 
-            command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+            }
         }
 
         public static ObservableCollection<Producer> GetAllProduers()
