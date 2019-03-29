@@ -397,9 +397,6 @@ namespace FruitMarket.ViewModel
 
         public ProductImportViewModel()
         {
-            ProducerMapper.SaveProducers(TestDataReader.GetDefaultProducers());
-            SupplierMapper.SaveSuppliers(TestDataReader.GetDefaultSuppliers());
-
             InitializeCommands();
             m_Suppliers = SupplierMapper.GetAllSuppliers();
             m_Producers = ProducerMapper.GetAllProduers();
