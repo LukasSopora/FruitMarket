@@ -22,9 +22,7 @@ namespace FruitMarket.Helper
         public const string DB_PRODUCT_SORT = "Sort";
         public const string DB_PRODUCT_AMOUNT = "Amount";
         public const string DB_PRODUCT_PRODUCER_ID = "ProducerId";
-        public const string DB_PRODUCT_PRODUCER_NAME = "ProducerName";
         public const string DB_PRODUCT_SUPPLIER_ID = "SupplierId";
-        public const string DB_PRODUCT_SUPPLIER_NAME = "SupplierName";
         public const string DB_PRODUCT_DATA = "Data";
 
         public static string DB_PRODUCT = string.Format(
@@ -33,19 +31,15 @@ namespace FruitMarket.Helper
             "{2} TEXT, " +
             "{3} INTEGER NOT NULL, " +
             "{4} INTEGER NOT NULL, " +
-            "{5} TEXT, " +
-            "{6} INTEGER NOT NULL, " +
-            "{7} TEXT, " +
-            "{8} BLOB);", new string[]
+            "{5} INTEGER NOT NULL, " +
+            "{6} BLOB);", new string[]
             {
                 DB_PRODUCT_TABLE,
                 DB_PRODUCT_ID,
                 DB_PRODUCT_SORT,
                 DB_PRODUCT_AMOUNT,
                 DB_PRODUCT_PRODUCER_ID,
-                DB_PRODUCT_PRODUCER_NAME,
                 DB_PRODUCT_SUPPLIER_ID,
-                DB_PRODUCT_SUPPLIER_NAME,
                 DB_PRODUCT_DATA
             });
         #endregion

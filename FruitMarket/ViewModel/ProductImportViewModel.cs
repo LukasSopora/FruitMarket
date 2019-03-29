@@ -207,8 +207,8 @@ namespace FruitMarket.ViewModel
             {
                 foreach(Product p in m_Products)
                 {
-                    p.Producer = m_CurrentProducer;
-                    p.Supplier = m_CurrentSupplier;
+                    p.ProducerId = m_CurrentProducer.Id;
+                    p.SupplierId = m_CurrentSupplier.Id;
                 }
                 ProductMapper.SaveProducts(m_Products);
             }
@@ -409,6 +409,7 @@ namespace FruitMarket.ViewModel
             m_CurrentProducer = new Producer();
 
             m_Products = ProductMapper.GetAllProducts();
+
 
             if (m_Suppliers.Count == 0)
             {

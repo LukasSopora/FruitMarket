@@ -96,7 +96,7 @@
                     <DataGrid
                         Grid.Row="1"
                         Margin="10,10,10,10"
-                        ItemsSource="{Binding Products}"
+                        ItemsSource="{Binding Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         CanUserAddRows="True"
                         AutoGenerateColumns="False"
                         VerticalScrollBarVisibility="Auto"
@@ -170,10 +170,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
-                                            <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         MinWidth="30"/>
+                                            <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                     MinWidth="30" IsReadOnly="False"/>
                                             <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
-                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                            materialDesign:HintAssist.Hint=""
                                                            Is24Hours="True"
                                                            VerticalAlignment="Bottom" MinWidth="50"/>
@@ -206,8 +206,7 @@
                             <DataGridTemplateColumn Header="Verkaufspreis" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding SalesPrice, StringFormat=C, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                 IsReadOnly="True"/>
+                                        <TextBox Text="{Binding SalesPrice, StringFormat=C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

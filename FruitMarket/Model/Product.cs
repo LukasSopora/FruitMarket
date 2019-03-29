@@ -15,8 +15,8 @@ namespace FruitMarket.Model
         private string m_Sort = null;
         private int m_Amount = 0;
         private string m_Category = null;
-        private Supplier m_Supplier = null;
-        private Producer m_Producer = null; 
+        private int m_SupplierId = 0;
+        private int m_ProducerId = 0; 
         private DateTime m_PurchaseDate = DateTime.MinValue;
         private DateTime m_Expiration = DateTime.MinValue;
         private Mature m_Mature = null;
@@ -34,10 +34,10 @@ namespace FruitMarket.Model
             }
         }
 
-        public Producer Producer
+        public int ProducerId
         {
-            get { return m_Producer; }
-            set { m_Producer = value; }
+            get { return m_ProducerId; }
+            set { SetProperty(ref m_ProducerId, value); }
         }
 
         public double SalesPrice
@@ -45,7 +45,7 @@ namespace FruitMarket.Model
             get { return m_SalesPrice; }
             set
             {
-                m_SalesPrice = value;
+                SetProperty(ref m_SalesPrice, value);
                 RaisePropertyChanged(nameof(PositionSum));
             }
         }
@@ -53,43 +53,43 @@ namespace FruitMarket.Model
         public double PurchasePrice
         {
             get { return m_PurchasePrice; }
-            set { m_PurchasePrice = value; }
+            set { SetProperty(ref m_PurchasePrice, value); }
         }
 
         public string Origin
         {
             get { return m_Origin; }
-            set { m_Origin = value; }
+            set { SetProperty(ref m_Origin, value); }
         }
 
         public Mature Mature
         {
             get { return m_Mature; }
-            set { m_Mature = value; }
+            set { SetProperty(ref m_Mature, value); }
         }
 
         public DateTime PurchaseDate
         {
             get { return m_PurchaseDate; }
-            set { m_PurchaseDate = value; }
+            set { SetProperty(ref m_PurchaseDate, value); }
         }
 
         public DateTime Expiration
         {
             get { return m_Expiration; }
-            set { m_Expiration = value; }
+            set { SetProperty(ref m_Expiration, value); }
         }
 
-        public Supplier Supplier
+        public int SupplierId
         {
-            get { return m_Supplier; }
-            set { m_Supplier = value; }
+            get { return m_SupplierId; }
+            set { SetProperty(ref m_SupplierId, value); }
         }
 
         public string Category
         {
             get { return m_Category; }
-            set { m_Category = value; }
+            set { SetProperty(ref m_Category, value); }
         }
 
         public int Amount
@@ -114,25 +114,25 @@ namespace FruitMarket.Model
         public string Sort
         {
             get { return m_Sort; }
-            set { m_Sort = value; }
+            set { SetProperty(ref m_Sort, value); }
         }
 
         public int Id
         {
             get { return m_Id; }
-            set { m_Id = value; }
+            set { SetProperty(ref m_ProducerId, value); }
         }
 
         public Product(string p_Sort, int p_Amount, string p_Category,
-                     Supplier p_Supplier, Producer p_Producer, DateTime p_PurchaseDate,
+                     int p_SupplierId, int p_ProducerId, DateTime p_PurchaseDate,
                      DateTime p_Expiration, Mature p_Mature, string p_Origin,
                      double p_PurchasePrice, double p_SalesPrice)
         {
             m_Sort = p_Sort;
             m_Amount = p_Amount;
             m_Category = p_Category;
-            m_Supplier = p_Supplier;
-            m_Producer = p_Producer;
+            m_SupplierId = p_SupplierId;
+            m_ProducerId = p_ProducerId;
             m_PurchaseDate = p_PurchaseDate;
             m_Expiration = p_Expiration;
             m_Mature = p_Mature;
@@ -143,10 +143,7 @@ namespace FruitMarket.Model
 
         public Product(SerializationInfo info, StreamingContext context)
         {
-            m_Amount = (int)info.GetValue(nameof(Amount), typeof(int));
             m_Category = (string)info.GetValue(nameof(Category), typeof(string));
-            m_Supplier = (Supplier)info.GetValue(nameof(Supplier), typeof(Supplier));
-            m_Producer = (Producer)info.GetValue(nameof(Producer), typeof(Producer));
             m_Expiration = (DateTime)info.GetValue(nameof(Expiration), typeof(DateTime));
             m_PurchaseDate = (DateTime)info.GetValue(nameof(PurchaseDate), typeof(DateTime));
             m_Mature = (Mature)info.GetValue(nameof(Mature), typeof(Mature));
@@ -157,10 +154,7 @@ namespace FruitMarket.Model
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue(nameof(Amount), m_Amount);
             info.AddValue(nameof(Category), m_Category);
-            info.AddValue(nameof(Supplier), m_Supplier);
-            info.AddValue(nameof(Producer), m_Producer);
             info.AddValue(nameof(Expiration), m_Expiration);
             info.AddValue(nameof(PurchaseDate), m_PurchaseDate);
             info.AddValue(nameof(Mature), m_Mature);
