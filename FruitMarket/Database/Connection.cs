@@ -45,6 +45,12 @@ namespace FruitMarket.Database
         {
             SQLiteCommand command = new SQLiteCommand(c_Connection);
 
+            command.CommandText = ToolConstants.DB_SORT;
+            command.ExecuteNonQuery();
+
+            command.CommandText = ToolConstants.DB_ORIGIN;
+            command.ExecuteNonQuery();
+
             command.CommandText = ToolConstants.DB_PRODUCT;
             command.ExecuteNonQuery();
 
@@ -59,6 +65,7 @@ namespace FruitMarket.Database
 
             command.CommandText = ToolConstants.DB_DELIVERY;
             command.ExecuteNonQuery();
+
         }
     }
 }
