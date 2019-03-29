@@ -67,13 +67,13 @@ namespace FruitMarket.Database
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(memoryStream, p_Producer);
 
-                byte[] productData = memoryStream.ToArray();
+                byte[] producerData = memoryStream.ToArray();
                 memoryStream.Close();
 
                 command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
                 command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
                 command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
-                command.Parameters.Add("@4", System.Data.DbType.Binary, productData.Length).Value = productData;
+                command.Parameters.Add("@4", System.Data.DbType.Binary, producerData.Length).Value = producerData;
                 command.Parameters.Add("@5", System.Data.DbType.Int32).Value = p_Producer.Id;
 
                 command.ExecuteNonQuery();
