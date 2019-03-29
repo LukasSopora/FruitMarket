@@ -398,7 +398,7 @@ namespace FruitMarket.ViewModel
         public ProductImportViewModel()
         {
             InitializeCommands();
-            m_Suppliers = TestDataReader.GetDefaultSuppliers();
+            m_Suppliers = SupplierMapper.GetAllSuppliers();
             m_Producers = ProducerMapper.GetAllProduers();
             m_Sorts = ToolConstants.DEFAULT_FRUITS;
             m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;

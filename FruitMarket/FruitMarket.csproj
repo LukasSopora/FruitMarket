@@ -98,6 +98,7 @@
     <Compile Include="Database\Connection.cs" />
     <Compile Include="Database\ProducerMapper.cs" />
     <Compile Include="Database\ProductMapper.cs" />
+    <Compile Include="Database\SupplierMapper.cs" />
     <Compile Include="Helper\TestDataReader.cs" />
     <Compile Include="Helper\ToolConstants.cs" />
     <Compile Include="Helper\ViewType.cs" />
