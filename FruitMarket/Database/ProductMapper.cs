@@ -57,5 +57,38 @@ namespace FruitMarket.Database
 
             command.ExecuteNonQuery();
         }
+
+        public static ObservableCollection<Product> GetAllProducts()
+        {
+            ObservableCollection<Product> result = new ObservableCollection<Product>();
+
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "SELECT {0}, {1}, {2}, {3} FROM {4}",
+                ToolConstants.DB_PRODUCT_ID,
+                ToolConstants.DB_PRODUCT_SORT,
+                ToolConstants.DB_PRODUCT_AMOUNT,
+                ToolConstants.DB_PRODUCT_DATA,
+                ToolConstants.DB_PRODUCT_TABLE
+                );
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(3));
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                Product product = (Product)binaryFormatter.Deserialize(memoryStream);
+
+                product.Id = Convert.ToInt32(reader.GetValue(0));
+                product.Sort = Convert.ToString(reader.GetValue(1));
+                product.Amount = Convert.ToInt32(reader.GetValue(2));
+
+                result.Add(product);
+            }
+            return result;
+        }
     }
 }

@@ -408,11 +408,7 @@ namespace FruitMarket.ViewModel
             m_CurrentSupplier = new Supplier();
             m_CurrentProducer = new Producer();
 
-            //m_Fruits.Add(new Product("Banane", 3, "Kl 1", new Supplier("Bauhaus"), new Producer("Grosshaus"), DateTime.Parse("12-01-2019"), DateTime.Parse("05-04-2019"), new Mature(3, 4.0), "Griechenland", 3.0, 5.0));
-            //m_Fruits.Add(new Product("Banane", 3, "Kl 2", new Supplier("Knecht"), new Producer("Viega"), DateTime.Parse("10-01-2019"), DateTime.Parse("03-04-2019"), new Mature(2, 5.0), "Portugal", 5.0, 7.0));
-            m_Products.Add(new Product("Banane", 3, "Kl 3", new Supplier("Vogel"), new Producer("Kirchhoff"), DateTime.Parse("24-01-2019"), DateTime.Parse("20-04-2019"), new Mature(1, 22.30), "Spanien", 6.0, 9.0));
-
-            RaisePropertyChanged(nameof(Products));
+            m_Products = ProductMapper.GetAllProducts();
 
             if (m_Suppliers.Count == 0)
             {
