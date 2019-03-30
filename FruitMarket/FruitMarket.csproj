@@ -100,6 +100,7 @@
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\ProducerMapper.cs" />
     <Compile Include="Database\ProductMapper.cs" />
+    <Compile Include="Database\SortMapper.cs" />
     <Compile Include="Database\SupplierMapper.cs" />
     <Compile Include="Helper\TestDataReader.cs" />
     <Compile Include="Helper\ToolConstants.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Model\Costumer.cs" />
     <Compile Include="Model\Delivery.cs" />
     <Compile Include="Model\Filter.cs" />
-    <Compile Include="Model\Mature.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Producer.cs" />

@@ -365,11 +365,6 @@ namespace FruitMarket.ViewModel
                     System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
                     return false;
                 }
-                if (f.Mature == null || f.Mature.Days == 0 && f.Mature.Hours.Hour == 0)
-                {
-                    System.Windows.MessageBox.Show("Mature cannot be empty.");
-                    return false;
-                }
                 if (f.Origin == null || f.Origin == "")
                 {
                     System.Windows.MessageBox.Show("Origin cannot be empty.");

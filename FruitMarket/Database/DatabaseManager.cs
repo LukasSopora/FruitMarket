@@ -17,6 +17,8 @@ namespace FruitMarket.Database
                 CountryMapper.SaveCountries(TestDataReader.GetAllCountries());
             }
 
+            SortMapper.SaveSorts(ToolConstants.DEFAULT_FRUITS);
+
             ProducerMapper.SaveProducers(TestDataReader.GetDefaultProducers());
             SupplierMapper.SaveSuppliers(TestDataReader.GetDefaultSuppliers());
         }

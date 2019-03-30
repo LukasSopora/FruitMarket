@@ -138,5 +138,21 @@ namespace FruitMarket.Database
             }
             return result;
         }
+
+        public static void DeleteSupplier(int p_SupplierId)
+        {
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "DELETE FROM {0} " +
+                "WHERE {1} = @1",
+                ToolConstants.DB_SUPPLIER_TABLE,
+                ToolConstants.DB_SUPPLIER_ID);
+
+            command.Parameters.Add("@1", System.Data.DbType.Int32).Value = p_SupplierId;
+
+            command.ExecuteNonQuery();
+        }
     }
 }

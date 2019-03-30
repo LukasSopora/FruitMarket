@@ -124,7 +124,7 @@
                                                 MinWidth="20"/>
                                             <StackPanel Margin="10,0,0,0">
                                                 <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
-                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseDown="Amount_Increase" MouseEnter="PackIcon_MouseEnter" 
                                                              MouseLeave="PackIcon_MouseLeave"/>
                                                 <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
                                                              MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
@@ -167,18 +167,21 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <!--Reifedauer-->
-                            <DataGridTemplateColumn Header="Reifedauer" Width="Auto">
+                            <DataGridTemplateColumn Header="Reifedauer [Tage]" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <DockPanel>
-                                            <TextBox Text="{Binding Mature.Days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     MinWidth="30" IsReadOnly="False"/>
-                                            <TextBlock Text="Tage, " Margin="3,0,3,0" VerticalAlignment="Bottom"/>
-                                            <materialDesign:TimePicker SelectedTime="{Binding Mature.Hours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                           materialDesign:HintAssist.Hint=""
-                                                           Is24Hours="True"
-                                                           VerticalAlignment="Bottom" MinWidth="50"/>
-                                            <TextBlock Text="Stunden" Margin="3,0,3,0" VerticalAlignment="Bottom"/>
+                                        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                            <TextBox 
+                                                Text="{Binding Mature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                MinWidth="20"/>
+                                            <StackPanel Margin="10,0,0,0">
+                                                <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
+                                                             MouseDown="Mature_Increase" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                                <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
+                                                             MouseDown="Mature_Decrease" MouseEnter="PackIcon_MouseEnter"
+                                                             MouseLeave="PackIcon_MouseLeave"/>
+                                            </StackPanel>
                                         </DockPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

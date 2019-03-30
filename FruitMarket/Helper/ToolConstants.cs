@@ -41,10 +41,10 @@ namespace FruitMarket.Helper
                 DB_PRODUCT_AMOUNT,       //2
                 DB_PRODUCT_SORT,         //3
                 DB_SORT_TABLE,           //4
-                DB_SORT_SORTNAME,            //5
+                DB_SORT_SORTNAME,        //5
                 DB_PRODUCT_ORIGIN,       //6
-                DB_COUNTRY_TABLE,         //7
-                DB_COUNTRY_COUNTRYNAME,        //8
+                DB_COUNTRY_TABLE,        //7
+                DB_COUNTRY_COUNTRYNAME,  //8
                 DB_PRODUCT_PRODUCER_ID,  //9
                 DB_PRODUCER_TABLE,       //10
                 DB_PRODUCER_ID,          //11

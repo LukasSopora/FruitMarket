@@ -37,7 +37,7 @@ namespace FruitMarket.View
             }
         }
 
-        private void AmountIncrease(object sender, MouseButtonEventArgs e)
+        private void Amount_Increase(object sender, MouseButtonEventArgs e)
         {
             if(sender.GetType() == typeof(PackIcon))
             {
@@ -45,7 +45,6 @@ namespace FruitMarket.View
                 {
                     Product fruit = ((PackIcon)sender).DataContext as Product;
                     fruit.Amount++; 
-                    
                 }
             }
         }
@@ -78,6 +77,33 @@ namespace FruitMarket.View
                     if(fruit.Amount > 1)
                     {
                         fruit.Amount--;
+                    }
+                }
+            }
+        }
+
+        private void Mature_Increase(object sender, MouseButtonEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = ((PackIcon)sender).DataContext as Product;
+                    fruit.Mature++;
+                }
+            }
+        }
+
+        private void Mature_Decrease(object sender, MouseButtonEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product fruit = (Product)((PackIcon)sender).DataContext;
+                    if (fruit.Mature > 1)
+                    {
+                        fruit.Mature--;
                     }
                 }
             }
