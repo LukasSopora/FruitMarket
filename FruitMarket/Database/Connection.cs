@@ -48,7 +48,7 @@ namespace FruitMarket.Database
             command.CommandText = ToolConstants.DB_SORT;
             command.ExecuteNonQuery();
 
-            command.CommandText = ToolConstants.DB_ORIGIN;
+            command.CommandText = ToolConstants.DB_COUNTRY;
             command.ExecuteNonQuery();
 
             command.CommandText = ToolConstants.DB_PRODUCT;

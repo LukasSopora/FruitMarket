@@ -41,10 +41,10 @@ namespace FruitMarket.Helper
                 DB_PRODUCT_AMOUNT,       //2
                 DB_PRODUCT_SORT,         //3
                 DB_SORT_TABLE,           //4
-                DB_SORT_SORT,            //5
+                DB_SORT_SORTNAME,            //5
                 DB_PRODUCT_ORIGIN,       //6
-                DB_ORIGIN_TABLE,         //7
-                DB_ORIGIN_ORIGIN,        //8
+                DB_COUNTRY_TABLE,         //7
+                DB_COUNTRY_COUNTRYNAME,        //8
                 DB_PRODUCT_PRODUCER_ID,  //9
                 DB_PRODUCER_TABLE,       //10
                 DB_PRODUCER_ID,          //11
@@ -154,27 +154,27 @@ namespace FruitMarket.Helper
 
         #region Sort
         public const string DB_SORT_TABLE = "FruitSort";
-        public const string DB_SORT_SORT = "Sort";
+        public const string DB_SORT_SORTNAME = "SortName";
 
         public static string DB_SORT = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} TEXT PRIMARY KEY);", new string[]
             {
                 DB_SORT_TABLE,
-                DB_SORT_SORT
+                DB_SORT_SORTNAME
             });
         #endregion
 
         #region Origin
-        public const string DB_ORIGIN_TABLE = "FruitOrigin";
-        public const string DB_ORIGIN_ORIGIN = "Origin";
+        public const string DB_COUNTRY_TABLE = "Country";
+        public const string DB_COUNTRY_COUNTRYNAME = "CountryName";
 
-        public static string DB_ORIGIN = string.Format(
+        public static string DB_COUNTRY = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} TEXT PRIMARY KEY);", new string[]
             {
-                DB_ORIGIN_TABLE,
-                DB_ORIGIN_ORIGIN
+                DB_COUNTRY_TABLE,
+                DB_COUNTRY_COUNTRYNAME
             });
         #endregion
 

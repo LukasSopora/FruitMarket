@@ -1,4 +1,5 @@
-﻿using FruitMarket.Helper;
+﻿using FruitMarket.Database;
+using FruitMarket.Helper;
 using FruitMarket.View;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -111,6 +112,8 @@ namespace FruitMarket.ViewModel
 
         public MainViewModel()
         {
+            DatabaseManager.InitCountries();
+
             InitializeViews();
             InitializeCommands();
 
@@ -119,6 +122,7 @@ namespace FruitMarket.ViewModel
 
             m_DescriptionVisible = false;
             RaisePropertyChanged(nameof(DescriptionVisible));
+
         }
     }
 }

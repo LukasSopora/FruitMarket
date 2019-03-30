@@ -103,12 +103,17 @@ namespace FruitMarket.Helper
 
             string[] countries = File.ReadAllLines(m_COUNTRIES_DATA_PATH);
 
-            foreach(string line in countries)
+            for (int i = 1; i < countries.Length; i++) //skip first header line
             {
-                result.Add(line.Split(';', '"')[7]);
+                result.Add(countries[i].Split(';', '"')[7]);
             }
 
             return result;
+        }
+
+        public static int GetCountryAmount()
+        {
+            return File.ReadAllLines(m_COUNTRIES_DATA_PATH).Count() - 1; //minus first header line
         }
     }
 }
