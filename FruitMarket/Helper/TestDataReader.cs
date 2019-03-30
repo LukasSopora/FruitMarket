@@ -12,7 +12,8 @@ namespace FruitMarket.Helper
     public class TestDataReader
     {
         private static int m_MAX_NUMBER = 20;  //Number of Suppliers and Producers [0:33]
-        private static string m_PATH = "Helper/TestData.csv";
+        private static string m_PERSON_TESTDATA_PATH = "Helper/TestData.csv";
+        private static string m_COUNTRIES_DATA_PATH = "Helper/countries.csv";
 
         public static ObservableCollection<Supplier> GetDefaultSuppliers()
         {
@@ -21,7 +22,7 @@ namespace FruitMarket.Helper
             for (int count = 0; count < m_MAX_NUMBER; count++)
             {
                 Supplier supplier = new Supplier();
-                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
+                string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
                 supplier.Id = count + 1;
@@ -49,7 +50,7 @@ namespace FruitMarket.Helper
             for (int count = m_MAX_NUMBER; count < m_MAX_NUMBER * 2; count++)
             {
                 Producer producer = new Producer();
-                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
+                string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
                 producer.Id = count - m_MAX_NUMBER + 1;
@@ -68,7 +69,7 @@ namespace FruitMarket.Helper
             return result;
         }
 
-        internal static ObservableCollection<Costumer> GetDefaultCostumers()
+        public static ObservableCollection<Costumer> GetDefaultCostumers()
         {
             ObservableCollection<Costumer> result = new ObservableCollection<Costumer>();
 
@@ -77,7 +78,7 @@ namespace FruitMarket.Helper
             for (int count = m_MAX_NUMBER * 2; count < m_MAX_NUMBER * 3; count++)
             {
                 Costumer costumer = new Costumer();
-                string line = File.ReadLines(m_PATH).Skip(count).Take(1).First();
+                string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
                 costumer.Id = count - m_MAX_NUMBER + 1;
@@ -91,6 +92,20 @@ namespace FruitMarket.Helper
                 costumer.Email = values[8];
 
                 result.Add(costumer);
+            }
+
+            return result;
+        }
+
+        public static ObservableCollection<string> GetAllCountries()
+        {
+            ObservableCollection<string> result = new ObservableCollection<string>();
+
+            string[] countries = File.ReadAllLines(m_COUNTRIES_DATA_PATH);
+
+            foreach(string line in countries)
+            {
+                result.Add(line.Split(';', '"')[7]);
             }
 
             return result;

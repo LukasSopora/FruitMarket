@@ -402,13 +402,13 @@ namespace FruitMarket.ViewModel
             m_Producers = ProducerMapper.GetAllProduers();
             m_Sorts = ToolConstants.DEFAULT_FRUITS;
             m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;
-            m_Origins = ToolConstants.DEFAULT_ORIGINS;
 
             m_CurrentSupplier = new Supplier();
             m_CurrentProducer = new Producer();
 
             m_Products = ProductMapper.GetAllProducts();
 
+            m_Origins = TestDataReader.GetAllCountries();
 
             if (m_Suppliers.Count == 0)
             {
