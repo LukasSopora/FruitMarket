@@ -23,14 +23,18 @@ namespace FruitMarket.Model
         private string m_Origin = null;
         private double m_PurchasePrice = 0;
         private double m_SalesPrice = 0;
+        private int m_ToExport = 0;
 
 
-        public int Remaining
+
+        public int ToExport
         {
-            get
+            get { return m_ToExport; }
+            set
             {
-                //When Database exists, you have to check the real remainig amonut!
-                return 1000 - m_Amount;
+                SetProperty(ref m_ToExport, value);
+                RaisePropertyChanged(nameof(Amount));
+                RaisePropertyChanged(nameof(PositionSum));
             }
         }
 
@@ -94,20 +98,15 @@ namespace FruitMarket.Model
 
         public int Amount
         {
-            get { return m_Amount; }
-            set
-            {
-                SetProperty(ref m_Amount, value);
-                RaisePropertyChanged(nameof(Remaining));
-                RaisePropertyChanged(nameof(PositionSum));
-            }
+            get { return m_Amount - m_ToExport; }
+            set { SetProperty(ref m_Amount, value); }
         }
 
         public double PositionSum
         {
             get
             {
-                return m_SalesPrice * m_Amount;
+                return m_SalesPrice * m_ToExport;
             }
         }
 

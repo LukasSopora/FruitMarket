@@ -29,6 +29,21 @@ namespace FruitMarket.ViewModel
         private Costumer m_CurrentCostumer = null;
         private string m_NewSort = null;
         private int m_PageIndex = 0;
+        private bool m_NewCostumerVisible = false;
+        private string m_CostumerHeader = "Kunde";
+
+
+        public bool NewCostumerVisible
+        {
+            get { return m_NewCostumerVisible; }
+            set { SetProperty(ref m_NewCostumerVisible, value); }
+        }
+
+        public string CostumerHeader
+        {
+            get { return m_CostumerHeader; }
+            set { SetProperty(ref m_CostumerHeader, value); }
+        }
 
         public ObservableCollection<string> Origins
         {
@@ -129,16 +144,50 @@ namespace FruitMarket.ViewModel
 
 
         #region Costumer Methods
-        #endregion
-        private void OnCancelNewCostumer()
+        private void OnNewCostumer()
         {
-            throw new NotImplementedException();
+            m_CurrentCostumer = new Costumer();
+            RaisePropertyChanged(nameof(CurrentCostumer));
+
+            m_CostumerHeader = "Neuen Kunden anlegen";
+            RaisePropertyChanged(nameof(CostumerHeader));
+
+            m_NewCostumerVisible = true;
+            RaisePropertyChanged(nameof(NewCostumerVisible));
         }
 
-        private void OnAddProduct()
+        private void OnCancelNewCostumer()
         {
-            m_Products.Add(new Product());
-            RaisePropertyChanged(nameof(Products));
+            m_CurrentCostumer = null;
+            RaisePropertyChanged(nameof(CurrentCostumer));
+
+            m_CostumerHeader = "Kunde";
+            RaisePropertyChanged(nameof(CostumerHeader));
+
+            m_NewCostumerVisible = false;
+            RaisePropertyChanged(nameof(NewCostumerVisible));
+        }
+
+        private void OnSaveCostumer()
+        {
+            if (CheckCostumer())
+            {
+                if(!m_Costumers.Contains(m_CurrentCostumer))
+                {
+                    m_Costumers.Add(m_CurrentCostumer);
+                    CostumerMapper.SaveCostumer(m_CurrentCostumer);
+
+                    RaisePropertyChanged(nameof(Costumers));
+                }
+                m_CurrentCostumer = null;
+                RaisePropertyChanged(nameof(CurrentCostumer));
+
+                m_CostumerHeader = "Kunde";
+                RaisePropertyChanged(nameof(CostumerHeader));
+
+                m_NewCostumerVisible = false;
+                RaisePropertyChanged(nameof(NewCostumerVisible));
+            }
         }
 
         private void OnDeleteCostumer()
@@ -150,31 +199,26 @@ namespace FruitMarket.ViewModel
                 {
                     m_Costumers.Remove(m_CurrentCostumer);
                     RaisePropertyChanged(nameof(Costumers));
+
+                    CostumerMapper.DeleteCostumer(m_CurrentCostumer.Id);
+
+                    m_CurrentCostumer = null;
+                    RaisePropertyChanged(nameof(CurrentCostumer));
                 }
             }
-            m_CurrentCostumer = null;
-            RaisePropertyChanged(nameof(CurrentCostumer));
         }
+        #endregion
 
-        private void OnSaveCostumer()
-        {
-            if (CheckCostumer())
-            {
-                m_Costumers.Add(m_CurrentCostumer);
-                m_CurrentCostumer = null;
-                RaisePropertyChanged(nameof(CurrentCostumer));
-            }
-        }
 
-        private void OnNewCostumer()
+        private void OnAddProduct()
         {
-            m_CurrentCostumer = new Costumer();
-            RaisePropertyChanged(nameof(CurrentCostumer));
+            m_Products.Add(new Product());
+            RaisePropertyChanged(nameof(Products));
         }
 
         private void OnExportProducts()
         {
-            if (CheckCostumer() && CheckFruits())
+            if (CheckCostumer() && CheckProducts())
             {
                 //Hier gehts weiter
             }
@@ -225,7 +269,7 @@ namespace FruitMarket.ViewModel
             return true;
         }
 
-        private bool CheckFruits()
+        private bool CheckProducts()
         {
             if (m_Products.Count == 0)
             {
@@ -279,6 +323,8 @@ namespace FruitMarket.ViewModel
             m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;
             m_Costumers = CostumerMapper.GetAllCostumers();
             m_Products = ProductMapper.GetAllProducts();
+
+            InitializeCommands();
 
             RaisePropertyChanged(nameof(Products));
             RaisePropertyChanged(nameof(Sorts));

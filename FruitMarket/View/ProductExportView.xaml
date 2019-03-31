@@ -46,6 +46,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Kunden Auswahl"
@@ -54,12 +55,35 @@
                                Margin="0,5,0,10"
                                FontSize="20"/>
 
-                    <TextBlock Text="Kunde"
-                               Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
-                               FontWeight="Bold" FontSize="15" Margin="20,20,20,5"/>
-                    <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,5,20,10" Width="600"
+                    <TextBlock Text="{Binding CostumerHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                               Grid.Row="1" HorizontalAlignment="Center"
+                               FontWeight="Bold" FontSize="15" Margin="0,10,0,10"/>
+                    <view:SupplierView Grid.Row="2" Margin="0,5,0,10" Width="600"
                               DataContext="{Binding CurrentCostumer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <DockPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <DockPanel Grid.Row="3" HorizontalAlignment="Center" Margin="0,10,0,10"
+                               Visibility="{Binding NewCostumerVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding SaveCostumerCommand}" Margin="0,0,10,0"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True">
+                            <materialDesign:PackIcon
+                                Kind="Floppy"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding CancelNewCostumerCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Close"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                    </DockPanel>
+                    
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                         <Button
                             Style="{StaticResource TransitionNavigationButton}"
                             Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
@@ -86,7 +110,7 @@
                     <DataGrid
                         Grid.Row="1"
                         Margin="10,10,10,10"
-                        ItemsSource="{Binding Fruits}"
+                        ItemsSource="{Binding Products}"
                         CanUserAddRows="True"
                         AutoGenerateColumns="False"
                         VerticalScrollBarVisibility="Auto"
@@ -98,7 +122,7 @@
                                     <DataTemplate>
                                         <ComboBox Style="{StaticResource DataGridCombobox}"
                                       SelectedValue="{Binding Sort}"
-                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                      materialDesign:HintAssist.Hint="(Auswahl)"
                                       VerticalAlignment="Bottom"
                                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
                                     </DataTemplate>
@@ -109,11 +133,11 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                                            <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            <TextBox Text="{Binding ToExport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          MinWidth="20"/>
                                             <StackPanel Margin="10,0,0,0">
                                                 <materialDesign:PackIcon Kind="ChevronUpBox" Foreground="White" Width="18" Height="18" 
-                                                             MouseDown="AmountIncrease" MouseEnter="PackIcon_MouseEnter" 
+                                                             MouseDown="Amount_Increase" MouseEnter="PackIcon_MouseEnter" 
                                                              MouseLeave="PackIcon_MouseLeave"/>
                                                 <materialDesign:PackIcon Kind="ChevronDownBox" Foreground="White" Width="18" Height="18"
                                                              MouseDown="Amount_Decrease" MouseEnter="PackIcon_MouseEnter"
@@ -128,7 +152,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock 
-                                            Text="{Binding Remaining, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding Amount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Bottom"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

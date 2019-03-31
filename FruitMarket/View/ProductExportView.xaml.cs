@@ -37,18 +37,6 @@ namespace FruitMarket.View
             }
         }
 
-        private void AmountIncrease(object sender, MouseButtonEventArgs e)
-        {
-            if (sender.GetType() == typeof(PackIcon))
-            {
-                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
-                {
-                    Product fruit = ((PackIcon)sender).DataContext as Product;
-                    fruit.Amount++;
-                }
-            }
-        }
-
         private void PackIcon_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender.GetType() == typeof(PackIcon))
@@ -67,16 +55,31 @@ namespace FruitMarket.View
             }
         }
 
+        private void Amount_Increase(object sender, MouseButtonEventArgs e)
+        {
+            if (sender.GetType() == typeof(PackIcon))
+            {
+                if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
+                {
+                    Product product = ((PackIcon)sender).DataContext as Product;
+                    if(product.Amount > 0)
+                    {
+                        product.ToExport++;
+                    }
+                }
+            }
+        }
+
         private void Amount_Decrease(object sender, MouseButtonEventArgs e)
         {
             if (sender.GetType() == typeof(PackIcon))
             {
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
                 {
-                    Product fruit = (Product)((PackIcon)sender).DataContext;
-                    if (fruit.Amount > 1)
+                    Product product = (Product)((PackIcon)sender).DataContext;
+                    if (product.ToExport > 1)
                     {
-                        fruit.Amount--;
+                        product.ToExport--;
                     }
                 }
             }
@@ -89,13 +92,14 @@ namespace FruitMarket.View
             {
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
                 {
-                    Product fruit = (Product)((PackIcon)sender).DataContext;
-                    if (pevm.Products.Contains(fruit))
+                    Product product = (Product)((PackIcon)sender).DataContext;
+                    if (pevm.Products.Contains(product))
                     {
-                        pevm.Products.Remove(fruit);
+                        pevm.Products.Remove(product);
                     }
                 }
             }
         }
+
     }
 }

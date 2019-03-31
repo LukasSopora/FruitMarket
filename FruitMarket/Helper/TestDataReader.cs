@@ -81,7 +81,7 @@ namespace FruitMarket.Helper
                 string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
                 string[] values = line.Split('|');
 
-                costumer.Id = count - m_MAX_NUMBER + 1;
+                costumer.Id = count - ( m_MAX_NUMBER * 2) + 1;
                 costumer.Company = values[0];
                 costumer.FirstName = values[1];
                 costumer.LastName = values[2];
