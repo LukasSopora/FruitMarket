@@ -46,6 +46,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -58,18 +59,69 @@
                                Margin="0,5,0,10"
                                FontSize="20"/>
 
-                    <TextBlock Text="Lieferant"
+                    <TextBlock Text="{Binding SupplierHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"
                                FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
                     <view:SupplierView Grid.Row="2" Grid.Column="0" Margin="20,10,20,10"
                               DataContext="{Binding CurrentSupplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <!--SaveCancel Buttons Supplier-->
+                    <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,20,10"
+                               Visibility="{Binding NewSupplierVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding SaveSupplierCommand}" Margin="0,0,10,0"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True">
+                            <materialDesign:PackIcon
+                                Kind="Floppy"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding CancelNewSupplierCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Close"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                    </DockPanel>
 
-                    <TextBlock Text="Produzent"
+                    <TextBlock Text="{Binding ProducerHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
                                FontWeight="Bold" FontSize="15" Margin="20,10,20,10"/>
                     <view:SupplierView Grid.Row="2" Grid.Column="1" Margin="20,10,20,10"
                               DataContext="{Binding CurrentProducer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <DockPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    
+                    
+
+                    <!--SaveCancel Buttons Producer-->
+                    <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,20,10"
+                               Visibility="{Binding NewProducerVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding SaveProducerCommand}" Margin="0,0,10,0"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True">
+                            <materialDesign:PackIcon
+                                Kind="Floppy"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding CancelNewProducerCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Close"
+                                Height="32"
+                                Width="32" />
+                        </Button>
+                    </DockPanel>
+
+                    <!--Navigation Buttons-->
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                         <Button
                             Style="{StaticResource TransitionNavigationButton}"
                             Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
@@ -392,5 +444,56 @@
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
+
+        <!--<materialDesign:DialogHost 
+            IsOpen="{Binding CurrentSupplier.Editing}"
+            Grid.RowSpan="10">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Background="{StaticResource MaterialDesignPaper}"
+                      MinWidth="400" MinHeight="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0" Margin="10"
+                        Text="Lieferanten hinzufügen" FontWeight="Bold" FontSize="18"
+                        Foreground="White"
+                        HorizontalAlignment="Left"/>
+
+                    <view:SupplierView 
+                        Grid.Row="1" Margin="10"
+                        DataContext="{Binding CurrentSupplier}"
+                        TextElement.Foreground="White"
+                        BorderBrush="White"
+                        Foreground="White"/>
+
+                    <DockPanel
+                        Grid.Row="2"
+                        HorizontalAlignment="Right">
+                        <Button
+                            Margin="10"
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding SaveSupplierCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Floppy"
+                                Width="32"
+                                Height="32"/>
+                        </Button>
+                        <Button
+                            Margin="10"
+                            Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            Command="{Binding CancelNewSupplierCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Close"
+                                Width="32"
+                                Height="32"/>
+                        </Button>
+                    </DockPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>-->
     </Grid>
 </UserControl>

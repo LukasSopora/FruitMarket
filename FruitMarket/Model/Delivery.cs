@@ -14,7 +14,7 @@ namespace FruitMarket.Model
         private int m_ProductId = 0;
         private int m_CostumerId = 0;
         private int m_Amount = 0;
-        private DateTime m_SalesDate = DateTime.MinValue;
+        private DateTime m_SalesDate = DateTime.Now;
 
         public DateTime SalesDate
         {

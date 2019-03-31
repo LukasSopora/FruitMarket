@@ -45,6 +45,28 @@ namespace FruitMarket.Database
             command.ExecuteNonQuery();
         }
 
+        public static ObservableCollection<string> GetAllCountries()
+        {
+            ObservableCollection<string> result = new ObservableCollection<string>();
+
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "SELECT {0} FROM {1}",
+                ToolConstants.DB_COUNTRY_COUNTRYNAME,
+                ToolConstants.DB_COUNTRY_TABLE);
+
+            SQLiteDataReader reader = command.ExecuteReader();
+            
+            while(reader.Read())
+            {
+                result.Add(reader.GetString(0));
+            }
+
+            return result;
+        }
+
         public static int GetCountryAmount()
         {
             SQLiteConnection con = Connection.GetConnection();

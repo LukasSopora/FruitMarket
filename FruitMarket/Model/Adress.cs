@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace FruitMarket.Model
 {
     [Serializable]
-    public class Adress : ISerializable
+    public class Adress : BindableBase, ISerializable
     {
         private string m_Street = null;
         private string m_PostCode = null;
@@ -17,19 +18,19 @@ namespace FruitMarket.Model
         public string Place
         {
             get { return m_Place; }
-            set { m_Place = value; }
+            set { SetProperty(ref m_Place, value); }
         }
 
         public string PostCode
         {
             get { return m_PostCode; }
-            set { m_PostCode = value; }
+            set { SetProperty(ref m_PostCode, value); }
         }
 
         public string Street
         {
             get { return m_Street; }
-            set { m_Street = value; }
+            set { SetProperty(ref m_Street, value); }
         }
 
         public Adress(string p_Street, string p_PostCode, string p_Place)

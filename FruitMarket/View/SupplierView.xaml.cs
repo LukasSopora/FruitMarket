@@ -37,5 +37,29 @@ namespace FruitMarket.View
             UserIcon.Foreground = Brushes.White;
             SupplierViewBorder.BorderBrush = Brushes.White;
         }
+
+        private void TextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox.BorderBrush = FindResource("PrimaryHueMidBrush") as Brush;
+        }
+
+        private void TextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox.BorderBrush = FindResource("MaterialDesignBodyLight") as Brush;
+        }
+
+        private void DatePickerBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var datePicker = sender as DatePicker;
+            datePicker.BorderBrush = FindResource("PrimaryHueMidBrush") as Brush;
+        }
+
+        private void DatePickerBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var datePicker = sender as DatePicker;
+            datePicker.BorderBrush = FindResource("MaterialDesignBodyLight") as Brush;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,25 +9,16 @@ using System.Threading.Tasks;
 namespace FruitMarket.Model
 {
     [Serializable]
-    public class Costumer : ISerializable
+    public class Costumer : BindableBase ,ISerializable
     {
         private int m_Id = 0;
         private string m_LastName = null;
         private string m_FirstName = null;
-        private DateTime m_Birthday = DateTime.MinValue;
+        private DateTime m_Birthday = DateTime.Now;
         private string m_Company = null;
         private Adress m_Adress = null;
         private string m_Phone = null;
         private string m_Email = null;
-
-
-        private bool m_Editing = false;
-
-        public bool Editing
-        {
-            get { return m_Editing; }
-            set { m_Editing = value; }
-        }
 
         public string Email
         {
@@ -43,7 +35,7 @@ namespace FruitMarket.Model
         public Adress Adress
         {
             get { return m_Adress; }
-            set { m_Adress = value; }
+            set { SetProperty(ref m_Adress, value); }
         }
 
         public string Company
@@ -94,7 +86,9 @@ namespace FruitMarket.Model
         }
 
         public Costumer()
-        { 
+        {
+            m_Adress = new Adress();
+            RaisePropertyChanged(nameof(Adress));
         }
 
         public Costumer(SerializationInfo info, StreamingContext context)

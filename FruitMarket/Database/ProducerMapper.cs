@@ -22,7 +22,7 @@ namespace FruitMarket.Database
             }
         }
 
-        private static void SaveProducer(Producer p_Producer)
+        public static void SaveProducer(Producer p_Producer)
         {
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);

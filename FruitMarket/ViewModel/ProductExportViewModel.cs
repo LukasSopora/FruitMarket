@@ -196,7 +196,6 @@ namespace FruitMarket.ViewModel
         private void OnNewCostumer()
         {
             m_CurrentCostumer = new Costumer();
-            m_CurrentCostumer.Editing = true;
             RaisePropertyChanged(nameof(CurrentCostumer));
         }
 
@@ -236,7 +235,6 @@ namespace FruitMarket.ViewModel
         private void OnNewSupplier()
         {
             m_CurrentSupplier = new Supplier();
-            m_CurrentSupplier.Editing = true;
             RaisePropertyChanged(nameof(CurrentSupplier));
         }
 
@@ -280,7 +278,7 @@ namespace FruitMarket.ViewModel
                 System.Windows.MessageBox.Show("Ungültige Email.");
                 return false;
             }
-            if (m_CurrentSupplier.Birthday == null || m_CurrentSupplier.Birthday == DateTime.MinValue)
+            if (m_CurrentSupplier.Birthday == null)
             {
                 System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
                 return false;
@@ -323,7 +321,7 @@ namespace FruitMarket.ViewModel
                 System.Windows.MessageBox.Show("Ungültige Email.");
                 return false;
             }
-            if (m_CurrentCostumer.Birthday == null || m_CurrentCostumer.Birthday == DateTime.MinValue)
+            if (m_CurrentCostumer.Birthday == null)
             {
                 System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
                 return false;
@@ -355,12 +353,12 @@ namespace FruitMarket.ViewModel
                     System.Windows.MessageBox.Show("Amount cannot be empty.");
                     return false;
                 }
-                if (f.PurchaseDate == null || f.PurchaseDate == DateTime.MinValue)
+                if (f.PurchaseDate == null)
                 {
                     System.Windows.MessageBox.Show("Purchase Date cannot be empty.");
                     return false;
                 }
-                if (f.Expiration == null || f.Expiration == DateTime.MinValue)
+                if (f.Expiration == null)
                 {
                     System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
                     return false;

@@ -25,6 +25,7 @@
 
         <Fluent:Ribbon Grid.Row="0" IsQuickAccessToolBarVisible="False">
 
+            <!--Hauptmenü-->
             <Fluent:RibbonTabItem Header="Hauptmenü" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -74,6 +75,7 @@
                     </Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Lager-->
             <Fluent:RibbonTabItem Header="Lager" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -129,6 +131,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Produkte-->
             <Fluent:RibbonTabItem Header="Produkte" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -184,6 +187,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Suche-->
             <Fluent:RibbonTabItem Header="Suche" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -268,6 +272,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Einlagerung-->
             <Fluent:RibbonTabItem Header="Einlagerung" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -324,7 +329,7 @@
                                       MinWidth="100"/>
                             <DockPanel HorizontalAlignment="Right">
                                 <Button
-                                    Command="{Binding ActiveView.DataContext.AddSupplierCommand}"
+                                    Command="{Binding ActiveView.DataContext.NewSupplierCommand}"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                     MouseEnter="Button_MouseEnter"
                                     MouseLeave="Button_MouseLeave"
@@ -394,6 +399,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Auslagerung-->
             <Fluent:RibbonTabItem Header="Auslagerung" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
@@ -488,6 +494,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <!--Leiferschein-->
             <Fluent:RibbonTabItem Header="Lieferschein" GotFocus="RibbonTabItem_GotFocus">
                 <Fluent:RibbonGroupBox Header="Navigation">
                     <Button Style="{StaticResource RibbonNavigationButton}"
