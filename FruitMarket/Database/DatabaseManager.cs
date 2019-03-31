@@ -21,6 +21,7 @@ namespace FruitMarket.Database
 
             ProducerMapper.SaveProducers(TestDataReader.GetDefaultProducers());
             SupplierMapper.SaveSuppliers(TestDataReader.GetDefaultSuppliers());
+            CostumerMapper.SaveCostumers(TestDataReader.GetDefaultCostumers());
         }
     }
 }

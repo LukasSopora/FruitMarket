@@ -1,4 +1,5 @@
-﻿using FruitMarket.Helper;
+﻿using FruitMarket.Database;
+using FruitMarket.Helper;
 using FruitMarket.Model;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -13,11 +14,9 @@ namespace FruitMarket.ViewModel
 {
     public class ProductExportViewModel : BindableBase
     {
-        private ObservableCollection<Supplier> m_Suppliers =
-            new ObservableCollection<Supplier>();
         private ObservableCollection<Costumer> m_Costumers =
             new ObservableCollection<Costumer>();
-        private ObservableCollection<Product> m_Fruits =
+        private ObservableCollection<Product> m_Products =
             new ObservableCollection<Product>();
         private ObservableCollection<string> m_Sorts =
             new ObservableCollection<string>();
@@ -28,7 +27,6 @@ namespace FruitMarket.ViewModel
 
         private DateTime m_ExportDate = DateTime.Now;
         private Costumer m_CurrentCostumer = null;
-        private Supplier m_CurrentSupplier = null;
         private string m_NewSort = null;
         private int m_PageIndex = 0;
 
@@ -98,74 +96,49 @@ namespace FruitMarket.ViewModel
             set { SetProperty(ref m_Costumers, value); }
         }
 
-        public ObservableCollection<Product> Fruits
+        public ObservableCollection<Product> Products
         {
-            get { return m_Fruits; }
-            set { SetProperty(ref m_Fruits, value); }
+            get { return m_Products; }
+            set { SetProperty(ref m_Products, value); }
         }
 
-        public Supplier CurrentSupplier
-        {
-            get { return m_CurrentSupplier; }
-            set { SetProperty(ref m_CurrentSupplier, value); }
-        }
-
-        public ObservableCollection<Supplier> Suppliers
-        {
-            get { return m_Suppliers; }
-            set { SetProperty(ref m_Suppliers, value); }
-        }
-
-        public DelegateCommand NewSupplierCommand { get; private set; }
-        public DelegateCommand SaveSupplierCommand { get; private set; }
-        public DelegateCommand DeleteSupplierCommand { get; private set; }
         public DelegateCommand NewCostumerCommand { get; private set; }
         public DelegateCommand SaveCostumerCommand { get; private set; }
         public DelegateCommand DeleteCostumerCommand { get; private set; }
+        public DelegateCommand CancelNewCostumerCommand { get; private set; }
+
         public DelegateCommand AddProductCommand { get; private set; }
-        public DelegateCommand ShowHelpCommand { get; private set; }
-        public DelegateCommand AddFruitsCommand { get; private set; }
-        public DelegateCommand AddNewSortCommand { get; private set; }
+        public DelegateCommand ExportProductsCommand { get; private set; }
 
         private void InitializeCommands()
         {
-            NewSupplierCommand = new DelegateCommand(OnNewSupplier);
-            RaisePropertyChanged(nameof(NewSupplierCommand));
-            SaveSupplierCommand = new DelegateCommand(OnSaveSupplier);
-            RaisePropertyChanged(nameof(SaveSupplierCommand));
-            DeleteSupplierCommand = new DelegateCommand(OnDeleteSupplier);
-            RaisePropertyChanged(nameof(DeleteSupplierCommand));
             NewCostumerCommand = new DelegateCommand(OnNewCostumer);
             RaisePropertyChanged(nameof(NewCostumerCommand));
             SaveCostumerCommand = new DelegateCommand(OnSaveCostumer);
             RaisePropertyChanged(nameof(SaveCostumerCommand));
             DeleteCostumerCommand = new DelegateCommand(OnDeleteCostumer);
             RaisePropertyChanged(nameof(DeleteCostumerCommand));
+            CancelNewCostumerCommand = new DelegateCommand(OnCancelNewCostumer);
+            RaisePropertyChanged(nameof(CancelNewCostumerCommand));
+
             AddProductCommand = new DelegateCommand(OnAddProduct);
             RaisePropertyChanged(nameof(AddProductCommand));
-            AddFruitsCommand = new DelegateCommand(OnAddFruits);
-            RaisePropertyChanged(nameof(AddFruitsCommand));
-            AddNewSortCommand = new DelegateCommand(OnAddNewSort);
-            RaisePropertyChanged(nameof(AddNewSortCommand));
+            ExportProductsCommand = new DelegateCommand(OnExportProducts);
+            RaisePropertyChanged(nameof(ExportProductsCommand));
+        }
+
+
+        #region Costumer Methods
+        #endregion
+        private void OnCancelNewCostumer()
+        {
+            throw new NotImplementedException();
         }
 
         private void OnAddProduct()
         {
-            m_Fruits.Add(new Product());
-            RaisePropertyChanged(nameof(Fruits));
-        }
-
-        private void OnAddNewSort()
-        {
-            if (m_NewSort == null || m_NewSort == "")
-            {
-                return;
-            }
-            if (!m_Sorts.Contains(m_NewSort))
-            {
-                m_Sorts.Add(m_NewSort);
-            }
-            RaisePropertyChanged(nameof(Sorts));
+            m_Products.Add(new Product());
+            RaisePropertyChanged(nameof(Products));
         }
 
         private void OnDeleteCostumer()
@@ -199,92 +172,15 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(CurrentCostumer));
         }
 
-        private void OnAddFruits()
+        private void OnExportProducts()
         {
-            if (CheckSupplier() && CheckFruits())
+            if (CheckCostumer() && CheckFruits())
             {
                 //Hier gehts weiter
             }
         }
 
-        private void OnDeleteSupplier()
-        {
-            if (m_Suppliers.Contains(m_CurrentSupplier))
-            {
-                if (System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Lieferanten \"{0}\" löschen?", m_CurrentSupplier), "Delete Supplier?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
-                {
-                    m_Suppliers.Remove(m_CurrentSupplier);
-                    RaisePropertyChanged(nameof(Suppliers));
-                }
-            }
-            m_CurrentSupplier = null;
-            RaisePropertyChanged(nameof(CurrentSupplier));
-        }
-
-        private void OnSaveSupplier()
-        {
-            if (CheckSupplier())
-            {
-                m_Suppliers.Add(m_CurrentSupplier);
-                m_CurrentSupplier = null;
-                RaisePropertyChanged(nameof(CurrentSupplier));
-            }
-        }
-
-        private void OnNewSupplier()
-        {
-            m_CurrentSupplier = new Supplier();
-            RaisePropertyChanged(nameof(CurrentSupplier));
-        }
-
-        private bool CheckSupplier()
-        {
-            if (m_CurrentSupplier == null)
-            {
-                System.Windows.MessageBox.Show("Kein Lieferant.");
-                return false;
-            }
-            if (m_CurrentSupplier.FirstName == null || m_CurrentSupplier.FirstName == "")
-            {
-                System.Windows.MessageBox.Show("Ungültiger Vorname.");
-                return false;
-            }
-            if (m_CurrentSupplier.LastName == null || m_CurrentSupplier.LastName == "")
-            {
-                System.Windows.MessageBox.Show("Ungültiger Nachname.");
-                return false;
-            }
-            if (m_CurrentSupplier.Adress == null ||
-                m_CurrentSupplier.Adress.Street == null || m_CurrentSupplier.Adress.Street == "" ||
-                m_CurrentSupplier.Adress.PostCode == null || m_CurrentSupplier.Adress.PostCode == "" ||
-                m_CurrentSupplier.Adress.Place == null || m_CurrentSupplier.Adress.Place == "")
-            {
-                System.Windows.MessageBox.Show("Ungültige Adresse.");
-                return false;
-            }
-            if (m_CurrentSupplier.Phone == null || m_CurrentSupplier.Phone == "")
-            {
-                System.Windows.MessageBox.Show("Ungültige Telefonnummer.");
-                return false;
-            }
-            if (m_CurrentSupplier.Company == null || m_CurrentSupplier.Company == "")
-            {
-                System.Windows.MessageBox.Show("Ungültige Firma.");
-                return false;
-            }
-            if (m_CurrentSupplier.Email == null || m_CurrentSupplier.Email == "")
-            {
-                System.Windows.MessageBox.Show("Ungültige Email.");
-                return false;
-            }
-            if (m_CurrentSupplier.Birthday == null)
-            {
-                System.Windows.MessageBox.Show("Ungültiges Geburtsdatum.");
-                return false;
-            }
-            return true;
-        }
+   
 
         private bool CheckCostumer()
         {
@@ -331,12 +227,12 @@ namespace FruitMarket.ViewModel
 
         private bool CheckFruits()
         {
-            if (m_Fruits.Count == 0)
+            if (m_Products.Count == 0)
             {
                 return false;
             }
 
-            foreach (Product f in m_Fruits)
+            foreach (Product f in m_Products)
             {
                 if (f.Sort == null || f.Sort == "")
                 {
@@ -379,26 +275,12 @@ namespace FruitMarket.ViewModel
 
         public ProductExportViewModel()
         {
-            InitializeCommands();
-
-            m_Suppliers = TestDataReader.GetDefaultSuppliers();
-            m_Costumers = TestDataReader.GetDefaultCostumers();
-            m_Sorts = ToolConstants.DEFAULT_FRUITS;
+            m_Sorts = SortMapper.GetAllSorts();
             m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;
-            m_Origins = ToolConstants.DEFAULT_ORIGINS;
+            m_Costumers = CostumerMapper.GetAllCostumers();
+            m_Products = ProductMapper.GetAllProducts();
 
-            m_CurrentSupplier = new Supplier();
-            m_CurrentCostumer = new Costumer();
-
-            if (m_Suppliers.Count == 0)
-            {
-                OnNewSupplier();
-            }
-            if (m_Costumers.Count == 0)
-            {
-                OnNewCostumer();
-            }
-            RaisePropertyChanged(nameof(Fruits));
+            RaisePropertyChanged(nameof(Products));
             RaisePropertyChanged(nameof(Sorts));
             RaisePropertyChanged(nameof(Categories));
             RaisePropertyChanged(nameof(Origins));

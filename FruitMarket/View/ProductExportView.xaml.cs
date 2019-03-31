@@ -90,9 +90,9 @@ namespace FruitMarket.View
                 if (((PackIcon)sender).DataContext.GetType() == typeof(Product))
                 {
                     Product fruit = (Product)((PackIcon)sender).DataContext;
-                    if (pevm.Fruits.Contains(fruit))
+                    if (pevm.Products.Contains(fruit))
                     {
-                        pevm.Fruits.Remove(fruit);
+                        pevm.Products.Remove(fruit);
                     }
                 }
             }
