@@ -32,6 +32,14 @@ namespace FruitMarket.ViewModel
         private Supplier m_CurrentSupplier = null;
         private string m_NewSort = null;
         private int m_PageIndex = 0;
+        private bool m_AddSortVisible = false;
+
+
+        public bool AddSortVisible
+        {
+            get { return m_AddSortVisible; }
+            set { SetProperty(ref m_AddSortVisible, value); }
+        }
 
         public ObservableCollection<string> Origins
         {
@@ -126,7 +134,9 @@ namespace FruitMarket.ViewModel
         public DelegateCommand AddProductCommand { get; private set; }
         public DelegateCommand ShowHelpCommand { get; private set; }
         public DelegateCommand SaveProductsCommand { get; private set; }
-        public DelegateCommand AddNewSortCommand { get; private set; }
+        public DelegateCommand AddSortCommand { get; private set; }
+        public DelegateCommand NewSortCommand { get; private set; }
+        public DelegateCommand CancelNewSortCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -146,27 +156,52 @@ namespace FruitMarket.ViewModel
             RaisePropertyChanged(nameof(AddProductCommand));
             SaveProductsCommand = new DelegateCommand(OnSaveProducts);
             RaisePropertyChanged(nameof(SaveProductsCommand));
-            AddNewSortCommand = new DelegateCommand(OnAddNewSort);
-            RaisePropertyChanged(nameof(AddNewSortCommand));
+            AddSortCommand = new DelegateCommand(OnAddSort);
+            RaisePropertyChanged(nameof(AddSortCommand));
+            CancelNewSortCommand = new DelegateCommand(OnCancelNewSort);
+            RaisePropertyChanged(nameof(CancelNewSortCommand));
+            NewSortCommand = new DelegateCommand(OnNewSort);
+            RaisePropertyChanged(nameof(NewSortCommand));
+        }
+
+        private void OnNewSort()
+        {
+            m_AddSortVisible = true;
+            RaisePropertyChanged(nameof(AddSortVisible));
+        }
+
+        private void OnCancelNewSort()
+        {
+            m_NewSort = "";
+            RaisePropertyChanged(nameof(NewSort));
+
+            m_AddSortVisible = false;
+            RaisePropertyChanged(nameof(AddSortVisible));
+        }
+
+        private void OnAddSort()
+        {
+            if(m_NewSort == null || m_NewSort == "")
+            {
+                return;
+            }
+
+            if(!m_Sorts.Contains(m_NewSort))
+            {
+                m_Sorts.Add(m_NewSort);
+                SortMapper.SaveSort(m_NewSort);
+                m_NewSort = "";
+                RaisePropertyChanged(nameof(NewSort));
+                RaisePropertyChanged(nameof(Sorts));
+            }
+            m_AddSortVisible = false;
+            RaisePropertyChanged(nameof(AddSortVisible));
         }
 
         private void OnAddProduct()
         {
             m_Products.Add(new Product());
             RaisePropertyChanged(nameof(Products));
-        }
-
-        private void OnAddNewSort()
-        {
-            if(m_NewSort == null || m_NewSort == "")
-            {
-                return;
-            }
-            if(!m_Sorts.Contains(m_NewSort))
-            {
-                m_Sorts.Add(m_NewSort);
-            }
-            RaisePropertyChanged(nameof(Sorts));
         }
 
         private void OnDeleteProducer()
@@ -393,6 +428,7 @@ namespace FruitMarket.ViewModel
         public ProductImportViewModel()
         {
             InitializeCommands();
+
             m_Suppliers = SupplierMapper.GetAllSuppliers();
             m_Producers = ProducerMapper.GetAllProduers();
             m_Sorts = SortMapper.GetAllSorts();

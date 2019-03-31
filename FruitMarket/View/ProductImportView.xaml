@@ -106,11 +106,14 @@
                             <DataGridTemplateColumn Header="Sorte" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ComboBox Style="{StaticResource DataGridCombobox}"
-                                      SelectedValue="{Binding Sort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      materialDesign:HintAssist.Hint="(Hinzufügen)"
-                                      VerticalAlignment="Bottom"
-                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                                        <DockPanel>
+                                            <ComboBox MouseDoubleClick="ComboBox_MouseDoubleClick"
+                                                Style="{StaticResource DataGridCombobox}"
+                                                SelectedValue="{Binding Sort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                                VerticalAlignment="Bottom"
+                                                ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
+                                        </DockPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -275,7 +278,7 @@
                                HorizontalAlignment="Center"
                                Margin="0,5,0,10"
                                FontSize="20"/>
-                    
+
                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <DockPanel>
                             <Button
@@ -334,7 +337,7 @@
                                        FontWeight="Thin" VerticalAlignment="Center"/>
                         </DockPanel>
                     </StackPanel>
-                    
+
                     <DockPanel Grid.Row="2" HorizontalAlignment="Right">
                         <Button
                             Style="{StaticResource TransitionNavigationButton}"
@@ -359,5 +362,35 @@
                 </Grid>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
+
+        <materialDesign:DialogHost 
+            IsOpen="{Binding AddSortVisible}"
+            Grid.RowSpan="10">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="10">
+                    <TextBlock 
+                        Text="Sorte hinzufügen" FontWeight="Bold"
+                        HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox 
+                        Text="{Binding NewSort}" 
+                        Margin="5"
+                        materialDesign:HintAssist.Hint="Sorte"/>
+                    <DockPanel>
+                        <Button
+                            Style="{StaticResource MaterialDesignRaisedButton}" Margin="5"
+                            Command="{Binding AddSortCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Done" Width="22" Height="22"/>
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignRaisedButton}" Margin="5"
+                            Command="{Binding CancelNewSortCommand}">
+                            <materialDesign:PackIcon
+                                Kind="Close" Width="22" Height="22"/>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>

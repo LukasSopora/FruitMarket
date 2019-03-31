@@ -124,5 +124,11 @@ namespace FruitMarket.View
                 }
             }
         }
+
+        private void ComboBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProductImportViewModel pivm = DataContext as ProductImportViewModel;
+            pivm.AddSortVisible = true;
+        }
     }
 }

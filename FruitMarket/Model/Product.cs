@@ -17,8 +17,8 @@ namespace FruitMarket.Model
         private string m_Category = null;
         private int m_SupplierId = 0;
         private int m_ProducerId = 0; 
-        private DateTime m_PurchaseDate = DateTime.MinValue;
-        private DateTime m_Expiration = DateTime.MinValue;
+        private DateTime m_PurchaseDate = DateTime.Now;
+        private DateTime m_Expiration = DateTime.Now;
         private int m_Mature = 0;
         private string m_Origin = null;
         private double m_PurchasePrice = 0;
