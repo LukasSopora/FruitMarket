@@ -139,6 +139,42 @@ namespace FruitMarket.Database
             return result;
         }
 
+        public static Costumer GetCostumerById(int p_CostumerId)
+        {
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5} " +
+                "WHERE {0} = @0",
+                ToolConstants.DB_COSTUMER_ID,
+                ToolConstants.DB_COSTUMER_LAST_NAME,
+                ToolConstants.DB_COSTUMER_FIRST_NAME,
+                ToolConstants.DB_COSTUMER_COMPANY,
+                ToolConstants.DB_COSTUMER_DATA,
+                ToolConstants.DB_COSTUMER_TABLE);
+            command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_CostumerId;
+
+            SQLiteDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                Costumer result = (Costumer)binaryFormatter.Deserialize(memoryStream);
+
+                result.Id = reader.GetInt32(0);
+                result.LastName = reader.GetString(1);
+                result.FirstName = reader.GetString(2);
+                result.Company = reader.GetString(3);
+
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static void DeleteCostumer(int p_CostumerId)
         {
             SQLiteConnection con = Connection.GetConnection();
