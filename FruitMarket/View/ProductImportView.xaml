@@ -110,7 +110,7 @@
                                             <ComboBox MouseDoubleClick="ComboBox_MouseDoubleClick"
                                                 Style="{StaticResource DataGridCombobox}"
                                                 SelectedValue="{Binding Sort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:HintAssist.Hint="(Hinzufügen)"
+                                                materialDesign:HintAssist.Hint="(Sorte)"
                                                 VerticalAlignment="Bottom"
                                                 ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Sorts}"/>
                                         </DockPanel>

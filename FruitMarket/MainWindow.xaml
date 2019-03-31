@@ -126,7 +126,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Produkte" GotFocus="RibbonTabItem_GotFocus">
@@ -181,7 +181,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Suche" GotFocus="RibbonTabItem_GotFocus">
@@ -265,7 +265,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Einlagerung" GotFocus="RibbonTabItem_GotFocus">
@@ -391,7 +391,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Auslagerung" GotFocus="RibbonTabItem_GotFocus">
@@ -485,7 +485,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Lieferschein" GotFocus="RibbonTabItem_GotFocus">
@@ -579,7 +579,7 @@
                     <view:PageDescriptionView
                         VerticalAlignment="Center" Margin="5"
                         DataContext="{Binding ActiveView.DataContext.PageDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Visibility="{Binding DescriptionVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Fluent:RibbonWindow}}, Path=DataContext.DescriptionVisible, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
