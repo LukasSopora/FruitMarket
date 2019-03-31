@@ -324,6 +324,7 @@ namespace FruitMarket.ViewModel
             m_Costumers = CostumerMapper.GetAllCostumers();
             m_Products = ProductMapper.GetAllProducts();
 
+
             InitializeCommands();
 
             RaisePropertyChanged(nameof(Products));

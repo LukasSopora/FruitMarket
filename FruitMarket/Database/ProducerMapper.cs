@@ -139,6 +139,42 @@ namespace FruitMarket.Database
             return result;
         }
 
+        public static Producer GetProducerById(int p_ProducerId)
+        {
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5} " +
+                "WHERE {0} = @0",
+                ToolConstants.DB_PRODUCER_ID,
+                ToolConstants.DB_PRODUCER_LAST_NAME,
+                ToolConstants.DB_PRODUCER_FIRST_NAME,
+                ToolConstants.DB_PRODUCER_COMPANY,
+                ToolConstants.DB_PRODUCER_DATA,
+                ToolConstants.DB_PRODUCER_TABLE);
+            command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_ProducerId;
+
+            SQLiteDataReader reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                Producer result = (Producer)binaryFormatter.Deserialize(memoryStream);
+
+                result.Id = reader.GetInt32(0);
+                result.LastName = reader.GetString(1);
+                result.FirstName = reader.GetString(2);
+                result.Company = reader.GetString(3);
+
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static void DeleteProducer(int p_ProducerId)
         {
             SQLiteConnection con = Connection.GetConnection();

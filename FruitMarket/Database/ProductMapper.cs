@@ -68,7 +68,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCT_ID,
                 ToolConstants.DB_PRODUCT_SORT,
                 ToolConstants.DB_PRODUCT_AMOUNT,
-                ToolConstants.DB_PRODUCT_AMOUNT,
+                ToolConstants.DB_PRODUCT_ORIGIN,
                 ToolConstants.DB_PRODUCT_PRODUCER_ID,
                 ToolConstants.DB_PRODUCT_SUPPLIER_ID,
                 ToolConstants.DB_PRODUCT_DATA,
@@ -85,8 +85,8 @@ namespace FruitMarket.Database
 
                 product.Id = Convert.ToInt32(reader.GetValue(0));
                 product.Sort = Convert.ToString(reader.GetValue(1));
-                product.Sort = Convert.ToString(reader.GetValue(2));
-                product.Amount = Convert.ToInt32(reader.GetValue(3));
+                product.Amount = Convert.ToInt32(reader.GetValue(2));
+                product.Origin = Convert.ToString(reader.GetValue(3));
                 product.ProducerId = Convert.ToInt32(reader.GetValue(4));
                 product.SupplierId = Convert.ToInt32(reader.GetValue(5));
 
