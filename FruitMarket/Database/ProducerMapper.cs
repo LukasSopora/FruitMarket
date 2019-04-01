@@ -139,7 +139,7 @@ namespace FruitMarket.Database
             return result;
         }
 
-        public static Producer GetProducerById(int p_ProducerId)
+            public static Producer GetProducerById(int p_ProducerId)
         {
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);

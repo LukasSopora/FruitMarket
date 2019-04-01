@@ -160,6 +160,8 @@ namespace FruitMarket.ViewModel
         {
             InitializeCommands();
 
+            DatabaseManager.GetProductListData();
+
             m_Products = ProductMapper.GetAllProducts();
             RaisePropertyChanged(nameof(Products));
 
