@@ -151,6 +151,11 @@ namespace FruitMarket.ViewModel
         }
         #endregion
 
+        public void UpdateResources()
+        {
+            m_Products = ProductMapper.GetAllProducts();
+        }
+
         public FilterViewModel()
         {
             InitializeCommands();
