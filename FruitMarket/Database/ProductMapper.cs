@@ -22,6 +22,48 @@ namespace FruitMarket.Database
             }
         }
 
+        public static void SaveProducts(IEnumerable<Product> p_Products, bool a)
+        {
+            SQLiteConnection con = Connection.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(con);
+
+            command.CommandText = string.Format(
+                "INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}) " +
+                "VALUES (@1, @2, @3, @4, @5, @6)",
+                ToolConstants.DB_PRODUCT_TABLE,
+                ToolConstants.DB_PRODUCT_SORT,
+                ToolConstants.DB_PRODUCT_ORIGIN,
+                ToolConstants.DB_PRODUCT_AMOUNT,
+                ToolConstants.DB_PRODUCT_PRODUCER_ID,
+                ToolConstants.DB_PRODUCT_SUPPLIER_ID,
+                ToolConstants.DB_PRODUCT_DATA);
+            command.Parameters.Add("@1", System.Data.DbType.String);
+            command.Parameters.Add("@2", System.Data.DbType.String);
+            command.Parameters.Add("@3", System.Data.DbType.Int32);
+            command.Parameters.Add("@4", System.Data.DbType.Int32);
+            command.Parameters.Add("@5", System.Data.DbType.Int32);
+            command.Parameters.Add("@6", System.Data.DbType.Binary);
+
+            MemoryStream memoryStream = new MemoryStream();
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            byte[] productData = null;
+
+            foreach(var product in p_Products)
+            {
+                binaryFormatter.Serialize(memoryStream, product);
+
+                command.Parameters[0].Value = product.Sort;
+                command.Parameters[1].Value = product.Origin;
+                command.Parameters[2].Value = product.Amount;
+                command.Parameters[3].Value = product.ProducerId;
+                command.Parameters[4].Value = product.SupplierId;
+                command.Parameters[5].Value = memoryStream.ToArray();
+
+                command.ExecuteNonQuery();
+            }
+
+        }
+
         private static void SaveProduct(Product p_Product)
         {
             SQLiteConnection con = Connection.GetConnection();

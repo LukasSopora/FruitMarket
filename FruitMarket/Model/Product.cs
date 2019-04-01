@@ -13,14 +13,14 @@ namespace FruitMarket.Model
     {
         private int m_Id = 0;
         private string m_Sort = null;
+        private string m_Origin = null;
         private int m_Amount = 0;
-        private string m_Category = null;
         private int m_SupplierId = 0;
         private int m_ProducerId = 0; 
+        private string m_Category = null;
         private DateTime m_PurchaseDate = DateTime.Now;
         private DateTime m_Expiration = DateTime.Now;
         private int m_Mature = 0;
-        private string m_Origin = null;
         private double m_PurchasePrice = 0;
         private double m_SalesPrice = 0;
         private int m_ToExport = 0;

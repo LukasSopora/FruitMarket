@@ -472,7 +472,9 @@ namespace FruitMarket.ViewModel
                     p.ProducerId = m_CurrentProducer.Id;
                     p.SupplierId = m_CurrentSupplier.Id;
                 }
-                ProductMapper.SaveProducts(m_Products);
+                ProductMapper.SaveProducts(m_Products, true);
+                m_Products = ProductMapper.GetAllProducts();
+                RaisePropertyChanged(nameof(Products));
             }
         }
 
