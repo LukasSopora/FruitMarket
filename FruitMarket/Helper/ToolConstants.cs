@@ -114,7 +114,7 @@ namespace FruitMarket.Helper
         #endregion
 
         #region Producer
-        public const string DB_PRODUCER_TABLE = "PRODUCER";
+        public const string DB_PRODUCER_TABLE = "Producer";
         public const string DB_PRODUCER_ID = "Id";
         public const string DB_PRODUCER_LAST_NAME = "LastName";
         public const string DB_PRODUCER_FIRST_NAME = "FirstName";
@@ -154,28 +154,39 @@ namespace FruitMarket.Helper
         public const string DB_COSTUMER_ID = "Id";
         public const string DB_COSTUMER_LAST_NAME = "LastName";
         public const string DB_COSTUMER_FIRST_NAME = "FirstName";
+        public const string DB_COSTUMER_ADRESS_ID = "AdressId";
         public const string DB_COSTUMER_COMPANY = "Company";
-        public const string DB_COSTUMER_DATA = "Data";
+        public const string DB_COSTUMER_BIRTHDAY = "Birthday";
+        public const string DB_COSTUMER_PHONE = "Phone";
+        public const string DB_COSTUMER_EMAIL = "EMail";
 
         public static string DB_COSTUMER = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "{2} TEXT, " +
             "{3} TEXT, " +
-            "{4} TEXT, " +
-            "{5} BLOB);", new string[]
+            "{4} INTEGER references {5}({6}), " +
+            "{7} TEXT, " +
+            "{8} TEXT, " +
+            "{9} TEXT, " +
+            "{10} TEXT)", new string[]
             {
                 DB_COSTUMER_TABLE,
                 DB_COSTUMER_ID,
                 DB_COSTUMER_LAST_NAME,
                 DB_COSTUMER_FIRST_NAME,
+                DB_COSTUMER_ADRESS_ID,
+                DB_ADRESS_TABLE,
+                DB_ADRESS_ID,
                 DB_COSTUMER_COMPANY,
-                DB_COSTUMER_DATA
+                DB_COSTUMER_BIRTHDAY,
+                DB_COSTUMER_PHONE,
+                DB_COSTUMER_EMAIL
             });
         #endregion
 
         #region Delivery
-        public const string DB_DELIVERY_TABLE = "Costumer";
+        public const string DB_DELIVERY_TABLE = "Delivery";
         public const string DB_DELIVERY_ID = "Id";
         public const string DB_DELIVERY_PRODUCT_ID = "ProductId";
         public const string DB_DELIVERY_COSTUMER_ID = "CostumerId";

@@ -53,53 +53,58 @@ namespace FruitMarket.Database
                     "{1} = @1, " +
                     "{2} = @2, " +
                     "{3} = @3, " +
-                    "{4} = @4 " +
-                    "WHERE {5} = @5",
+                    "{4} = @4, " +
+                    "{5} = @5, " +
+                    "{6} = @6, " +
+                    "{7} = @7 " +
+                    "WHERE {8} = @8",
                     ToolConstants.DB_COSTUMER_TABLE,
-                    ToolConstants.DB_COSTUMER_FIRST_NAME,
                     ToolConstants.DB_COSTUMER_LAST_NAME,
+                    ToolConstants.DB_COSTUMER_FIRST_NAME,
+                    ToolConstants.DB_COSTUMER_ADRESS_ID,
+                    ToolConstants.DB_COSTUMER_BIRTHDAY,
+                    ToolConstants.DB_COSTUMER_PHONE,
                     ToolConstants.DB_COSTUMER_COMPANY,
-                    ToolConstants.DB_COSTUMER_DATA,
-                    ToolConstants.DB_COSTUMER_ID
-                    );
-
-                MemoryStream memoryStream = new MemoryStream();
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(memoryStream, p_Costumer);
-
-                byte[] CostumerData = memoryStream.ToArray();
-                memoryStream.Close();
+                    ToolConstants.DB_COSTUMER_EMAIL,
+                    ToolConstants.DB_COSTUMER_ID);
 
                 command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Costumer.LastName;
                 command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Costumer.FirstName;
-                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Costumer.Company;
-                command.Parameters.Add("@4", System.Data.DbType.Binary, CostumerData.Length).Value = CostumerData;
-                command.Parameters.Add("@5", System.Data.DbType.Int32).Value = p_Costumer.Id;
+                command.Parameters.Add("@3", System.Data.DbType.Int32).Value = p_Costumer.Adress.Id;
+                command.Parameters.Add("@4", System.Data.DbType.DateTime).Value = p_Costumer.Birthday;
+                command.Parameters.Add("@5", System.Data.DbType.String).Value = p_Costumer.Phone;
+                command.Parameters.Add("@6", System.Data.DbType.String).Value = p_Costumer.Company;
+                command.Parameters.Add("@7", System.Data.DbType.String).Value = p_Costumer.Email;
+                command.Parameters.Add("@8", System.Data.DbType.Int32).Value = p_Costumer.Id;
 
                 command.ExecuteNonQuery();
+
+                AdressMapper.SaveAdress(p_Costumer.Adress);
             }
             else
             {
+                var adressId = AdressMapper.SaveAdress(p_Costumer.Adress);
+                p_Costumer.Adress.Id = adressId;
+
                 command.CommandText = string.Format(
-                "INSERT INTO {0} ({1}, {2}, {3}, {4}) " +
-                "VALUES (@1, @2, @3, @4)",
+                "INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}, {7}) " +
+                "VALUES (@1, @2, @3, @4, @5, @6, @7)",
                 ToolConstants.DB_COSTUMER_TABLE,
                 ToolConstants.DB_COSTUMER_LAST_NAME,
                 ToolConstants.DB_COSTUMER_FIRST_NAME,
+                ToolConstants.DB_COSTUMER_ADRESS_ID,
+                ToolConstants.DB_COSTUMER_BIRTHDAY,
+                ToolConstants.DB_COSTUMER_PHONE,
                 ToolConstants.DB_COSTUMER_COMPANY,
-                ToolConstants.DB_COSTUMER_DATA);
-
-                MemoryStream memoryStream = new MemoryStream();
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(memoryStream, p_Costumer);
-
-                byte[] CostumerData = memoryStream.ToArray();
-                memoryStream.Close();
+                ToolConstants.DB_COSTUMER_EMAIL);
 
                 command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Costumer.LastName;
                 command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Costumer.FirstName;
-                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Costumer.Company;
-                command.Parameters.Add("@4", System.Data.DbType.Binary, CostumerData.Length).Value = CostumerData;
+                command.Parameters.Add("@3", System.Data.DbType.Int32).Value = p_Costumer.Adress.Id;
+                command.Parameters.Add("@4", System.Data.DbType.DateTime).Value = p_Costumer.Birthday;
+                command.Parameters.Add("@5", System.Data.DbType.String).Value = p_Costumer.Phone;
+                command.Parameters.Add("@6", System.Data.DbType.String).Value = p_Costumer.Company;
+                command.Parameters.Add("@7", System.Data.DbType.String).Value = p_Costumer.Email;
 
                 command.ExecuteNonQuery();
             }
@@ -113,26 +118,31 @@ namespace FruitMarket.Database
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5}",
+                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} FROM {8}",
                 ToolConstants.DB_COSTUMER_ID,
                 ToolConstants.DB_COSTUMER_LAST_NAME,
                 ToolConstants.DB_COSTUMER_FIRST_NAME,
+                ToolConstants.DB_COSTUMER_ADRESS_ID,
+                ToolConstants.DB_COSTUMER_BIRTHDAY,
+                ToolConstants.DB_COSTUMER_PHONE,
                 ToolConstants.DB_COSTUMER_COMPANY,
-                ToolConstants.DB_COSTUMER_DATA,
+                ToolConstants.DB_COSTUMER_EMAIL,
                 ToolConstants.DB_COSTUMER_TABLE);
 
             SQLiteDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                Costumer costumer = (Costumer)binaryFormatter.Deserialize(memoryStream);
+                Costumer costumer = new Costumer();
 
                 costumer.Id = Convert.ToInt32(reader.GetValue(0));
                 costumer.LastName = Convert.ToString(reader.GetValue(1));
                 costumer.FirstName = Convert.ToString(reader.GetValue(2));
-                costumer.Company = Convert.ToString(reader.GetValue(3));
+                costumer.Adress = AdressMapper.GetAdressById(reader.GetInt32(3));
+                costumer.Birthday = Convert.ToDateTime(reader.GetValue(4));
+                costumer.Phone = Convert.ToString(reader.GetValue(5));
+                costumer.Company = Convert.ToString(reader.GetValue(6));
+                costumer.Email = Convert.ToString(reader.GetValue(7));
 
                 result.Add(costumer);
             }
@@ -145,27 +155,32 @@ namespace FruitMarket.Database
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5} " +
+                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} FROM {8}" +
                 "WHERE {0} = @0",
                 ToolConstants.DB_COSTUMER_ID,
                 ToolConstants.DB_COSTUMER_LAST_NAME,
                 ToolConstants.DB_COSTUMER_FIRST_NAME,
+                ToolConstants.DB_COSTUMER_ADRESS_ID,
+                ToolConstants.DB_COSTUMER_BIRTHDAY,
+                ToolConstants.DB_COSTUMER_PHONE,
                 ToolConstants.DB_COSTUMER_COMPANY,
-                ToolConstants.DB_COSTUMER_DATA,
+                ToolConstants.DB_COSTUMER_EMAIL,
                 ToolConstants.DB_COSTUMER_TABLE);
             command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_CostumerId;
 
             SQLiteDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
-                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                Costumer result = (Costumer)binaryFormatter.Deserialize(memoryStream);
+                Costumer result = new Costumer();
 
-                result.Id = reader.GetInt32(0);
-                result.LastName = reader.GetString(1);
-                result.FirstName = reader.GetString(2);
-                result.Company = reader.GetString(3);
+                result.Id = Convert.ToInt32(reader.GetValue(0));
+                result.LastName = Convert.ToString(reader.GetValue(1));
+                result.FirstName = Convert.ToString(reader.GetValue(2));
+                result.Adress = AdressMapper.GetAdressById(reader.GetInt32(3));
+                result.Birthday = Convert.ToDateTime(reader.GetValue(4));
+                result.Phone = Convert.ToString(reader.GetValue(5));
+                result.Company = Convert.ToString(reader.GetValue(6));
+                result.Email = Convert.ToString(reader.GetValue(7));
 
                 return result;
             }

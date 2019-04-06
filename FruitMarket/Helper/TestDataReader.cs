@@ -89,7 +89,7 @@ namespace FruitMarket.Helper
                 string[] birthday = values[3].Split('-');
                 costumer.Birthday = DateTime.Parse(string.Format("{1}-{0}-{2}", birthday[0], birthday[1], birthday[2]));
                 costumer.Phone = values[4];
-                costumer.Adress = new Adress(values[5], values[6], values[7]);
+                costumer.Adress = new Adress(count + 1, values[5], values[6], values[7]);
                 costumer.Email = values[8];
 
                 result.Add(costumer);
