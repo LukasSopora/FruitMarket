@@ -19,7 +19,13 @@ namespace FruitMarket.Database
             }
         }
 
-        public static void SaveAdress(Adress p_Adress)
+        /// <summary>
+        /// Saves an adress to the database. If the adress alreay exists, its values are just updated.
+        /// The function reutrns the column index of the insertet / updated adress.
+        /// </summary>
+        /// <param name="p_Adress"></param>
+        /// <returns>Index of insertet / updated adress</returns>
+        public static int SaveAdress(Adress p_Adress)
         {
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);
@@ -37,6 +43,7 @@ namespace FruitMarket.Database
             {
                 alreadyExists = true;
             }
+            reader.Close();
 
             if(alreadyExists)
             {
@@ -58,11 +65,13 @@ namespace FruitMarket.Database
                 command.Parameters.Add("@4", System.Data.DbType.Int32).Value = p_Adress.Id;
 
                 command.ExecuteNonQuery();
+
+                return p_Adress.Id;
             }
             else
             {
                 command.CommandText = string.Format(
-                "INSERT INTO {0} ({1} {2} {3}) " +
+                "INSERT INTO {0} ({1}, {2}, {3}) " +
                 "VALUES (@1, @2, @3)",
                 ToolConstants.DB_ADRESS_TABLE,
                 ToolConstants.DB_ADRESS_STREET,
@@ -73,6 +82,13 @@ namespace FruitMarket.Database
                 command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Adress.Place;
 
                 command.ExecuteNonQuery();
+
+                command.CommandText = "SELECT last_insert_rowid()";
+                reader = command.ExecuteReader();
+                reader.Read();
+                int adressID = reader.GetInt32(0);
+                reader.Close();
+                return adressID;
             }
         }
 
