@@ -101,9 +101,9 @@
                 <Grid Margin="10,10,20,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ausgehende Produkte"
                                Grid.Row="0" HorizontalAlignment="Center" FontSize="20"/>
