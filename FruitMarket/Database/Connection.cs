@@ -66,6 +66,9 @@ namespace FruitMarket.Database
             command.CommandText = ToolConstants.DB_COSTUMER;
             command.ExecuteNonQuery();
 
+            command.CommandText = ToolConstants.DB_DELIVERYNOTE;
+            command.ExecuteNonQuery();
+
             command.CommandText = ToolConstants.DB_DELIVERY;
             command.ExecuteNonQuery();
 

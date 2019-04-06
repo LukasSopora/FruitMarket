@@ -185,6 +185,22 @@ namespace FruitMarket.Helper
             });
         #endregion
 
+        #region DeliveryNote
+        public const string DB_DELIVERYNOTE_TABLE = "DeliveryNote";
+        public const string DB_DELIVERYNOTE_ID = "Id";
+        public const string DB_DELIVERYNOTE_DATE = "DeliveryDate";
+
+        public static string DB_DELIVERYNOTE = string.Format(
+            "CREATE TABLE IF NOT EXISTS {0} (" +
+            "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "{2} TEXT);", new string[]
+            {
+                DB_DELIVERYNOTE_TABLE,
+                DB_DELIVERYNOTE_ID,
+                DB_DELIVERYNOTE_DATE
+            });
+        #endregion
+
         #region Delivery
         public const string DB_DELIVERY_TABLE = "Delivery";
         public const string DB_DELIVERY_ID = "Id";
