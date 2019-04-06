@@ -55,7 +55,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCER_LAST_NAME,
                 ToolConstants.DB_PRODUCER_FIRST_NAME,
                 ToolConstants.DB_PRODUCER_COMPANY,
-                ToolConstants.DB_PRODUCER_DATA,
+                ToolConstants.DB_PRODUCER_ADRESS_ID,
                 ToolConstants.DB_SUPPLIER_TABLE,
                 ToolConstants.DB_SUPPLIER_ID,
                 ToolConstants.DB_SUPPLIER_LAST_NAME,

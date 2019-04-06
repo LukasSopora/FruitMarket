@@ -532,7 +532,7 @@ namespace FruitMarket.ViewModel
             InitializeCommands();
 
             m_Suppliers = SupplierMapper.GetAllSuppliers();
-            m_Producers = ProducerMapper.GetAllProduers();
+            m_Producers = ProducerMapper.GetAllProducers();
             m_Sorts = SortMapper.GetAllSorts();
             m_Categories = ToolConstants.DEFAULT_FRUIT_CATEGORIES;
             m_Products = ProductMapper.GetAllProducts();

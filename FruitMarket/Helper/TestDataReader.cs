@@ -15,11 +15,39 @@ namespace FruitMarket.Helper
         private static string m_PERSON_TESTDATA_PATH = "Helper/TestData.csv";
         private static string m_COUNTRIES_DATA_PATH = "Helper/countries.csv";
 
+        public static ObservableCollection<Producer> GetDefaultProducers()
+        {
+            ObservableCollection<Producer> result = new ObservableCollection<Producer>();
+
+            StreamReader reader = new StreamReader("Helper/TestData.csv");
+
+            for (int count = 0; count < m_MAX_NUMBER; count++)
+            {
+                Producer producer = new Producer();
+                string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
+                string[] values = line.Split('|');
+
+                producer.Id = count - m_MAX_NUMBER + 1;
+                producer.Company = values[0];
+                producer.FirstName = values[1];
+                producer.LastName = values[2];
+                string[] birthday = values[3].Split('-');
+                producer.Birthday = DateTime.Parse(string.Format("{1}-{0}-{2}", birthday[0], birthday[1], birthday[2]));
+                producer.Phone = values[4];
+                producer.Adress = new Adress(count + 1 ,values[5], values[6], values[7]);
+                producer.Email = values[8];
+
+                result.Add(producer);
+            }
+
+            return result;
+        }
+
         public static ObservableCollection<Supplier> GetDefaultSuppliers()
         {
             ObservableCollection<Supplier> result = new ObservableCollection<Supplier>();
 
-            for (int count = 0; count < m_MAX_NUMBER; count++)
+            for (int count = m_MAX_NUMBER; count < m_MAX_NUMBER * 2; count++)
             {
                 Supplier supplier = new Supplier();
                 string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
@@ -41,33 +69,6 @@ namespace FruitMarket.Helper
             return result;
         }
 
-        public static ObservableCollection<Producer> GetDefaultProducers()
-        {
-            ObservableCollection<Producer> result = new ObservableCollection<Producer>();
-
-            StreamReader reader = new StreamReader("Helper/TestData.csv");
-
-            for (int count = m_MAX_NUMBER; count < m_MAX_NUMBER * 2; count++)
-            {
-                Producer producer = new Producer();
-                string line = File.ReadLines(m_PERSON_TESTDATA_PATH).Skip(count).Take(1).First();
-                string[] values = line.Split('|');
-
-                producer.Id = count - m_MAX_NUMBER + 1;
-                producer.Company = values[0];
-                producer.FirstName = values[1];
-                producer.LastName = values[2];
-                string[] birthday = values[3].Split('-');
-                producer.Birthday = DateTime.Parse(string.Format("{1}-{0}-{2}", birthday[0], birthday[1], birthday[2]));
-                producer.Phone = values[4];
-                producer.Adress = new Adress(values[5], values[6], values[7]);
-                producer.Email = values[8];
-
-                result.Add(producer);
-            }
-
-            return result;
-        }
 
         public static ObservableCollection<Costumer> GetDefaultCostumers()
         {

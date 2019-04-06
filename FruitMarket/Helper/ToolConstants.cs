@@ -114,27 +114,38 @@ namespace FruitMarket.Helper
         #endregion
 
         #region Producer
-        public const string DB_PRODUCER_TABLE = "Producer";
+        public const string DB_PRODUCER_TABLE = "PRODUCER";
         public const string DB_PRODUCER_ID = "Id";
         public const string DB_PRODUCER_LAST_NAME = "LastName";
         public const string DB_PRODUCER_FIRST_NAME = "FirstName";
+        public const string DB_PRODUCER_ADRESS_ID = "AdressId";
         public const string DB_PRODUCER_COMPANY = "Company";
-        public const string DB_PRODUCER_DATA = "Data";
+        public const string DB_PRODUCER_BIRTHDAY = "Birthday";
+        public const string DB_PRODUCER_PHONE = "Phone";
+        public const string DB_PRODUCER_EMAIL = "EMail";
 
         public static string DB_PRODUCER = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "{2} TEXT, " +
             "{3} TEXT, " +
-            "{4} TEXT, " +
-            "{5} BLOB);", new string[]
+            "{4} INTEGER references {5}({6}), " +
+            "{7} TEXT, " +
+            "{8} TEXT, " +
+            "{9} TEXT, " +
+            "{10} TEXT)", new string[]
             {
                 DB_PRODUCER_TABLE,
                 DB_PRODUCER_ID,
                 DB_PRODUCER_LAST_NAME,
                 DB_PRODUCER_FIRST_NAME,
+                DB_PRODUCER_ADRESS_ID,
+                DB_ADRESS_TABLE,
+                DB_ADRESS_ID,
                 DB_PRODUCER_COMPANY,
-                DB_PRODUCER_DATA
+                DB_PRODUCER_BIRTHDAY,
+                DB_PRODUCER_PHONE,
+                DB_PRODUCER_EMAIL
             });
         #endregion
 

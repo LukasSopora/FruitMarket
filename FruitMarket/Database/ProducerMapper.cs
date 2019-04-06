@@ -39,73 +39,78 @@ namespace FruitMarket.Database
 
             SQLiteDataReader reader = command.ExecuteReader();
 
-            if(reader.HasRows)
+            if (reader.HasRows)
             {
                 alreadyExists = true;
             }
 
             reader.Close();
 
-            if(alreadyExists)
+            if (alreadyExists)
             {
                 command.CommandText = string.Format(
                     "UPDATE {0} SET " +
-                    "{1} = @1, " + 
-                    "{2} = @2, " + 
-                    "{3} = @3, " + 
-                    "{4} = @4 " +
-                    "WHERE {5} = @5",
+                    "{1} = @1, " +
+                    "{2} = @2, " +
+                    "{3} = @3, " +
+                    "{4} = @4, " +
+                    "{5} = @5, " +
+                    "{6} = @6, " +
+                    "{7} = @7 " +
+                    "WHERE {8} = @8",
                     ToolConstants.DB_PRODUCER_TABLE,
                     ToolConstants.DB_PRODUCER_LAST_NAME,
                     ToolConstants.DB_PRODUCER_FIRST_NAME,
+                    ToolConstants.DB_PRODUCER_ADRESS_ID,
+                    ToolConstants.DB_PRODUCER_BIRTHDAY,
+                    ToolConstants.DB_PRODUCER_PHONE,
                     ToolConstants.DB_PRODUCER_COMPANY,
-                    ToolConstants.DB_PRODUCER_DATA,
-                    ToolConstants.DB_PRODUCER_ID
-                    );
-
-                MemoryStream memoryStream = new MemoryStream();
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(memoryStream, p_Producer);
-
-                byte[] producerData = memoryStream.ToArray();
-                memoryStream.Close();
+                    ToolConstants.DB_PRODUCER_EMAIL,
+                    ToolConstants.DB_PRODUCER_ID);
 
                 command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
                 command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
-                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
-                command.Parameters.Add("@4", System.Data.DbType.Binary, producerData.Length).Value = producerData;
-                command.Parameters.Add("@5", System.Data.DbType.Int32).Value = p_Producer.Id;
+                command.Parameters.Add("@3", System.Data.DbType.Int32).Value = p_Producer.Adress.Id;
+                command.Parameters.Add("@4", System.Data.DbType.DateTime).Value = p_Producer.Birthday;
+                command.Parameters.Add("@5", System.Data.DbType.String).Value = p_Producer.Phone;
+                command.Parameters.Add("@6", System.Data.DbType.String).Value = p_Producer.Company;
+                command.Parameters.Add("@7", System.Data.DbType.String).Value = p_Producer.Email;
+                command.Parameters.Add("@8", System.Data.DbType.Int32).Value = p_Producer.Id;
 
                 command.ExecuteNonQuery();
+
+                AdressMapper.SaveAdress(p_Producer.Adress);
             }
             else
             {
+                var adressId = AdressMapper.SaveAdress(p_Producer.Adress);
+                p_Producer.Adress.Id = adressId;
+
                 command.CommandText = string.Format(
-                "INSERT INTO {0} ({1}, {2}, {3}, {4}) " +
-                "VALUES (@1, @2, @3, @4)",
+                "INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6}, {7}) " +
+                "VALUES (@1, @2, @3, @4, @5, @6, @7)",
                 ToolConstants.DB_PRODUCER_TABLE,
                 ToolConstants.DB_PRODUCER_LAST_NAME,
                 ToolConstants.DB_PRODUCER_FIRST_NAME,
+                ToolConstants.DB_PRODUCER_ADRESS_ID,
+                ToolConstants.DB_PRODUCER_BIRTHDAY,
+                ToolConstants.DB_PRODUCER_PHONE,
                 ToolConstants.DB_PRODUCER_COMPANY,
-                ToolConstants.DB_PRODUCER_DATA);
-
-                MemoryStream memoryStream = new MemoryStream();
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(memoryStream, p_Producer);
-
-                byte[] productData = memoryStream.ToArray();
-                memoryStream.Close();
+                ToolConstants.DB_PRODUCER_EMAIL);
 
                 command.Parameters.Add("@1", System.Data.DbType.String).Value = p_Producer.LastName;
                 command.Parameters.Add("@2", System.Data.DbType.String).Value = p_Producer.FirstName;
-                command.Parameters.Add("@3", System.Data.DbType.String).Value = p_Producer.Company;
-                command.Parameters.Add("@4", System.Data.DbType.Binary, productData.Length).Value = productData;
+                command.Parameters.Add("@3", System.Data.DbType.Int32).Value = p_Producer.Adress.Id;
+                command.Parameters.Add("@4", System.Data.DbType.DateTime).Value = p_Producer.Birthday;
+                command.Parameters.Add("@5", System.Data.DbType.String).Value = p_Producer.Phone;
+                command.Parameters.Add("@6", System.Data.DbType.String).Value = p_Producer.Company;
+                command.Parameters.Add("@7", System.Data.DbType.String).Value = p_Producer.Email;
 
                 command.ExecuteNonQuery();
             }
         }
 
-        public static ObservableCollection<Producer> GetAllProduers()
+        public static ObservableCollection<Producer> GetAllProducers()
         {
             ObservableCollection<Producer> result = new ObservableCollection<Producer>();
 
@@ -113,59 +118,69 @@ namespace FruitMarket.Database
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5}",
+                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} FROM {8}",
                 ToolConstants.DB_PRODUCER_ID,
                 ToolConstants.DB_PRODUCER_LAST_NAME,
                 ToolConstants.DB_PRODUCER_FIRST_NAME,
+                ToolConstants.DB_PRODUCER_ADRESS_ID,
+                ToolConstants.DB_PRODUCER_BIRTHDAY,
+                ToolConstants.DB_PRODUCER_PHONE,
                 ToolConstants.DB_PRODUCER_COMPANY,
-                ToolConstants.DB_PRODUCER_DATA,
+                ToolConstants.DB_PRODUCER_EMAIL,
                 ToolConstants.DB_PRODUCER_TABLE);
 
             SQLiteDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                Producer producer = (Producer)binaryFormatter.Deserialize(memoryStream);
+                Producer producer = new Producer();
 
                 producer.Id = Convert.ToInt32(reader.GetValue(0));
                 producer.LastName = Convert.ToString(reader.GetValue(1));
                 producer.FirstName = Convert.ToString(reader.GetValue(2));
-                producer.Company = Convert.ToString(reader.GetValue(3));
+                producer.Adress = AdressMapper.GetAdressById(reader.GetInt32(3));
+                producer.Birthday = Convert.ToDateTime(reader.GetValue(4));
+                producer.Phone = Convert.ToString(reader.GetValue(5));
+                producer.Company = Convert.ToString(reader.GetValue(6));
+                producer.Email = Convert.ToString(reader.GetValue(7));
 
                 result.Add(producer);
             }
             return result;
         }
 
-            public static Producer GetProducerById(int p_ProducerId)
+        public static Producer GetProducerById(int p_ProducerId)
         {
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}, {1}, {2}, {3}, {4} FROM {5} " +
+                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} FROM {8}" +
                 "WHERE {0} = @0",
                 ToolConstants.DB_PRODUCER_ID,
                 ToolConstants.DB_PRODUCER_LAST_NAME,
                 ToolConstants.DB_PRODUCER_FIRST_NAME,
+                ToolConstants.DB_PRODUCER_ADRESS_ID,
+                ToolConstants.DB_PRODUCER_BIRTHDAY,
+                ToolConstants.DB_PRODUCER_PHONE,
                 ToolConstants.DB_PRODUCER_COMPANY,
-                ToolConstants.DB_PRODUCER_DATA,
+                ToolConstants.DB_PRODUCER_EMAIL,
                 ToolConstants.DB_PRODUCER_TABLE);
             command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_ProducerId;
 
             SQLiteDataReader reader = command.ExecuteReader();
-            if(reader.Read())
+            if (reader.Read())
             {
-                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(4));
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                Producer result = (Producer)binaryFormatter.Deserialize(memoryStream);
+                Producer result = new Producer();
 
-                result.Id = reader.GetInt32(0);
-                result.LastName = reader.GetString(1);
-                result.FirstName = reader.GetString(2);
-                result.Company = reader.GetString(3);
+                result.Id = Convert.ToInt32(reader.GetValue(0));
+                result.LastName = Convert.ToString(reader.GetValue(1));
+                result.FirstName = Convert.ToString(reader.GetValue(2));
+                result.Adress = AdressMapper.GetAdressById(reader.GetInt32(3));
+                result.Birthday = Convert.ToDateTime(reader.GetValue(4));
+                result.Phone = Convert.ToString(reader.GetValue(5));
+                result.Company = Convert.ToString(reader.GetValue(6));
+                result.Email = Convert.ToString(reader.GetValue(7));
 
                 return result;
             }
