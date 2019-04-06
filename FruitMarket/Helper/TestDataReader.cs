@@ -32,7 +32,7 @@ namespace FruitMarket.Helper
                 string[] birthday = values[3].Split('-');
                 supplier.Birthday = DateTime.Parse(string.Format("{1}-{0}-{2}", birthday[0], birthday[1], birthday[2]));
                 supplier.Phone = values[4];
-                supplier.Adress = new Adress(values[5], values[6], values[7]);
+                supplier.Adress = new Adress(count + 1, values[5], values[6], values[7]);
                 supplier.Email = values[8];
 
                 result.Add(supplier);

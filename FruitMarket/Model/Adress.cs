@@ -47,6 +47,14 @@ namespace FruitMarket.Model
             m_Place = p_Place;
         }
 
+        public Adress(int p_Id, string p_Street, string p_PostCode, string p_Place)
+        {
+            m_Id = p_Id;
+            m_Street = p_Street;
+            m_PostCode = p_PostCode;
+            m_Place = p_Place;
+        }
+
         public Adress()
         { 
         }

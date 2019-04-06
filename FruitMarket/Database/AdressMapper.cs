@@ -48,12 +48,12 @@ namespace FruitMarket.Database
             if(alreadyExists)
             {
                 command.CommandText = string.Format(
-                    "UPDATE {0} SET" +
+                    "UPDATE {0} SET " +
                     "{1} = @1, " +
                     "{2} = @2, " +
                     "{3} = @3 " +
                     "WHERE {4} = @4",
-                    ToolConstants.DB_ADRESS,
+                    ToolConstants.DB_ADRESS_TABLE,
                     ToolConstants.DB_ADRESS_STREET,
                     ToolConstants.DB_ADRESS_POSTCODE,
                     ToolConstants.DB_ADRESS_PLACE,
