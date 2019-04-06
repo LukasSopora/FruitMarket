@@ -14,6 +14,13 @@ namespace FruitMarket.Model
         private string m_Street = null;
         private string m_PostCode = null;
         private string m_Place = null;
+        private int m_Id;
+
+        public int Id
+        {
+            get { return m_Id; }
+            set { m_Id = value; }
+        }
 
         public string Place
         {

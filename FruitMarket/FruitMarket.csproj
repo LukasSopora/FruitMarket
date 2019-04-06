@@ -96,6 +96,7 @@
     <Compile Include="Converter\EmptyCollectionConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="Converter\NullToVisibilityConverter.cs" />
+    <Compile Include="Database\AdressMapper.cs" />
     <Compile Include="Database\Connection.cs" />
     <Compile Include="Database\CostumerMapper.cs" />
     <Compile Include="Database\CountryMapper.cs" />
