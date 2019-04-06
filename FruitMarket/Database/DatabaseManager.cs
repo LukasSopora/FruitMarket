@@ -61,7 +61,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_SUPPLIER_LAST_NAME,
                 ToolConstants.DB_SUPPLIER_FIRST_NAME,
                 ToolConstants.DB_SUPPLIER_COMPANY,
-                ToolConstants.DB_SUPPLIER_DATA);
+                ToolConstants.DB_SUPPLIER_ADRESS_ID);
             var reader = command.ExecuteReader();
 
             while (reader.Read())

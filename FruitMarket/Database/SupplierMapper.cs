@@ -59,7 +59,7 @@ namespace FruitMarket.Database
                     ToolConstants.DB_SUPPLIER_LAST_NAME,
                     ToolConstants.DB_SUPPLIER_FIRST_NAME,
                     ToolConstants.DB_SUPPLIER_COMPANY,
-                    ToolConstants.DB_SUPPLIER_DATA,
+                    ToolConstants.DB_SUPPLIER_ADRESS_ID,
                     ToolConstants.DB_SUPPLIER_ID
                     );
 
@@ -87,7 +87,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_SUPPLIER_LAST_NAME,
                 ToolConstants.DB_SUPPLIER_FIRST_NAME,
                 ToolConstants.DB_SUPPLIER_COMPANY,
-                ToolConstants.DB_SUPPLIER_DATA);
+                ToolConstants.DB_SUPPLIER_ADRESS_ID);
 
                 MemoryStream memoryStream = new MemoryStream();
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -118,7 +118,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_SUPPLIER_LAST_NAME,
                 ToolConstants.DB_SUPPLIER_FIRST_NAME,
                 ToolConstants.DB_SUPPLIER_COMPANY,
-                ToolConstants.DB_SUPPLIER_DATA,
+                ToolConstants.DB_SUPPLIER_ADRESS_ID,
                 ToolConstants.DB_SUPPLIER_TABLE);
 
             SQLiteDataReader reader = command.ExecuteReader();
@@ -151,7 +151,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_SUPPLIER_LAST_NAME,
                 ToolConstants.DB_SUPPLIER_FIRST_NAME,
                 ToolConstants.DB_SUPPLIER_COMPANY,
-                ToolConstants.DB_SUPPLIER_DATA,
+                ToolConstants.DB_SUPPLIER_ADRESS_ID,
                 ToolConstants.DB_SUPPLIER_TABLE);
             command.Parameters.Add("@0", System.Data.DbType.Int32).Value = p_SupplierId;
 

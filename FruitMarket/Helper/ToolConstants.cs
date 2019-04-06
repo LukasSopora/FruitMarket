@@ -55,28 +55,61 @@ namespace FruitMarket.Helper
             });
         #endregion
 
+        #region Adress
+        public const string DB_ADRESS_TABLE = "Adressen";
+        public const string DB_ADRESS_ID = "Id";
+        public const string DB_ADRESS_STREET = "Street";
+        public const string DB_ADRESS_POSTCODE = "PostCode";
+        public const string DB_ADRESS_PLACE = "Place";
+
+        public static string DB_ADRESS = string.Format(
+            "CREATE TABLE IF NOT EXISTS {0} (" +
+            "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "{2} TEXT, " +
+            "{3} TEXT, " +
+            "{4} TEXT)", new string[]
+            {
+                DB_ADRESS_TABLE,
+                DB_ADRESS_ID,
+                DB_ADRESS_STREET,
+                DB_ADRESS_POSTCODE,
+                DB_ADRESS_PLACE
+            });
+        #endregion
+
         #region Supplier
         public const string DB_SUPPLIER_TABLE = "Supplier";
         public const string DB_SUPPLIER_ID = "Id";
         public const string DB_SUPPLIER_LAST_NAME = "LastName";
         public const string DB_SUPPLIER_FIRST_NAME = "FirstName";
+        public const string DB_SUPPLIER_ADRESS_ID = "AdressId"; 
         public const string DB_SUPPLIER_COMPANY = "Company";
-        public const string DB_SUPPLIER_DATA = "Data";
+        public const string DB_SUPPLIER_BIRTHDAY = "Birthday"; 
+        public const string DB_SUPPLIER_PHONE = "Phone"; 
+        public const string DB_SUPPLIER_EMAIL = "EMail";
 
         public static string DB_SUPPLIER = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "{2} TEXT, " +
             "{3} TEXT, " +
-            "{4} TEXT, " +
-            "{5} BLOB);", new string[]
+            "{4} INTEGER references {5}({6}), " +
+            "{7} TEXT, " +
+            "{8} TEXT, " +
+            "{9} TEXT, " +
+            "{10} TEXT)", new string[]
             {
                 DB_SUPPLIER_TABLE,
                 DB_SUPPLIER_ID,
                 DB_SUPPLIER_LAST_NAME,
                 DB_SUPPLIER_FIRST_NAME,
+                DB_SUPPLIER_ADRESS_ID,
+                DB_ADRESS_TABLE,
+                DB_ADRESS_ID,
                 DB_SUPPLIER_COMPANY,
-                DB_SUPPLIER_DATA
+                DB_SUPPLIER_BIRTHDAY,
+                DB_SUPPLIER_PHONE,
+                DB_SUPPLIER_EMAIL
             });
         #endregion
 

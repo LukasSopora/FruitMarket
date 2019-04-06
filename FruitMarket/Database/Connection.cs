@@ -54,6 +54,9 @@ namespace FruitMarket.Database
             command.CommandText = ToolConstants.DB_PRODUCT;
             command.ExecuteNonQuery();
 
+            command.CommandText = ToolConstants.DB_ADRESS;
+            command.ExecuteNonQuery();
+
             command.CommandText = ToolConstants.DB_SUPPLIER;
             command.ExecuteNonQuery();
 
