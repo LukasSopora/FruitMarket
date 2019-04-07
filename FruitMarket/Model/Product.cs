@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    [Serializable]
-    public class Product : BindableBase, ISerializable
+    public class Product : BindableBase
     {
         private int m_Id = 0;
         private string m_Sort = null;
@@ -138,28 +137,6 @@ namespace FruitMarket.Model
             m_Origin = p_Origin;
             m_PurchasePrice = p_PurchasePrice;
             m_SalesPrice = p_SalesPrice;
-        }
-
-        public Product(SerializationInfo info, StreamingContext context)
-        {
-            m_Category = (string)info.GetValue(nameof(Category), typeof(string));
-            m_Expiration = (DateTime)info.GetValue(nameof(Expiration), typeof(DateTime));
-            m_PurchaseDate = (DateTime)info.GetValue(nameof(PurchaseDate), typeof(DateTime));
-            m_Mature = (int)info.GetValue(nameof(Mature), typeof(int));
-            m_Origin = (string)info.GetValue(nameof(Origin), typeof(string));
-            m_PurchasePrice = (double)info.GetValue(nameof(PurchasePrice), typeof(double));
-            m_SalesPrice = (double)info.GetValue(nameof(SalesPrice), typeof(double));
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(Category), m_Category);
-            info.AddValue(nameof(Expiration), m_Expiration);
-            info.AddValue(nameof(PurchaseDate), m_PurchaseDate);
-            info.AddValue(nameof(Mature), m_Mature);
-            info.AddValue(nameof(Origin), m_Origin);
-            info.AddValue(nameof(PurchasePrice), m_PurchasePrice);
-            info.AddValue(nameof(SalesPrice), m_SalesPrice);
         }
 
         public Product()
