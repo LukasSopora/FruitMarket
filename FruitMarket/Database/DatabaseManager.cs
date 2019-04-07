@@ -37,11 +37,11 @@ namespace FruitMarket.Database
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}.{1}, {0}.{2}, {0}.{3}, {0}.{4}, {0}.{5}, {0}.{6}, {0}.{7}, " +
-                "{8}.{9}, {8}.{10}, {8}.{11}, {8}.{12}, {8}.{13}, " +
-                "{14}.{15}, {14}.{16}, {14}.{17}, {14}.{18}, {14}.{19} FROM {0} " +
-                "INNER JOIN {8} ON {8}.{9} = {0}.{5} " +
-                "INNER JOIN {14} ON {14}.{15} = {0}.{6}",
+                "SELECT {0}.{1}, {0}.{2}, {0}.{3}, {0}.{4}, {0}.{5}, {0}.{6}, {0}.{7}, {0}.{8}, {0}.{9}, {0}.{10}, {0}.{11}, {0}.{12}, " +
+                "{13}.{14}, {13}.{15}, {13}.{16}, {13}.{17}, {13}.{18}, " +
+                "{19}.{20}, {19}.{21}, {19}.{22}, {19}.{23}, {19}.{24} FROM {0} " +
+                "INNER JOIN {13} ON {13}.{14} = {0}.{5} " +
+                "INNER JOIN {19} ON {19}.{20} = {0}.{6}",
                 ToolConstants.DB_PRODUCT_TABLE,
                 ToolConstants.DB_PRODUCT_ID,
                 ToolConstants.DB_PRODUCT_AMOUNT,
@@ -49,7 +49,12 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCT_ORIGIN,
                 ToolConstants.DB_PRODUCT_PRODUCER_ID,
                 ToolConstants.DB_PRODUCT_SUPPLIER_ID,
-                ToolConstants.DB_PRODUCT_DATA,
+                ToolConstants.DB_PRODUCT_CATEGORY,
+                ToolConstants.DB_PRODUCT_PURCHASEDATE,
+                ToolConstants.DB_PRODUCT_EXPIRATION,
+                ToolConstants.DB_PRODUCT_MATURE,
+                ToolConstants.DB_PRODUCT_PURCHASEPRICE,
+                ToolConstants.DB_PRODUCT_SALESPRICE,
                 ToolConstants.DB_PRODUCER_TABLE,
                 ToolConstants.DB_PRODUCER_ID,
                 ToolConstants.DB_PRODUCER_LAST_NAME,

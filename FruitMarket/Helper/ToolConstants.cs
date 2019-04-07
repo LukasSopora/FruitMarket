@@ -19,29 +19,39 @@ namespace FruitMarket.Helper
         #region Product
         public const string DB_PRODUCT_TABLE = "Product";
         public const string DB_PRODUCT_ID = "Id";
-        public const string DB_PRODUCT_AMOUNT = "Amount";
         public const string DB_PRODUCT_SORT = "Sort";
+        public const string DB_PRODUCT_AMOUNT = "Amount";
         public const string DB_PRODUCT_ORIGIN = "Origin";
         public const string DB_PRODUCT_PRODUCER_ID = "ProducerId";
         public const string DB_PRODUCT_SUPPLIER_ID = "SupplierId";
-        public const string DB_PRODUCT_DATA = "Data";
+        public const string DB_PRODUCT_CATEGORY = "Category";
+        public const string DB_PRODUCT_PURCHASEDATE = "PurchaseDate";
+        public const string DB_PRODUCT_EXPIRATION = "Expiration";
+        public const string DB_PRODUCT_MATURE = "Mature";
+        public const string DB_PRODUCT_PURCHASEPRICE = "PurchasePrice";
+        public const string DB_PRODUCT_SALESPRICE = "SalesPrice";
 
         public static string DB_PRODUCT = string.Format(
             "CREATE TABLE IF NOT EXISTS {0} (" +
             "{1} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "{2} INTEGER NOT NULL, " +
-            "{3} TEXT references {4}({5}), " +
+            "{2} TEXT references {3}({4}), " +
+            "{5} INTEGER NOT NULL, " +
             "{6} TEXT references {7}({8}), " +
             "{9} INTEGER references {10}({11}), " +
             "{12} INTEGER references {13}({14}), " +
-            "{15} BLOB);", new string[]
+            "{15} TEXT, " +
+            "{16} TEXT, " +
+            "{17} TEXT, " +
+            "{18} INTEGER, " +
+            "{19} REAL, " +
+            "{20} REAL);", new string[]
             {
                 DB_PRODUCT_TABLE,        //0
                 DB_PRODUCT_ID,           //1
-                DB_PRODUCT_AMOUNT,       //2
-                DB_PRODUCT_SORT,         //3
-                DB_SORT_TABLE,           //4
-                DB_SORT_SORTNAME,        //5
+                DB_PRODUCT_SORT,         //2
+                DB_SORT_TABLE,           //3
+                DB_SORT_SORTNAME,        //4
+                DB_PRODUCT_AMOUNT,       //5
                 DB_PRODUCT_ORIGIN,       //6
                 DB_COUNTRY_TABLE,        //7
                 DB_COUNTRY_COUNTRYNAME,  //8
@@ -51,7 +61,12 @@ namespace FruitMarket.Helper
                 DB_PRODUCT_SUPPLIER_ID,  //12
                 DB_SUPPLIER_TABLE,       //13
                 DB_SUPPLIER_ID,          //14
-                DB_PRODUCT_DATA          //15
+                DB_PRODUCT_CATEGORY,     //15
+                DB_PRODUCT_PURCHASEDATE, //16
+                DB_PRODUCT_EXPIRATION,   //17
+                DB_PRODUCT_MATURE,       //18
+                DB_PRODUCT_PURCHASEPRICE,//19
+                DB_PRODUCT_SALESPRICE,   //20
             });
         #endregion
 
