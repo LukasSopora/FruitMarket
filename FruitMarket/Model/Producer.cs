@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace FruitMarket.Model
 {
-    [Serializable]
-    public class Producer : BindableBase, ISerializable
+    public class Producer : BindableBase
     {
         private int m_Id;
         private string m_FirstName = null;
@@ -93,22 +92,6 @@ namespace FruitMarket.Model
         public override string ToString()
         {
             return m_Company;
-        }
-
-        public Producer(SerializationInfo info, StreamingContext context)
-        {
-            m_Email = (string)info.GetValue(nameof(Email), typeof(string));
-            m_Phone = (string)info.GetValue(nameof(Phone), typeof(string));
-            m_Birthday = (DateTime)info.GetValue(nameof(Birthday), typeof(DateTime));
-            m_Adress = (Adress)info.GetValue(nameof(Adress), typeof(Adress));
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(Email), m_Email);
-            info.AddValue(nameof(Phone), m_Phone);
-            info.AddValue(nameof(Birthday), m_Birthday);
-            info.AddValue(nameof(Adress), m_Adress);
         }
     }
 }
