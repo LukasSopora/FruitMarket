@@ -29,7 +29,7 @@ namespace FruitMarket.Database
             CostumerMapper.SaveCostumers(TestDataReader.GetDefaultCostumers());
         }
 
-        public static ObservableCollection<ProductListData> GetProductListData()
+        public static ObservableCollection<ProductListData> GetAllProductListData()
         {
             var result = new ObservableCollection<ProductListData>();
 
