@@ -271,9 +271,10 @@ namespace FruitMarket.Helper
 
         #region ProductImport
         public const string PRODUCT_IMPORT_CHOSE_SUPPLIER_PRODUCER_DESC =
-            "Auswahl über den Produzenten und Lieferanten der eingehenden Produkte.\n" +
-            "Produzenten/Lieferanten können über die entsprechenden Buttons\n" +
-            "in der obigen Suchleiste hinzugefügt oder gelöscht werden.";
+            "Auswahl über den Produzenten und Lieferanten der eingehenden Produkte. " +
+            "Produzenten/Lieferanten können über die entsprechenden Buttons " +
+            "in der obigen Suchleiste hinzugefügt oder gelöscht werden. " +
+            "Durch Doppelklick auf eine Sorte Zelle kann eine neue hinzugefügt werden.";
 
         public const string PRODUCT_IMPORT_CHOSE_INCOMING_PRODUCTS_DESC =
             "Angabe der eingehenden Produkte. Ist die Sorte eines Produkts noch nicht\n" +

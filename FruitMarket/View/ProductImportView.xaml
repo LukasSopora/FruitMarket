@@ -159,8 +159,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
-                                            <ComboBox MouseDoubleClick="ComboBox_MouseDoubleClick"
-                                                Style="{StaticResource DataGridCombobox}"
+                                            <ComboBox 
+                                                MouseDoubleClick="ComboBox_MouseDoubleClick"
+                                                ToolTip="Doppelklick für neue Sorte"
+                                                Style="{StaticResource DataGridCombobox}" 
                                                 SelectedValue="{Binding Sort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 materialDesign:HintAssist.Hint="(Sorte)"
                                                 VerticalAlignment="Bottom"
