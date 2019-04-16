@@ -72,27 +72,28 @@ namespace FruitMarket.Database
             while (reader.Read())
             {
                 var data = new ProductListData();
-                Product product;
-                Producer producer;
-                Supplier supplier;
-
-                MemoryStream memoryStream = new MemoryStream((byte[])reader.GetValue(6));
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                product = (Product)binaryFormatter.Deserialize(memoryStream);
+                var product = new Product();
+                var producer = new Producer();
+                var supplier = new Supplier();
+                
                 product.Id = reader.GetInt32(0);
                 product.Amount = reader.GetInt32(1);
                 product.Sort = reader.GetString(2);
                 product.Origin = reader.GetString(3);
                 product.ProducerId = reader.GetInt32(4);
                 product.SupplierId = reader.GetInt32(5);
+                product.Category= reader.GetString(6);
+                product.PurchaseDate = reader.GetDateTime(7);
+                product.Expiration = reader.GetDateTime(8);
+                product.Mature = reader.GetInt32(9);
+                product.PurchasePrice = reader.GetDouble(10);
+                product.SalesPrice = reader.GetDouble(11);
 
-                memoryStream = new MemoryStream((byte[])reader.GetValue(11));
-                binaryFormatter = new BinaryFormatter();
-                producer = (Producer)binaryFormatter.Deserialize(memoryStream);
-                producer.Id = reader.GetInt32(7);
-                producer.LastName = reader.GetString(8);
-                producer.FirstName = reader.GetString(9);
-                producer.Company = reader.GetString(10);
+
+                producer.Id = reader.GetInt32(12);
+                producer.LastName = reader.GetString(13);
+                producer.FirstName = reader.GetString(14);
+                producer.Company = reader.GetString(15);
 
                 memoryStream = new MemoryStream((byte[])reader.GetValue(16));
                 binaryFormatter = new BinaryFormatter();

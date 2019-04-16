@@ -1,4 +1,5 @@
-﻿using FruitMarket.Helper;
+﻿using FruitMarket.Database;
+using FruitMarket.Helper;
 using FruitMarket.Model;
 using Prism.Mvvm;
 using System;
@@ -12,13 +13,13 @@ namespace FruitMarket.ViewModel
 {
     public class MainListViewModel : BindableBase
     {
-        private ObservableCollection<Product> m_Fruits =
-            new ObservableCollection<Product>();
+        private ObservableCollection<ProductListData> m_ProductListData =
+            new ObservableCollection<ProductListData>();
 
-        public ObservableCollection<Product> Fruits
+        public ObservableCollection<ProductListData> ProductListData
         {
-            get { return m_Fruits; }
-            set { SetProperty(ref m_Fruits, value); }
+            get { return m_ProductListData; }
+            set { SetProperty(ref m_ProductListData, value); }
         }
 
         public string PageDescription
@@ -27,6 +28,12 @@ namespace FruitMarket.ViewModel
             {
                 return ToolConstants.MAIN_LIST_VIEW_DESC;
             }
+        }
+
+        public void UpdateResourceData()
+        {
+            m_ProductListData = DatabaseManager.GetAllProductListData();
+            RaisePropertyChanged(nameof(ProductListData));
         }
 
         public MainListViewModel()
@@ -39,7 +46,7 @@ namespace FruitMarket.ViewModel
             //m_Fruits.Add(new Product("Hokkaidokürbis", 42, "Kat. 3", new Supplier("Kellerman GmbH"), new Producer("Kellerman GmbH"), DateTime.Parse("18-02.2019"), DateTime.Now.AddDays(40), new Mature(0, 48), "Deutschland, -", 4.50, 7.99));
             //m_Fruits.Add(new Product("Hokkaidokürbis", 42, "Kat. 3", new Supplier("Zettelman AG"), new Producer("Zettelman AG"), DateTime.Parse("18-02.2019"), DateTime.Now.AddDays(50), new Mature(0, 48), "Deutschland, -", 4.50, 7.99));
 
-
+            UpdateResourceData();
         }
     }
 }

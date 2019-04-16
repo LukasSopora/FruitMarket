@@ -118,10 +118,11 @@ namespace FruitMarket.Database
             SQLiteCommand command = new SQLiteCommand(con);
 
             command.CommandText = string.Format(
-                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10} FROM {11}",
+                "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11} FROM {12}",
+                ToolConstants.DB_PRODUCT_ID,
                 ToolConstants.DB_PRODUCT_SORT,
-                ToolConstants.DB_PRODUCT_ORIGIN,
                 ToolConstants.DB_PRODUCT_AMOUNT,
+                ToolConstants.DB_PRODUCT_ORIGIN,
                 ToolConstants.DB_PRODUCT_PRODUCER_ID,
                 ToolConstants.DB_PRODUCT_SUPPLIER_ID,
                 ToolConstants.DB_PRODUCT_CATEGORY,
@@ -150,7 +151,7 @@ namespace FruitMarket.Database
                 product.Expiration = Convert.ToDateTime(reader.GetValue(8));
                 product.Mature = Convert.ToInt32(reader.GetValue(9));
                 product.PurchasePrice = Convert.ToDouble(reader.GetValue(10));
-                product.SalesPrice = Convert.ToDouble(reader.GetValue(10));
+                product.SalesPrice = Convert.ToDouble(reader.GetValue(11));
 
                 result.Add(product);
             }

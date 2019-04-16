@@ -49,7 +49,11 @@ namespace FruitMarket.ViewModel
             switch(p_Type)
             {
                 case ViewType.HomeView: m_ActiveView = m_HomeView; break;
-                case ViewType.MainListView: m_ActiveView = m_MainListView; break;
+                case ViewType.MainListView:
+                    m_ActiveView = m_MainListView;
+                    var mlvm = m_MainListView.DataContext as MainListViewModel;
+                    mlvm.UpdateResourceData();
+                    break;
                 case ViewType.ProductListView: m_ActiveView = m_ProductListView; break;
                 case ViewType.FilterView: m_ActiveView = m_FilterView; break;
                 case ViewType.ProductAdmissionView: m_ActiveView = m_ProductImportView; break;
