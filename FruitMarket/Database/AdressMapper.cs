@@ -19,12 +19,6 @@ namespace FruitMarket.Database
             }
         }
 
-        /// <summary>
-        /// Saves an adress to the database. If the adress alreay exists, its values are just updated.
-        /// The function reutrns the column index of the insertet / updated adress.
-        /// </summary>
-        /// <param name="p_Adress"></param>
-        /// <returns>Index of insertet / updated adress</returns>
         public static int SaveAdress(Adress p_Adress)
         {
             SQLiteConnection con = Connection.GetConnection();

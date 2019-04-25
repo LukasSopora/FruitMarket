@@ -485,39 +485,39 @@ namespace FruitMarket.ViewModel
                 return false;
             }
 
-            foreach (Product f in m_Products)
+            foreach (Product product in m_Products)
             {
-                if (f.Sort == null || f.Sort == "")
+                if (product.Sort == null || product.Sort == "")
                 {
                     System.Windows.MessageBox.Show("Sort cannot be empty.");
                     return false;
                 }
-                if (f.Amount <= 0)
+                if (product.Amount <= 0)
                 {
                     System.Windows.MessageBox.Show("Invalid amount.");
                     return false;
                 }
-                if (f.Category == null || f.Category == "")
+                if (product.Category == null || product.Category == "")
                 {
                     System.Windows.MessageBox.Show("Amount cannot be empty.");
                     return false;
                 }
-                if (f.PurchaseDate == null)
+                if (product.PurchaseDate == null)
                 {
                     System.Windows.MessageBox.Show("Purchase Date cannot be empty.");
                     return false;
                 }
-                if (f.Expiration == null)
+                if (product.Expiration == null)
                 {
                     System.Windows.MessageBox.Show("Expiration Date cannot be empty.");
                     return false;
                 }
-                if (f.Origin == null || f.Origin == "")
+                if (product.Origin == null || product.Origin == "")
                 {
                     System.Windows.MessageBox.Show("Origin cannot be empty.");
                     return false;
                 }
-                if (f.PurchasePrice <= 0)
+                if (product.PurchasePrice <= 0)
                 {
                     System.Windows.MessageBox.Show("Invalid price.");
                     return false;

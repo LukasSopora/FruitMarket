@@ -52,7 +52,7 @@ namespace FruitMarket.Database
 
             reader.Close();
 
-            if (alreadyExists)
+            if (alreadyExists) //update values
             {
                 command.CommandText = string.Format(
                     "UPDATE {0} SET " +
@@ -87,7 +87,7 @@ namespace FruitMarket.Database
 
                 AdressMapper.SaveAdress(p_Supplier.Adress);
             }
-            else
+            else //not exising --> create new one
             {
                 var adressId = AdressMapper.SaveAdress(p_Supplier.Adress);
                 p_Supplier.Adress.Id = adressId;

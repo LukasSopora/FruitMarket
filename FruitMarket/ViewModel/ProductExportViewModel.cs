@@ -192,19 +192,25 @@ namespace FruitMarket.ViewModel
 
         private void OnDeleteCostumer()
         {
-            if (m_Costumers.Contains(m_CurrentCostumer))
+            if (!m_Costumers.Contains(m_CurrentCostumer))
             {
-                if (System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentCostumer), "Delete Costumer?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
-                {
-                    m_Costumers.Remove(m_CurrentCostumer);
-                    RaisePropertyChanged(nameof(Costumers));
+                return;
+            }
 
-                    CostumerMapper.DeleteCostumer(m_CurrentCostumer.Id);
+            var msbBoxResult = System.Windows.MessageBox.Show(
+                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentCostumer),
+                    "Delete Costumer?", 
+                    System.Windows.MessageBoxButton.YesNo);
 
-                    m_CurrentCostumer = null;
-                    RaisePropertyChanged(nameof(CurrentCostumer));
-                }
+            if (msbBoxResult == System.Windows.MessageBoxResult.Yes)
+            {
+                m_Costumers.Remove(m_CurrentCostumer);
+                RaisePropertyChanged(nameof(Costumers));
+
+                CostumerMapper.DeleteCostumer(m_CurrentCostumer.Id);
+
+                m_CurrentCostumer = null;
+                RaisePropertyChanged(nameof(CurrentCostumer));
             }
         }
         #endregion

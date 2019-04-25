@@ -89,19 +89,17 @@ namespace FruitMarket.Database
                 product.PurchasePrice = reader.GetDouble(10);
                 product.SalesPrice = reader.GetDouble(11);
 
-
                 producer.Id = reader.GetInt32(12);
                 producer.LastName = reader.GetString(13);
                 producer.FirstName = reader.GetString(14);
                 producer.Company = reader.GetString(15);
-
-                memoryStream = new MemoryStream((byte[])reader.GetValue(16));
-                binaryFormatter = new BinaryFormatter();
-                supplier = (Supplier)binaryFormatter.Deserialize(memoryStream);
-                supplier.Id = reader.GetInt32(12);
-                supplier.LastName = reader.GetString(13);
-                supplier.FirstName = reader.GetString(14);
-                supplier.Company = reader.GetString(15);
+                producer.Adress = AdressMapper.GetAdressById(reader.GetInt32(16));
+                
+                supplier.Id = reader.GetInt32(17);
+                supplier.LastName = reader.GetString(18); //hier schmiert der ab
+                supplier.FirstName = reader.GetString(19);
+                supplier.Company = reader.GetString(20);
+                supplier.Adress = AdressMapper.GetAdressById(reader.GetInt32(21));
 
                 data.Product = product;
                 data.Producer = producer;

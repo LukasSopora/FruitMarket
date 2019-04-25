@@ -117,6 +117,7 @@ namespace FruitMarket.Database
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);
 
+            //Build SQLite query
             command.CommandText = string.Format(
                 "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} FROM {8}",
                 ToolConstants.DB_PRODUCER_ID,
@@ -128,7 +129,6 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCER_COMPANY,
                 ToolConstants.DB_PRODUCER_EMAIL,
                 ToolConstants.DB_PRODUCER_TABLE);
-
             SQLiteDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
