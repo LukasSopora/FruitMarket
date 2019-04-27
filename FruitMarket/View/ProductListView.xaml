@@ -25,21 +25,22 @@
             Text="Produkt-nach-Lieferant-Liste" 
             Grid.Row="0" FontWeight="Bold" FontSize="24"/>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Fruits}"
+        <DataGrid Grid.Row="1" ItemsSource="{Binding ProductListData, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
-                  AutoGenerateColumns="False" Margin="20,10,20,10">
+                  AutoGenerateColumns="False" 
+                  Margin="20,10,20,10">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Sorte" Binding="{Binding Sort}"/>
-                <DataGridTextColumn Header="Anzahl" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Kategorie" Binding="{Binding Category}"/>
-                <DataGridTextColumn Header="Lieferant" Binding="{Binding Supplier}"/>
-                <DataGridTextColumn Header="Produzent" Binding="{Binding Producer}"/>
-                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="MHD" Binding="{Binding Expiration, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Mature}"/>
-                <DataGridTextColumn Header="Herkunft" Binding="{Binding Origin}"/>
-                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding PurchasePrice, StringFormat=C}"/>
-                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding SalesPrice, StringFormat=C}"/>
+                <DataGridTextColumn Header="Sorte" Binding="{Binding Product.Sort}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Anzahl" Binding="{Binding Product.Amount}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Kategorie" Binding="{Binding Product.Category}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Lieferant" Binding="{Binding Supplier.Company}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Produzent" Binding="{Binding Producer.Company}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Einkaufsdatum" Binding="{Binding Product.PurchaseDate, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="MHD" Binding="{Binding Product.Expiration, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Reifedauer" Binding="{Binding Product.Mature}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Herkunft" Binding="{Binding Product.Origin}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Einkaufspreis" Binding="{Binding Product.PurchasePrice, StringFormat=C}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Verkaufspreis" Binding="{Binding Product.SalesPrice,StringFormat=C}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 

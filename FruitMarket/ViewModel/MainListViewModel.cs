@@ -32,7 +32,8 @@ namespace FruitMarket.ViewModel
 
         public void UpdateResourceData()
         {
-            m_ProductListData = DatabaseManager.GetAllProductListData();
+            var products = DatabaseManager.GetAllProductListData().OrderBy(x => x.Product.Sort);
+            m_ProductListData = new ObservableCollection<ProductListData>(products);
             RaisePropertyChanged(nameof(ProductListData));
         }
 
