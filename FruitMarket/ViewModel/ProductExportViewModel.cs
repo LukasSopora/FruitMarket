@@ -198,7 +198,7 @@ namespace FruitMarket.ViewModel
             }
 
             var msbBoxResult = System.Windows.MessageBox.Show(
-                    string.Format("Möchten Sie den Produzenten \"{0}\" löschen?", m_CurrentCostumer),
+                    string.Format("Möchten Sie den Lieferanten \"{0}\" löschen?", m_CurrentCostumer),
                     "Delete Costumer?", 
                     System.Windows.MessageBoxButton.YesNo);
 
