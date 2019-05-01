@@ -132,6 +132,7 @@ namespace FruitMarket.Database
                 ToolConstants.DB_PRODUCER_TABLE);
             SQLiteDataReader reader = command.ExecuteReader();
 
+            //Read result
             while (reader.Read())
             {
                 Producer producer = new Producer();
