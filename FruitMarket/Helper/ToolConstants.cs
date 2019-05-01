@@ -336,7 +336,8 @@ namespace FruitMarket.Helper
         #endregion
 
         #region Filter
-        public static ObservableCollection<string> FILTER_CRITERIA = new ObservableCollection<string>
+        public static ObservableCollection<string> FILTER_CRITERIA = 
+            new ObservableCollection<string>
         {
             "Sorte",
             "Kategorie",
@@ -356,7 +357,8 @@ namespace FruitMarket.Helper
         #region DefaultVaules
 
         #region Fruits
-        public static ObservableCollection<string> DEFAULT_FRUITS = new ObservableCollection<string>
+        public static ObservableCollection<string> DEFAULT_FRUITS = 
+            new ObservableCollection<string>
         {
             "Apfel",
             "Banane",
@@ -370,7 +372,8 @@ namespace FruitMarket.Helper
             "Heidelbeere"
         };
 
-        public static ObservableCollection<string> DEFAULT_ORIGINS = new ObservableCollection<string>
+        public static ObservableCollection<string> DEFAULT_ORIGINS = 
+            new ObservableCollection<string>
         {
             "Deutschland",
             "Spanien",
@@ -384,7 +387,8 @@ namespace FruitMarket.Helper
             "Belgien",
         };
 
-        public static ObservableCollection<string> DEFAULT_FRUIT_CATEGORIES = new ObservableCollection<string>
+        public static ObservableCollection<string> DEFAULT_FRUIT_CATEGORIES = 
+            new ObservableCollection<string>
         {
             "Kl 1",
             "Kl 2",

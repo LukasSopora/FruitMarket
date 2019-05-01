@@ -112,7 +112,8 @@ namespace FruitMarket.Database
 
         public static ObservableCollection<Costumer> GetAllCostumers()
         {
-            ObservableCollection<Costumer> result = new ObservableCollection<Costumer>();
+            ObservableCollection<Costumer> result = 
+                new ObservableCollection<Costumer>();
 
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);

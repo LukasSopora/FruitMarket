@@ -16,7 +16,9 @@ namespace FruitMarket.Converter
         {
             if(value.GetType() == typeof(ObservableCollection<Filter>))
             {
-                ObservableCollection<Filter> filters = value as ObservableCollection<Filter>;
+                ObservableCollection<Filter> filters = 
+                    value as ObservableCollection<Filter>;
+
                 if(filters.Count == 0)
                 {
                     return false;

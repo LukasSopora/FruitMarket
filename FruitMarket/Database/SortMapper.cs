@@ -57,7 +57,8 @@ namespace FruitMarket.Database
 
         public static ObservableCollection<string> GetAllSorts()
         {
-            ObservableCollection<string> result = new ObservableCollection<string>();
+            ObservableCollection<string> result = 
+                new ObservableCollection<string>();
 
             SQLiteConnection con = Connection.GetConnection();
             SQLiteCommand command = new SQLiteCommand(con);

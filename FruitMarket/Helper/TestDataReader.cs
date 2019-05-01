@@ -17,7 +17,8 @@ namespace FruitMarket.Helper
 
         public static ObservableCollection<Producer> GetDefaultProducers()
         {
-            ObservableCollection<Producer> result = new ObservableCollection<Producer>();
+            ObservableCollection<Producer> result = 
+                new ObservableCollection<Producer>();
 
             StreamReader reader = new StreamReader("Helper/TestData.csv");
 
@@ -45,7 +46,8 @@ namespace FruitMarket.Helper
 
         public static ObservableCollection<Supplier> GetDefaultSuppliers()
         {
-            ObservableCollection<Supplier> result = new ObservableCollection<Supplier>();
+            ObservableCollection<Supplier> result = 
+                new ObservableCollection<Supplier>();
 
             for (int count = m_MAX_NUMBER; count < m_MAX_NUMBER * 2; count++)
             {
@@ -72,7 +74,8 @@ namespace FruitMarket.Helper
 
         public static ObservableCollection<Costumer> GetDefaultCostumers()
         {
-            ObservableCollection<Costumer> result = new ObservableCollection<Costumer>();
+            ObservableCollection<Costumer> result = 
+                new ObservableCollection<Costumer>();
 
             StreamReader reader = new StreamReader("Helper/TestData.csv");
 
@@ -100,7 +103,8 @@ namespace FruitMarket.Helper
 
         public static ObservableCollection<string> GetAllCountries()
         {
-            ObservableCollection<string> result = new ObservableCollection<string>();
+            ObservableCollection<string> result = 
+                new ObservableCollection<string>();
 
             string[] countries = File.ReadAllLines(m_COUNTRIES_DATA_PATH);
 
